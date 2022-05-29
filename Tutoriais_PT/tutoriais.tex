@@ -174,7 +174,7 @@ Os arquivos que o PRIMoRDiA precisa estão na pasta comprimida data\_teste/, que
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.0v_LINUX64 -input -op 1 -p mopac -grid 40\end{commandshell}
+\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -input -op 1 -p mopac -grid 40\end{commandshell}
 \end{minipage}
 
 Nesse caso, o PRIMORDiA vai procurar na pasta os arquivos com a extensão ".aux", pois é requerido cálculos de descritores locais para arquivos de saída do mopac. Depois de executar esse comando vai aparecer no diretório dois arquivos novos: primordia.input e primordia.log. Se isso não ocorrer como descrito ou houver alguma mensagem de erro verifique se o caminho para o executável está correto. Lembrando que é necessário trocar o "/path/to/primordia/" para o endereço da paste onde o executável está localizado. Abra o arquivo "primordia.input", o resultado deve ser como mostrado na seguinte caixa de texto ( \autoref{tut101} ).
@@ -221,7 +221,7 @@ Para executar o PRIMoRDiA é muito simples, a partir do nosso input criado e edi
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.0v_LINUX64 -f primordia.input\end{commandshell}
+\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -f primordia.input\end{commandshell}
 \end{minipage}
 
 A flag "-f" indica que o próximo argumento é um arquivo de input formatado para o programa. O arquivo de input pode ter qualquer nome e não é necessário que tenha a extensão ".input". Depois de rodar esse comando o programa deve indicar o tempo total de execução. No mesmo diretório onde os dados e o input se encontram vários novos arquivos de diferentes tipos devem aparecer. Vamos explicar eles a analisar na próxima parte do tutorial.
@@ -311,7 +311,7 @@ Você pode baixar Pymol do repositório (para Linux). Recomendamos fortemente qu
 
 Os próximos passos consistem em gerar a renderização de volume em Pymol, um objeto que representa graficamente o campo escalar no espaço tridimensional, atribuindo a cada voxel de um mesmo valor a mesma cor e opacidade. A opacidade é um recurso importante, pois você precisa definir pelo menos dois níveis, cada um com uma cor diferente. Se esses dois ou mais níveis tiverem a mesma opacidade, apenas o mais próximo das bordas dos limites da grade aparecerá.
 
-O PRIMoRDiA escreve scripts para automatizar a visualização desses arquivos no Pymol, vamos executar um deles para a acroleína calculada com semiempirico. Abra o Pymol e digite o comando que ta em destaque na figura abaixo ( \autoref{fig_tut1_6} ). 
+O PRIMoRDiA escreve scripts para automatizar a visualização desses arquivos no Pymol, vamos executar um deles para a acroleína calculada com semi-empírico. Abra o Pymol e digite o comando que ta em destaque na figura abaixo ( \autoref{fig_tut1_6} ). 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
