@@ -1,0 +1,27 @@
+\babel@toc {brazilian}{}
+\contentsline {section}{\numberline {1}Tutorial 1: Aproximação de Orbitais Congelados}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Contextualização}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Preparação dos Arquivos e Execução do Programa}{7}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Análises dos Resultados}{9}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Descritores Locais Condensados}{11}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Descritores Locais Volumétricos}{12}{subsubsection.1.3.2}%
+\contentsline {section}{\numberline {2}Tutorial 2: Aproximação de Diferenças Finitas}{18}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Contextualização}{18}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Preparação dos Arquivos e Execução do Programa}{18}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Análises dos Resultados}{19}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Tutorial 3: Descritores de Banda}{26}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Contextualização}{26}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Preparação dos Arquivos e Execução do Programa}{26}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Análises dos Resultados}{29}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Descritores Condensados}{30}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Representação Volumétrico}{35}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Representação Especial Para Residuos e Densidade de Estados}{40}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Tutorial 4: Análise de Força Ácida}{43}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Contextualização}{43}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Arquivos Necessários e Execução}{43}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Análise dos Resultados}{44}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Tutorial 5: Gerando Cubes}{50}{section.5}%
+\contentsline {section}{\numberline {6}Tutorial 6: Análise de Reação Enzimática}{54}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Contextualização}{54}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Arquivos necessários e Execução}{54}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Análise dos Resultados}{55}{subsection.6.3}%
