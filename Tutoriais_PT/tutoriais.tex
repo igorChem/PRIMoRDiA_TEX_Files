@@ -442,7 +442,7 @@ Indo para a execução do PRIMoRDiA em si, é bem simples e direto, uma vez com 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-	\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.0v_LINUX64 -f primordia.input\end{commandshell}
+	\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -f primordia.input\end{commandshell}
 \end{minipage}
 
 Exatamente da mesma forma como foi mostrada no tutorial anterior. Depois da execução desse comando, o programa deve finalizar sem nenhum erro e gerar diversos arquivos com os resultados na paste onde o programa rodou. 
@@ -451,7 +451,7 @@ Exatamente da mesma forma como foi mostrada no tutorial anterior. Depois da exec
 
 Como no tutorial anterior, nos vamos abrir os arquivos contendo o resumo dos descritores globais e locais, e finalizar a análise visualizando os descritores locais volumétricos usando o software Pymol. 
 
-Na \autoref{fig_tut2_1}, mostramos o arquivo benzene\_FD.GRD aberto em um editor de texto, mostrando os valroes obtidos para os descritores globais e outras propriedades eletrônicas que são extraídas pelo PRIMoRDiA. A grande diferença para o primeiro tutorial é a presença dos valores de energia eletrônica para os estados catiônico e aniônico. Além disso, o valor de \emph{gap} aqui, continua sendo a diferença de energia do HOMO e LUMO para a estrutura eletrônica do estado de carga neutro, ou seja, as informações em relação a potencial de ionização e afinidade eletrônica não são redundantes nesse caso.  
+Na \autoref{fig_tut2_1}, mostramos o arquivo benzene\_FD.GRD aberto em um editor de texto, mostrando os valores obtidos para os descritores globais e outras propriedades eletrônicas que são extraídas pelo PRIMoRDiA. A grande diferença para o primeiro tutorial é a presença dos valores de energia eletrônica para os estados catiônico e aniônico. Além disso, o valor de \emph{gap} aqui, continua sendo a diferença de energia do HOMO e LUMO para a estrutura eletrônica do estado de carga neutro, ou seja, as informações em relação a potencial de ionização e afinidade eletrônica não são redundantes nesse caso.  
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -845,7 +845,7 @@ A imagem salva em disco deve ser similar a mostrada na \autoref{fig_tut3_11}, mo
 \end{minipage}
 
 
-\subsubsection{Representação Volumétrico}
+\subsubsection{Representação Volumétrica}
 
 
 Os descritores com representação volumétrica segue a mesma lógica de visualização que os outros dois últimos tutoriais. A diferença, no caso dos cálculos específicos para macro moléculas, através dos métodos BD e EW, é na seleção e combinação dos orbitais moleculares. Para automatizar a visualização dos descritores básicos em representação volumétrica, o PRIMoRDiA escreve um script semelhante ao mostrado na \autoref{fig_tut3_13}, que é para a entrada 2jof\_PM7\_lmo.aux. Para a outra entrada, 2jof\_PM7.aux, também foi escrito um script desses, que  depois de ser executado abre as estruturas e renderiza os cubes no Pymol como na \autoref{fig_tut3_15}.
@@ -949,7 +949,7 @@ Na área de comando do Pymol mostrado na \autoref{fig_tut3_15}, aparece o comand
 	\end{figure}
 \end{minipage}
 
-\subsection{Representação Especial Para Residuos e Densidade de Estados}
+\subsection{Representação Especial Para Resíduos e Densidade de Estados}
 
 Para macromoléculas biológicas há diversas análises focadas em propriedades e estatísticas em função dos monômeros que os compõem. Na grande maioria, esses sistemas são proteínas que são compostas de fragmentos de amino-ácidos, chamados de resíduos de amino-ácidos. Da mesma forma que já apresentamos os descritores condensados para os átomos, é interessante analisar esses valores para cada um desses fragmentos do sistema. PRIMoRDiA utiliza as informações do PDB para somar os descritores dos átomos por resíduo e escrever em um arquivo formatado, como na \autoref{fig_tut3_28}. 
 
@@ -1221,56 +1221,9 @@ Os descritores podem ser úteis para identificar locais nas moléculas para sít
 \end{minipage}
 
 
-\section{Tutorial 5: Gerando Cubes}
-
-
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=4in]{images/T4_img1}
-			\caption{.}
-			\label{T4_img1}
-		\end{center}
-	\end{figure}
-\end{minipage}
-
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=6in]{images/T4_img2}
-			\caption{.}
-			\label{T4_img2}
-		\end{center}
-	\end{figure}
-\end{minipage}
-
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=6in]{images/T4_img3}
-			\caption{.}
-			\label{T4_img3}
-		\end{center}
-	\end{figure}
-\end{minipage}
-
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=6in]{images/T4_img4}
-			\caption{.}
-			\label{T4_img4}
-		\end{center}
-	\end{figure}
-\end{minipage}
-
 
 \newpage
-\section{Tutorial 6: Análise de Reação Enzimática}
+\section{Tutorial 5: Análise de Reação Enzimática}
 
 \subsection{Contextualização}
 
