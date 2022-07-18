@@ -118,38 +118,36 @@
 
 	By default, PRIMoRDiA uses g++-8 and the Eigen 3 library. To ensure that your machine has what it takes to compile PRIMoRDiA, run the commands below
 
-	\hspace*{-\leftmarginwidth}
-	\begin{minipage}{\fullwidth}
-		\begin{commandshell}
-			sudo apt install g++-8 
-			sudo apt install cmake
-			sudo apt install libeigen3-dev
-		\end{commandshell}
-	\end{minipage}
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+\begin{commandshell}sudo apt install g++-8 
+sudo apt install cmake
+sudo apt install libeigen3-dev\end{commandshell}
+\end{minipage}
 
 	After unzipping the downloaded folder with the stable version, enter the directory and compile it using the following commands:
 
-	\hspace*{-\leftmarginwidth}
-	\begin{minipage}{\fullwidth}
-		\begin{commandshell}cd /path/to/folder/PRIMoRDiA1.0v
-			cmake .
-			make
-		\end{commandshell}
-	\end{minipage}
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+\begin{commandshell}cd /path/to/folder/PRIMoRDiA1.0v
+cmake .
+make
+\end{commandshell}
+\end{minipage}
 
 	The compilation process should go smoothly and generate a binary file called "PRIMoRDIA\_1.25v\_LINUX64", if version 1.25 is chosen (most recommended).
-	With the command described below it is possible to create a shortcut to run the program from any directory on your system
+	With the command line shown below it is possible to create a shortcut in your ".bashrc" file to run the program from any directory on your system
 
-	\hspace*{-\leftmarginwidth}
-	\begin{minipage}{\fullwidth}
-		\begin{commandshell}
-			alias primordia='path/PRIMoRDiA1.0v/PRIMoRDiA\_1.25v\_LINUX64'
-		\end{commandshell}
-	\end{minipage}
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+\begin{commandshell}
+alias primordia='path/PRIMoRDiA1.0v/PRIMoRDiA\_1.25v\_LINUX64'
+\end{commandshell}
+\end{minipage}
 
 	\subsection{Compiled Binary}
 
-	In the event that compilation is not possible, binaries for each stable release are provided in the repository. The same process of putting in the path can be performed. Problems of missing some shared library can happen, as well as the maximum performance not being reached. However, any problems with the execution of the binaries are encouraged to be reported.
+	In the event that compilation is not possible, the binary for the last stable release is provided in the repository. The same process of putting in the path can be performed. Problems of missing some shared library can happen, as well as the maximum performance not being reached. However, any problems with the execution of the binaries are encouraged to be reported.
 
 	\subsection{Versions}
 
@@ -160,7 +158,7 @@
 		\item \textbf{1.0v}:\\
 		Nine global and fourteen local descriptors implemented. Descriptors for macromolecules, with descriptors individually marked for protein and DNA residues (PDB format).
 		\item \textbf{1.2v}:
-		\\ New input model, with more control; R scripts for statistical analysis of reaction trajectory and molecular dynamics, focus on analysis of the reaction coordinate atoms and required input residues. General code tweaks.
+		\\ New input model, with more control options; R scripts for statistical analysis of reaction trajectory and molecular dynamics, focus on analysis of the reaction coordinate atoms and required input residues. General code tweaks.
 		\item \textbf{1.25v}: Three more local hardness methods implemented, and the same local descriptors implemented for volumetric and condensed representation. Adjustments in the automation of results visualization in Pymol. Corrections and standardization of nomenclature.
 	\end{enumerate}
 
@@ -170,14 +168,14 @@
 
 	These descriptors are obtained from the electronic density calculated from molecular systems, being properties that can only be obtained from quantum calculations. Other electronic properties, such as the electron density itself, total energy and partial charges, are examples of quantities that can be calculated from the electron density and can serve as descriptors. The set of all these properties calculated by PRIMoRDiA are called by our group of Molecular Quantum Descriptors (MQDs) or just Quantum Descriptors.
 
-	The DR defined within the CDFT come from the total differential equation of the DFT (\autoref{eq.1}) and its derivatives\cite{parr1978elect}, which relates the electronic energy ($E$) with the electron density ($\rho( r)$) of the reference state and the external potential ($\nu(r)$). CDFT DRs can be classified as being global, a number representing an electronic property for the entire system, or local, a function of the system's position.
+	The RDs defined within the CDFT come from the total differential equation of the DFT (\autoref{eq.1}) and its derivatives\cite{parr1978elect}, which relates the electronic energy ($E$) with the electron density ($\rho( r)$) of the reference state and the external potential ($\nu(r)$). CDFT RDs can be classified as being global, a number representing an electronic property for the entire system, or local, a function of the system's position.
 
 	\begin{equation}
 	dE = \mu dN + \int \rho(r) d \nu (r) dr
 	\label{eq.1}
 	\end{equation}
 
-	As the main descriptors are derived, the calculation takes place through two approximation methods, which in this case are the Frozen Orbital Approximation (AOC) and the Finite Difference Approximation (DF). Local descriptors can be further separated by the representation/visualization method, Condensed to atoms or into a volumetric representation of a three-dimensional grid, with each voxel represented by a value. This descriptor classification scheme can be viewed in \autoref{fig:M1}.
+	As the main descriptors are derived, the calculation takes place through two approximation methods, which in this case are the Frozen Orbital Approximation (AOC) and the Finite Difference Approximation (FD). Local descriptors can be further separated by the representation/visualization method, Condensed to atoms or into a volumetric representation of a three-dimensional grid, with each voxel represented by a value. This descriptor classification scheme can be viewed in \autoref{fig:M1}.
 
 	\tikzstyle{block} = [rectangle, draw, fill=cyan!20, 
 	text width=5em, text centered, rounded corners, minimum height=4em]
@@ -188,15 +186,15 @@
 	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[node distance = 2.5cm, auto]
-		\node [block] (init) {CDFT Descritores};
-		\node [decision, below of=init] (typerd) {DR Escopo};
+		\node [block] (init) {CDFT Descriptors};
+		\node [decision, below of=init] (typerd) {RD Scope};
 		\node [block, right of=typerd] (local) {Local};
 		\node [block, left of=typerd] (global) {Global};
 		\node [decision, right of=local] (rep) {Vis.};
 		\node [block, above of=rep] (cond) {Condensed};
 		\node [block, below of=rep] (vol) {3D Grid};
-		\node [decision, below of=typerd] (method) {Método};
-		\node [block, right of=method] (foa) {AOC};
+		\node [decision, below of=typerd] (method) {Method};
+		\node [block, right of=method] (foa) {FOA};
 		\node [block, left of=method] (fd) {DF};
 		\path [line] (init) -- (typerd); 
 		\path [line] (typerd) -- (local); 
@@ -209,25 +207,25 @@
 		\path [line] (rep) -- (cond);
 		\path [line] (rep) -- (vol);
 		\end{tikzpicture}
-		\caption{Classificação dos descritores de Reatividade do CDFT.} \label{fig:M1}
+		\caption{Classification of CDFT Reactivity Descriptors.} \label{fig:M1}
 	\end{figure}
 
 
 	\subsection{Global Descriptors}
 
-	The electronic chemical potential (PQE) is an example of a global reactivity descriptor, which in the DFT is the Lagrangian multiplier (represented by the letter $\mu$) that minimizes the electronic energy in relation to density, given the constant external potential. The table \autoref{tab1} presents the mathematical definition for the global reactivity descriptors and the calculation forms in the two approximation methods.
+	The electronic chemical potential (ECP) is an example of a global reactivity descriptor, which in the DFT is the Lagrangian multiplier (represented by the letter $\mu$) that minimizes the electronic energy in relation to density, given the constant external potential. The table \autoref{tab1} presents the mathematical definition for the global reactivity descriptors and the calculation forms in the two approximation methods.
 
 	\hspace*{-\leftmarginwidth}
 	\begin{minipage}{\fullwidth}
 		\begin{table}[H]
 			\centering	
-			\caption{Descritores de Reatividade implementados no PRIMoRDiA}
+			\caption{Reactivity Descriptors implemented in PRIMoRDiA}
 			\begin{tabular}{c|c|c|c|c}
 				\toprule
-				DR global & Definição em CDFT  & AOC & DF & Ref. \\
+				DR global & Definition in CDFT  & FOA & FD & Ref. \\
 				\midrule
-				IP & -  & $- E_{HOMO}$ & $E_{N-1}-E_{N}$  &  \\  \hline	
-				EA & -  & $- E_{LUMO}$ & $E_{N}-E_{N+1}$ & \\ \hline	
+				IP & - & $- E_{HOMO}$ & $E_{N-1}-E_{N}$ & \\  \hline	
+				EA & - & $- E_{LUMO}$ & $E_{N}-E_{N+1}$ & \\ \hline	
 				$\mu$  & $\left(\frac{\partial E}{\partial N} \right)_\nu$  & $\frac{E_{HOMO} + E_{LUMO}}{2}$ &$\frac{E_{N-1}-E_{N+1}}{2}$ & \cite{ribeiro2017atlas}\\ \hline			
 				$\eta$  & $\left(\frac{\partial ^2  E}{\partial N ^2} \right)_\nu$ &$E_{LUMO} - E_{HOMO}$ &$E_{N-1}+E_{N+1}-2E_{N}$ & \cite{parr1983absolute}\\ \hline
 				Softness($S$)  & $1/\eta$  & - & -  & \cite{parr1983absolute} \\ \hline
@@ -239,15 +237,15 @@
 		\end{table}	
 	\end{minipage}
 
-	The PQE establishes the propensity of the system to donate electrons, and when the values between different molecular system are equal, the transfer of electrons ceases, characterizing the equilibrium state\cite{parr1983absolute}. This is why $\mu$ is named in analogy to the molar chemical potential of classical thermodynamics.
+	The ECP establishes the propensity of the system to donate electrons, and when the values between different molecular system are equal, the transfer of electrons ceases, characterizing the equilibrium state\cite{parr1983absolute}. This is why $\mu$ is named in analogy to the molar chemical potential of classical thermodynamics.
 
 	The principle of Hard and Soft Acids and Bases (\textit{HSAB: Hard and Soft Acid and Base}) by Pearson\cite{pearson1987recent} is one of the theories of chemical reactivity that gained theoretical and mathematical foundations within the CDFT. Pearson created concepts called chemical hardness and softness to explain the affinity between acids and bases by the Lewis model, based on the observation of atomic and molecular characteristics and the reactivity series\cite{Pearson1963}. From this study, it was defined that Hard acids are small and poorly polarizable electron acceptors, which in turn tend to chemically interact with hard bases, which are electron donors with the same volume and polarizability characteristics. This interaction between species considered chemically "hard" by Pearson occurs through interactions controlled by charge, forming bonds of ionic character.
 
-	On the other hand, soft acids and bases are polarizable and bulky species, where the interaction is governed by the delocalization of the boundary molecular orbitals, with a donation of electrons from the higher-energy occupied orbital (HOMO) of the base to the lower-energy virtual orbital. acid (LUMO). In this process of interaction of soft species, there is a net charge transfer from the base to the acid and there is also a greater chance of forming bonds with a covalent character. Therefore, it is possible to establish complementary rules to understand the main forces that lead a chemical reaction to happen using this Pearson principle.
+	On the other hand, soft acids and bases are polarizable and bulky species, where the interaction is governed by the delocalization of the boundary molecular orbitals, with a donation of electrons from the higher-energy occupied orbital (HOMO) of the base to the acid lower-energy virtual orbital (LUMO). In this process of interaction of soft species, there is a net charge transfer from the base to the acid and there is also a greater chance of forming bonds with a covalent character. Therefore, it is possible to establish complementary rules to understand the main forces that lead a chemical reaction to happen using this Pearson principle.
 
 	However, until the consolidation of the CDFT, the HSAB was a theory without mathematical support and a systematic way of determining scalar hardness and softness. In CDFT, hardness is primarily seen as a property of the system that represents its resistance to donate electrons, being also a characteristic of poorly polarizable and small-volume systems, that is, where electrons are more agglutinated to the nuclei.
 
-	The mathematical definition of the global descriptor associated with chemical hardness in CDFT is the derivative of PQE with respect to the number of electrons, the same as the second derivative of energy with respect to the number of electrons, and commonly represented with the Greek letter $\eta$ . Briefly, global chemical softness is defined as the reciprocal of hardness, usually represented by the letter $S$.
+	The mathematical definition of the global descriptor associated with chemical hardness in CDFT is the derivative of ECP with respect to the number of electrons, the same as the second derivative of energy with respect to the number of electrons, and commonly represented with the Greek letter $\eta$ . Briefly, global chemical softness is defined as the reciprocal of hardness, usually represented by the letter $S$.
 
 	Other global descriptors that can be obtained in CDFT are basically about these charge transfer processes, which are generally used to rationalize chemical reactions. For example: The maximum number of electrons that can be received by a system by an ideal donor $nMax$; the stabilization of energy when the system receives this number of electrons, which can be called electrophilicity and represented in the CDFT literature with the Greek letter $\omega$\cite{Pearson1990}.
 
@@ -255,15 +253,15 @@
 
 	As already mentioned above, most reactivity descriptors are derived from energy and/or electron density with respect to the number of electrons. The number of electrons is always integer, and therefore there is no continuous function of this quantity, being necessary that these derivatives are approximated through mathematical methods.
 
-	The most common method for numerically determining derivatives, whatever it is, is the finite difference (DF) method. For the CDFT quantities, the calculations have to be performed using data from the electronic structure of three states of charge of the system. For global descriptors, the information needed is the electronic energies of these three states of charge, the reference state, positively charged (at least one electron less) and negatively charged (at least one electron more).
+	The most common method for numerically determining derivatives, whatever it is, is the finite difference (FD) method. For the CDFT quantities, the calculations have to be performed using data from the electronic structure of three states of charge of the system. For global descriptors, the information needed is the electronic energies of these three states of charge, the reference state, positively charged (at least one electron less) and negatively charged (at least one electron more).
 
 	For the local descriptors this logic applies in the same way to the electron density, or partial charge in the case of the representation condensed by atoms. All electronic structure calculations must be performed for the same atomic coordinates of the reference state, that is, for the same position of the nuclei, respecting the condition of constant external potential required by these derivatives.
 
-	The other method of calculation is called the Frozen Orbital Approximation (\textit{Frozen Orbital Approximation})\cite{yang1984electron}, which uses the information from the boundary molecular orbitals, HOMO and LUMO, and disregards the change in energy/ spatial distribution of the inner orbitals, which justifies the name of the method.
+	The other method of calculation is called the Frozen Orbital Approximation (\textit{Frozen Orbital Approximation})\cite{yang1984electron}, which uses the information from the boundary molecular orbitals, HOMO and LUMO, and disregards the change in energy/spatial distribution of the inner orbitals, which justifies the name of the method.
 
-	For global descriptors in particular, the calculations are performed with the energy of the molecular orbitals HOMO and LUMO, and it is also known as Koopmans' Theorem\cite{manne1970koopmans}, which states that the energy of HOMO is the approximation of the Ionization Potential ( PI) and the LUMO energy as the approximation of Electronic Affinity (AE). The big difference between this approach and the finite difference one is that it only requires an evaluation of electronic structure (commonly called \textit{Single Point} in English). And in relation to the local descriptors, obtaining the probability densities of these orbitals requires a negligible computational effort in addition to what is necessary for the total electronic density.
+	For global descriptors in particular, the calculations are performed with the energy of the molecular orbitals HOMO and LUMO, and it is also known as Koopmans' Theorem\cite{manne1970koopmans}, which states that the energy of HOMO is the approximation of the Ionization Potential (IP) and the LUMO energy as the approximation of Electronic Affinity (EA). The big difference between this approach and the finite difference one is that it only requires an evaluation of electronic structure (commonly called \textit{Single Point} in English). And in relation to the local descriptors, obtaining the probability densities of these orbitals requires a negligible computational effort in comparison with which is necessary for the total electronic density.
 
-	Therefore, AOC has a significantly lower computational cost than DF, the latter being prohibitive for large molecules. As for accuracy, the approximation of DF by definition is theoretically greater, since it considers the perturbation of the entire electronic density when the system participates in charge transfer processes. However, the AOC is estimated by molecular orbitals that generally have great importance in explaining the chemical reactivity of molecules, as it gives the probability distribution of the location of electrons that are more susceptible to chemical processes.
+	Therefore, FOA has a significantly lower computational cost than FD, the latter being prohibitive for large molecules. As for accuracy, the approximation of FD by definition is theoretically greater, since it considers the perturbation of the entire electronic density when the system participates in charge transfer processes. However, the FOA is estimated by molecular orbitals that generally have great importance in explaining the chemical reactivity of molecules, as it gives the probability distribution of the location of electrons that are more susceptible to chemical processes.
 
 	\subsection{Local Descriptors}
 
@@ -281,7 +279,7 @@
 
 	\subsubsection{Representation Methods}
 
-	The practical way to represent these local descriptors is to define a three-dimensional grid, where each point $r$ relates three-dimensional coordinates of the chemical system with a value. These dots are known as \textit{voxel}, the three-dimensional analogue of the pixel, and are usually collected in a formatted file called \textit{Gaussian Cube}, or simply cube, with the extension ".cube". This file has a pattern that is recognized by the vast majority of molecular visualization software, being able from them to create graphic representations of iso-surfaces, render more than one of these iso-surfaces assigning different colors and opacities, which results in a volumetric representation .
+	The practical way to represent these local descriptors is to define a three-dimensional grid, where each point $r$ relates three-dimensional coordinates of the chemical system with a value. These dots are known as \textit{voxel}, the three-dimensional analogue of the pixel, and are usually collected in a formatted file called \textit{Gaussian Cube}, or simply cube, with the extension ".cube". This file has a pattern that is recognized by the vast majority of molecular visualization software, being able from them to create graphic representations of iso-surfaces, render more than one of these iso-surfaces assigning different colors and opacities, which results in a volumetric representation.
 
 	Within the language of quantum descriptors adopted by PRIMoRDiA, this representation is known as volumetric. PRIMoRDiA calculates 21 electronic properties/reactivity descriptors that can be written to disk as formatted Cube files. For this, it is necessary for the user to define the non-zero resolution of the three-dimensional grid and provide the electronic structure data necessary for the calculation of these quantum descriptors. More details on the parameters, input and the descriptors themselves are given in the next sections of this guide.
 
@@ -289,10 +287,9 @@
 
 	For example, a fraction of the electron density can be attributed to an atom of the molecular system through a population analysis, such as that of Muliken or Lowdin for example. 
 
-	These numerical methods add the coefficients of molecular orbitals, or density matrix elements, that are assigned to atomic orbitals, partitioning these values for each atom. This process is known as condensation, generating a condensed representation for atoms, and often shortened to just 'condensed'. In the generic case shown in \autoref{eq.4}, the descriptor $f(r)$ can have its part assigned to the atom $k$ through the integration of the values of $f(r)$ in the base functions referring to this one atom.
+	These numerical methods sum the coefficients of molecular orbitals, or density matrix elements, that are assigned to atomic orbitals, partitioning these values for each atom. This process is known as condensation, generating a condensed representation for atoms, and often shortened to just 'condensed'. In the generic case shown in \autoref{eq.4}, the descriptor $f(r)$ can have its part assigned to the atom $k$ through the integration of the values of $f(r)$ in the base functions referring to this one atom.
 
 	PRIMoRDiA calculates the descriptors and writes a file with the list of values of the local descriptors ordered by the atom index in the file provided to the software.
-
 
 	\begin{equation}
 	f_k^{a} = \int_{\Omega k} f(r)dr
@@ -370,7 +367,7 @@
 	\label{eq.13}
 	\end{equation}
 
-	For the calculation of $f^{0}(r)$ by the AOC, it is done by the average between $f^{+}(r)$ and $f^{-}(r)$, or following the logic of using the boundary molecular orbitals, $f^{0}(r)$ can be approximated by the uniquely occupied molecular orbital, abbreviated in English as SOMO (Single Occupied Molecular Orbital) (\autoref{eq.14}).
+	For the calculation of $f^{0}(r)$ by the FOA, it is done by the average between $f^{+}(r)$ and $f^{-}(r)$, or following the logic of using the boundary molecular orbitals, $f^{0}(r)$ can be approximated by the uniquely occupied molecular orbital, abbreviated in English as SOMO (Single Occupied Molecular Orbital) (\autoref{eq.14}).
 
 	\begin{equation}
 	f^{0}(r) = |\phi_{SOMO}(r)|^2 
@@ -389,9 +386,9 @@
 	\label{eq.16}
 	\end{equation}
 
-	For the AOC, it is the boundary orbitals that must be condensed for the atoms, and this is done in order to partition these molecular orbitals by the contribution of the AO atomic orbitals of index $\nu$ and their overlap with the other orbitals ($\ mu$) of the same atom $k$ counting as the cross product weighted by the overlap matrix, also called the one-electron integrals $S_{\nu\mu}$. This process can be performed for the probability density condensation for any molecular orbital $\psi^i$, as shown in \autoref{eq.31}.
+	For the FOA, it is the boundary orbitals that must be condensed for the atoms, and this is done in order to partition these molecular orbitals by the contribution of the AO atomic orbitals of index $\nu$ and their overlap with the other orbitals ($\ mu$) of the same atom $k$ counting as the cross product weighted by the overlap matrix, also called the one-electron integrals $S_{\nu\mu}$. This process can be performed for the probability density condensation for any molecular orbital $\psi^i$, as shown in \autoref{eq.31}.
 
-	For AOC, condensation by atoms is performed using the probability density of the boundary orbitals, whose contribution is given by the coefficients of the AO atomic orbitals with index $\nu$ and their overlap with the other orbitals ($\mu$) of the same atom $k$ counting as the cross product weighted by the overlap matrix, also called the one-electron integrals $S_{\nu\mu}$. This process can be performed for the probability density condensation for any molecular orbital $\psi^i$, as shown in \autoref{eq.17}.
+	For FOA, condensation by atoms is performed using the probability density of the boundary orbitals, whose contribution is given by the coefficients of the AO atomic orbitals with index $\nu$ and their overlap with the other orbitals ($\mu$) of the same atom $k$ counting as the cross product weighted by the overlap matrix, also called the one-electron integrals $S_{\nu\mu}$. This process can be performed for the probability density condensation for any molecular orbital $\psi^i$, as shown in \autoref{eq.17}.
 
 	\begin{equation}
 	|\psi^i(k)|^2  =\sum_{\nu \in k}^{AO} \Bigg \{ |C_{\nu i}|^{2} + \sum_{\mu \notin \nu }^{AO} |C_{\nu i} C_{\mu i}|S_{\mu \nu} \Bigg \}
@@ -410,7 +407,7 @@
 	\label{eq.19}
 	\end{equation}
 
-	Até aqui definimos as formas de cálculo para as funções de Fukui, na sua forma condensada e volumétrica, e para os dois tipos de aproximação possível. 
+	So far we have defined the forms of calculation for the Fukui functions, in their condensed and volumetric form, and for the two types of possible approximation.
 
 	\subsubsection{Local Softness and Electrophilicity}
 
@@ -423,7 +420,7 @@
 	\label{eq.20}
 	\end{equation}
 
-	As the Fukui function is divided into different indices in the calculation methods in relation to the type of attack that the system can suffer, the local softness calculation ends up suffering the same partition, obtaining the forms described in \autoref{eq.21} - - \autoref{eq.24}.
+	As the Fukui function is divided into different indices in the calculation methods in relation to the type of attack that the system can suffer, the local softness calculation ends up suffering the same partition, obtaining the forms described in \autoref{eq.21}--\autoref{eq.24}.
 
 	\begin{equation}
 	s^-(r) = Sf^-(r)
@@ -451,7 +448,6 @@
 	s^{2}(r) = S^2f^{\pm}(r)
 	\label{eq.25}
 	\end{equation}
-
 
 	The local electrophilicity arises in the same way as the local softness, and can be calculated as the product of the total electrophilicity by the Fukui functions\cite{noorizadeh2013evaluation}, as shown in \autoref{eq.26}. Soon the same effect of division by type of attack also presents itself. Local electrophilicity partitions the global referent property which is the stabilization of electronic energy given in the process of receiving electrons by the system. Therefore, the default definition is given using $f^+(r)$, which describes the locations most prone to electrophilic attacks. When using the dual descriptor $f^{\pm}(r)$ instead of $f^+(r)$, the multiphilic descriptor $\Delta \omega(r)$ appears, which serves to describe the same type of process regardless of the attack type\cite{padmanabhan2007multiphilic}.
 
@@ -522,8 +518,6 @@
 	In the Thomas-Fermi-Dirac (TFD) model for these functionals, the local hardness referring to the kinetic energy functional and the exchange-correlation functional can be neglected, since these same functionals assume negligible values in these regions of the chemical systems where the reactions, so that \autoref{eq.30} can be approximated only using the classical electron-electron interaction functional, as shown in \autoref{eq.34}. 
 
 	This approximation greatly facilitates the definition of a first working equation for local hardness, since the derivative of $J[\rho]$ (\autoref{eq.35})  with the respect to electron density is trivial and the calculation of $\eta(r)$ is as shown in \autoref{eq.36}
-
-
 
 	\begin{equation}
 	\eta^{TFD} (r) = \frac{1}{2N} \int \frac{\delta^2 J[\rho]}{\delta \rho(r) \delta \rho(r')} \rho(r')dr'
@@ -719,7 +713,7 @@ Something to note is that there is a selection of descriptors compared to those 
 			\makecell{Density \\electronics of the \\cation ($\rho^{N-1}(r)$)} &Elec\_Dens\_Cation &$\sum_{i}^{occ} |\phi(r)^ 2_i|$ & \makecell{Written if used\\ finite differences.} \\\hline
 			\makecell{Density \\electronics of the\\ anion ($\rho^{N+1}(r)$)} &Elec\_Dens\_Anion&$\sum_{i}^{occ} |\phi(r)^2_i |$ & \makecell{Written if used\\ finite differences.} \\\hline
 			\makecell{Susceptibility \\a electrophilic attack\\ ($f^-(r)$)} &left\_Fukui&$\lim_{\partial N \to 0^-}\left(\frac{\partial \rho(r )}{\partial N} \right)_\nu$ & \makecell{Identifies nucleophilic\\ regions.} \\ \hline
-			\makecell{Susceptibility \\a nucleophilic attack\\ ($f^+(r)$)}&right\_Fukui&$\lim_{\partial N \to 0^+}\left(\frac{\partial \rho(r )}{\partial N} \right)_\nu$ & \makecell{Identifies the\\ electrophilic regions.} \\ \hline
+			\makecell{Susceptibility \\a nucleophilic attack\\ ($f^+(r)$)}&right\_Fukui&$\lim_{\partial N \to 0^+}\left(\frac{\partial \rho(r )}{\partial N} \right)_\nu$ & \makecell{Identifies the\\ electrophilicity regions.} \\ \hline
 			\makecell{Susceptibility \\a radical attack \\($f^0(r)$)}&zero\_Fukui&$\lim_{\partial N \to 0}\left(\frac{\partial \rho(r)} {\partial N} \right)_\nu$ & \makecell{Medium reactivity.\\ Used for extreme attacks.} \\ \hline
 			\makecell{Dual Descriptor \\($f^{\pm}(r)$)}&net\_Fukui &$\left(\frac{\partial ^2 \rho(r)}{\partial N} \right) _\nu$ & \makecell{Identifies the net trend.} \\ \hline
 			\makecell{Local Hardness ($h(r)$)} &l\_hardness\_Vee &$\frac{1}{2N} \int \frac{\rho(r')}{|r-r'|} dr '$ & \makecell{More traditional\\working equation.} \\ \hline
@@ -813,28 +807,28 @@ PRIMoRDiA can read and work with information from the output files of the most p
 For the calculation of condensed quantum descriptors it is necessary that the \textit{overlap} matrix, or the 1-electron integral. For the calculation of local descriptors, information from the base functions is needed. In order for this information to be written in the output of the GAMESS files, it is necessary to include in the input file the flag of the 'nprint=3' option in the '\$contlr' group. In the following text box (\autoref{ls.gam}) the input for GAMESS for the acrolein molecule is exemplified.
 
 \begin{minipage}{\textwidth}
-	\begin{lstlisting}[caption={Exemplo de input do Gamess},label={ls.gam}]
-	$SYSTEM MWORDS=20 $END
-	$CONTRL RUNTYP=Energy $END
-	$CONTRL SCFTYP=RHF $END
-	$CONTRL ICHARG=0  MULT=1 NPRINT=3 $END
-	$BASIS GBASIS=N311 NGAUSS=6 $END
-	$BASIS NDFUNC=1 NFFUNC=1 $END
-	$BASIS DIFFSP=.TRUE. $END
-	$SCF DIRSCF=.TRUE. $END
-	$DATA
-	Molecule specification
-	C1
-	C 6.000000 0.811276 0.464703 0.000085
-	C 6.000000 -0.666979 0.602652 -0.000083
-	C 6.000000 -1.468478 -0.468578 0.000045
-	H 1.000000 -1.067523 1.614725 -0.000234
-	H 1.000000 -2.550922 -0.381565 -0.000017
-	H 1.000000 -1.040888 -1.467756 0.000243
-	H 1.000000 1.374133 1.423218 0.000372
-	O 8.000000 1.403786 -0.597661 -0.000081
-	$END
-	\end{lstlisting}
+\begin{lstlisting}[caption={Input Example for Gamess},label={ls.gam}]
+$SYSTEM MWORDS=20 $END
+$CONTRL RUNTYP=Energy $END
+$CONTRL SCFTYP=RHF $END
+$CONTRL ICHARG=0  MULT=1 NPRINT=3 $END
+$BASIS GBASIS=N311 NGAUSS=6 $END
+$BASIS NDFUNC=1 NFFUNC=1 $END
+$BASIS DIFFSP=.TRUE. $END
+$SCF DIRSCF=.TRUE. $END
+$DATA
+Molecule specification
+C1
+C 6.000000 0.811276 0.464703 0.000085
+C 6.000000 -0.666979 0.602652 -0.000083
+C 6.000000 -1.468478 -0.468578 0.000045
+H 1.000000 -1.067523 1.614725 -0.000234
+H 1.000000 -2.550922 -0.381565 -0.000017
+H 1.000000 -1.040888 -1.467756 0.000243
+H 1.000000 1.374133 1.423218 0.000372
+O 8.000000 1.403786 -0.597661 -0.000081
+$END
+\end{lstlisting}
 \end{minipage}
 
 For ORCA software, this information is obtained by including in the '\%output' group the options: 'print[p\_mos] 1' and 'print[p\_overlap] 5'. This activates the writing of the atomic bases and integrals of an electron. The example input for the acrolein molecule with these options is listed in the following text box (\autoref{ls.or})
@@ -845,29 +839,27 @@ For GAUSSIAN, the keywords are needed to activate the writing of the fchk file a
 
 \newpage
 \begin{minipage}{\textwidth}
-	\begin{lstlisting}[caption={Exemplo de input para o GAUSSIAN},label={ls.gauss}]
-	%chk=Fe_DFO_s2_nuevo.chk
-	%mem=6GB
-	%nprocs=8
-	B3LYP/gen empiricaldispersion=gd3 
-	scrf=(solvent=water,smd)
-	scf=save gfinput iop(6/7=3)
-	iop(3/33=4) pop=full
-	....
-	\end{lstlisting}
+\begin{lstlisting}[caption={Input Example for Gaussian},label={ls.gauss}]
+%chk=Fe_DFO_s2_nuevo.chk
+%mem=6GB
+%nprocs=8
+B3LYP/gen empiricaldispersion=gd3 
+scrf=(solvent=water,smd)
+scf=save gfinput iop(6/7=3)
+iop(3/33=4) pop=full
+....
+\end{lstlisting}
 \end{minipage}
 
 \newpage
 
 \section{Software Execution and General Options}
 
-Depois da instalação do programa no seu sistema, é possível utilizar o programa como mostrado a seguir
+After installing the program on your system, you can use the program as shown below
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-	\begin{commandshell}
-		/path/to/PRIMoRDiA/primordia -f input -np 4 	
-	\end{commandshell}
+\begin{commandshell}/path/to/PRIMoRDiA/primordia -f input -np 4\end{commandshell}
 \end{minipage}
 
 The example above shows the command to run the calculation of reactivity descriptors from the input file. The \emph{-f} flag indicates that the next argument is the input file. The \emph{-np} flag indicates that the next argument is the maximum number of threads used in the calculations. This argument is optional and the default number of threads is the maximum number available on your machine. Using the \emph{-help} flag, a general summary of the program's usage options and their arguments, as exemplified in the following text boxes
@@ -875,32 +867,30 @@ The example above shows the command to run the calculation of reactivity descrip
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-	\begin{commandshell}
-		/path/to/PRIMoRDiA/primordia --help
-	\end{commandshell}
+	\begin{commandshell}/path/to/PRIMoRDiA/primordia --help\end{commandshell}
 \end{minipage}
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{shell}
-		Starting PRIMoRDiA software! 
-		Calculations starting at: Thu Jun  4 10:43:56 2020
+Starting PRIMoRDiA software! 
+Calculations starting at: Thu Jun  4 10:43:56 2020
 		
-		PRIMoRDiA help page
-		PRIMoRDiA Macromolecular Reactivity Descriptor Access
-		The program must be run as follows:
-		/path/to/executable [option run] [file\_name] [other options] 
-		options run:
-		--help/-h : Display this help message
-		-f    : Reactivity descriptors run option
-		-ed   : Electron density cube file generation run option
-		-mo   : Molecular Orbital cube file generation run option
-		-input: Produce input from the name list in the current folder
-		-cubed: cube file differences and similarity index calculation
-		-cdiff: Calculates the similarity index from a list of cube files
-		-np [n] : program runs using n threads
+PRIMoRDiA help page
+PRIMoRDiA Macromolecular Reactivity Descriptor Access
+The program must be run as follows:
+/path/to/executable [option run] [file\_name] [other options] 
+options run:
+--help/-h : Display this help message
+-f    : Reactivity descriptors run option
+-ed   : Electron density cube file generation run option
+-mo   : Molecular Orbital cube file generation run option
+-input: Produce input from the name list in the current folder
+-cubed: cube file differences and similarity index calculation
+-cdiff: Calculates the similarity index from a list of cube files
+-np [n] : program runs using n threads
 		
-		Total execution time of PRIMoRDiA program: 0.0136223 seconds
+Total execution time of PRIMoRDiA program: 0.0136223 seconds
 	\end{shell}
 \end{minipage}
 
@@ -945,7 +935,7 @@ Before version 1.2 the input file was very simple, as shown in the \autoref{ls.p
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-	\begin{lstlisting}[caption=Exemplo de input utilizado antes da versão 1.2.,label={ls.pri}]
+	\begin{lstlisting}[caption=Input example used in the old versions.,label={ls.pri}]
 	dos extrard eband 3 pymols
 	1 mol.aux 40 mopac mep
 	2 mol.log cation.log anion.log 40 1 gamess 
@@ -957,14 +947,14 @@ In the next text box \autoref{ls.pri2}, an example of input for PRIMoRDiA from v
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-	\begin{lstlisting}[caption=Exemplo de input utilizado a partir da versão 1.2.,label={ls.pri2}]
-	#RT normal 
-	#PR eband 1 extrard pymols dos Rscript
-	1 acrolein.aux false 0 mopac 
-	1 acrolein_orca.out false 40 orca 
-	2 benzene.out benzene_cat.out  benzene_an.out true 40 1 mopac
-	3 2jof.aux true 40 0 2jof.pdb mopac 32.335 1.325 0.876 10 EW 
-	3 2jof.aux false 0 10 2jof.pdb mopac 0 0 0 0 BD
+	\begin{lstlisting}[caption=Input example for the last version,label={ls.pri2}]
+#RT normal 
+#PR eband 1 extrard pymols dos Rscript
+1 acrolein.aux false 0 mopac 
+1 acrolein_orca.out false 40 orca 
+2 benzene.out benzene_cat.out  benzene_an.out true 40 1 mopac
+3 2jof.aux true 40 0 2jof.pdb mopac 32.335 1.325 0.876 10 EW 
+3 2jof.aux false 0 10 2jof.pdb mopac 0 0 0 0 BD
 	\end{lstlisting}
 \end{minipage}
 

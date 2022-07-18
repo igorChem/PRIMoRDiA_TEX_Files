@@ -76,7 +76,7 @@
 
 \section{Introdução}
 
-PRIMoRDiA ( \textbf{PRI}MoRDiA \textbf{M}acromolecular \textbf{R}eactivity \textbf{D}escriptors \textbf{A}ccess ) é um software escrito em \emph{C++}, desenvolvido para o pós-processamento eficiente dos resultados de pacotes de química computacional, produzindo uma grande variedade de descritores quânticos, que são propriedades eletrônicas e de reatividade de sistemas químicos. 
+PRIMoRDiA ( \textbf{PRI}MoRDiA \textbf{M}acromolecular \textbf{R}eactivity \textbf{D}escriptors \textbf{A}ccess ) é um software escrito em \emph{C++}, desenvolvido para o pós-processamento eficiente de resultados de pacotes de química computacional, produzindo uma grande variedade de descritores quânticos, que são propriedades eletrônicas e de reatividade dos sistemas químicos. 
 
 O PRIMoRDiA traz implementado os principais descritores de reatividade da Teoria do DFT conceitual, incluindo as definições matemáticas para as teorias de elétrons de fronteira de Fukui e de Ácidos e Bases Duros e Moles de Pearson. O PRIMoRDiA foi desenvolvido com foco no cálculo para grandes moléculas que são relevantes para processos biológicos, e por isso há descritores modificados especificamente para atender as particularidades desses sistemas. 
 
@@ -115,7 +115,7 @@ Link para última versão: \url{https://github.com/igorChem/PRIMoRDiA1.0v/releas
 
 A compilação com o CMake é muito simples de se realizar, com poucos comandos é gerado um binário do PRIMoRDiA otimizado para a sua máquina. A desvantagem da compilação em relação a utilização dos binários prontos é a necessidade de instalação de algumas bibliotecas exigidas pelo PRIMoRDiA. Às vezes, o usuário também não tem os compiladores e o próprio CMake para o processo de compilação. 
 
-Em distribuições Linux mais populares, baseadas em Debian, como por exemplo Ubuntu e Mint, isso pode ser facilmente resolvido instalando as bibliotecas a partir do repositório.
+Em distribuições Linux mais populares baseadas em Debian, como por exemplo Ubuntu e Mint, isso pode ser facilmente resolvido instalando as bibliotecas a partir do repositório.
 
 Por padrão, o PRIMoRDiA utiliza o g++-8 e a biblioteca Eigen 3. Para assegurar que sua máquina tenha o necessário para compilar o PRIMoRDiA, execute os comandos abaixo
 
@@ -128,7 +128,7 @@ sudo apt install libeigen3-dev
 \end{commandshell}
 \end{minipage}
  
-Depois de descomprimir a pasta baixada com a versão estável, entre no diretório e faça a compilação usando os seguintes comandos: 
+Depois de descomprimir a pasta baixada com a versão estável entre no diretório e faça a compilação usando os seguintes comandos: 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -139,7 +139,7 @@ make
 \end{minipage}
 
 O processo de compilação deve ocorrer sem problemas e gerar um arquivo binário chamado "PRIMoRDIA\_1.25v\_LINUX64 ", caso a versão 1.25 seja a escolhida ( mais recomendado ).
-Com o comando descrito abaixo é possível criar um atalho para executar o programa de qualquer diretório do seu sistema
+Com a linha de código mostrada abaixo é possível criar um atalho no arquivo ".bashrc" para executar o programa de qualquer diretório do seu sistema
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -151,7 +151,7 @@ alias primordia='caminho/PRIMoRDiA1.0v/PRIMoRDiA\_1.25v\_LINUX64'
 
 \subsection{Binários Compilados} 
 
-No caso da impossibilidade de compilação, binários para cada versão estável são fornecidos no repositório. O mesmo processo de colocar no caminho pode ser realizado. Problemas de falta de alguma biblioteca compartilhada podem acontecer, assim como a performance máxima não ser alcançada. Entretanto, qualquer problema com a execução dos binários é encorajado que os mesmos sejam reportados. 
+No caso da impossibilidade de compilação, binários para a última versão estável é fornecido no repositório. O mesmo processo de colocar no caminho pode ser realizado. Problemas de falta de alguma biblioteca compartilhada podem acontecer, assim como a performance máxima não ser alcançada. Entretanto, qualquer problema com a execução dos binários é encorajado que os mesmos sejam reportados. 
 
 \newpage
 \section{Versões do Programa}
@@ -246,7 +246,7 @@ O potencial químico eletrônico (PQE) é um exemplo de descritor de reatividade
 
 O PQE estabelece a propensão dos sistema de doar elétrons, e quando os valores entre diferentes sistemas moleculares se igualam a transferência de elétrons cessa, caracterizando o estado de equilíbrio\cite{parr1983absolute}. Por causa disso é que $\mu$ é batizado em analogia ao potencial químico molar da termodinâmica clássica. 
 
-O princípio de Ácidos e Bases Duros e Moles  (\textit{HSAB: Hard and Soft Acid and Base}) de Pearson\cite{pearson1987recent} é uma das teorias de reatividade química que ganhou fundamentação teórica e matemática dentro do CDFT. Pearson criou conceitos batizados de dureza e moleza química para explicar a afinidade entre ácidos e bases pelo modelo de Lewis, baseado na observação de características atômicas e moleculares e as séries de reatividade\cite{Pearson1963}. Desse estudo foi definido que ácidos Duros são receptores de elétrons pequenos e pouco polarizáveis, que por sua vez tendem a interagir quimicamente com bases duras, que são doadores de elétrons com as mesmas características de volume e polarizabilidade. Essa interação entre espécies consideradas quimicamente "duras" por Pearson ocorrem por interações controladas por carga, formando ligações de caráter iônico. 
+O princípio de Ácidos e Bases Duros e Moles  (\textit{HSAB: Hard and Soft Acid and Base}) de Pearson\cite{pearson1987recent} é uma das teorias de reatividade química que ganhou fundamentação teórica e matemática dentro do CDFT. Pearson criou conceitos batizados de dureza e moleza química para explicar a afinidade entre ácidos e bases pelo modelo de Lewis, baseado na observação de características atômicas e moleculares e as séries de reatividade\cite{Pearson1963}. Desse estudo foi definido que ácidos Duros são pequenos receptores de elétrons e pouco polarizáveis, que por sua vez tendem a interagir quimicamente com bases duras, que são doadores de elétrons com as mesmas características de volume e polarizabilidade. Essa interação entre espécies consideradas quimicamente "duras" por Pearson ocorrem por interações controladas por carga, formando ligações de caráter iônico. 
 
 Já os ácidos e bases moles são espécies polarizáveis e volumosas, onde a interação é governada pela deslocalização dos orbitais moleculares de fronteira, havendo uma doação de elétrons do orbital ocupado de mais alta energia (HOMO) da base para o orbital virtual de mais baixa energia do ácido (LUMO). Nesse processo de interação de espécies moles há uma transferência de carga líquida da base para o ácido e também tendo maior chance de formação de ligações com caráter covalente. Logo, é possível estabelecer regras complementares para entender as principais forças que levam uma reação química a acontecer usando esse principio de Pearson.
 
