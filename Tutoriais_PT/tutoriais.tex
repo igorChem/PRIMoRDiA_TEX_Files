@@ -81,7 +81,7 @@
 \section*{Introdução}
 
 
-Esse documento contém os tutoriais para o programa PRIMoRDiA. PRIMoRDiA ( \textbf{PRI}MoRDiA \textbf{M}acromolecular \textbf{R}eactivity \textbf{D}escriptors \textbf{A}ccess ) é um software escrito em \emph{C++}, desenvolvido para o pós-processamento eficiente dos resultados de pacotes de química computacional, produzindo uma grande variedade de descritores quânticos: propriedades eletrônicas e de reatividade de sistemas químicos. 
+Esse documento contém os tutoriais para o programa PRIMoRDiA. PRIMoRDiA ( \textbf{PRI}MoRDiA \textbf{M}acromolecular \textbf{R}eactivity \textbf{D}escriptors \textbf{A}ccess ) é um software escrito em \emph{C++}, desenvolvido para o pós-processamento eficiente dos resultados de pacotes de química computacional, produzindo uma grande variedade de descritores quânticos: propriedades eletrônicas e reatividade de sistemas químicos. 
 
 O PRIMoRDiA traz implementado os principais descritores de reatividade da Teoria do DFT conceitual, incluindo as definições matemáticas para as teorias de elétrons de fronteira de Fukui e de ácidos e bases duros e moles de Pearson. O PRIMoRDiA foi desenvolvido com foco no cálculo de descritores e outras propriedades eletrônicas mais comuns para grandes moléculas que são relevantes para processos biológicos, e por isso há descritores modificados especificativamente para atender as particularidades desses sistemas. 
 
@@ -119,24 +119,21 @@ A lista de tutoriais está logo abaixo:
 	\item Aproximação de Diferenças Finitas:
 	\item Descritores de Banda
 	\item Análise de Força Ácida
-	\item Gerando Cubes
 	\item Análise de Reação Enzimática
 \end{enumerate}
 
-O Primeiro tutorial é muito importante de ser realizada para quem deseja utilizar o PRIMoRDiA, introduz várias informações detalhadas sobre a montagem do input e seu parâmetros, e execuções básicas no software gráfico Pymol para análise dos resultados de forma gráfica. Também, nesse mesmo tutorial, é desenvolvida a interpretação dos descritores globais e o efeito dos métodos de estrutura eletrônica nessas quantidades, informações que são relevantes para todos os métodos e modos de cálculo. 
+O primeiro tutorial é muito importante de ser feito, pois ele introduz várias informações detalhadas sobre a montagem do input e execuções básicas no software gráfico Pymol para análise dos resultados de forma gráfica. Também, nesse mesmo tutorial, é desenvolvida a interpretação dos descritores globais e o efeito dos métodos de estrutura eletrônica nessas quantidades, informações que são relevantes para todos os métodos e modos de cálculo. 
 
-O segundo tem pouca diferença no que diz respeito a montagem do input e execução do programa, entrando em mais detalhes sobre o uso do Pymol. O terceiro é o principal tutorial para quem deseja trabalhar com proteínas/enzimas e ou outras macromoléculas, introduzindo como utilizar os dois métodos implementados para o cálculo de descritores locais e outroa vários parâmetros para a análise dos resultados.
+O segundo tem pouca diferença no que diz respeito a montagem do input e execução do programa, e por isso aproveitamos para prover mais detalhes sobre o uso do Pymol. O terceiro é o principal tutorial para quem deseja trabalhar com macromoléculas, como proteínas/enzimas, introduzindo como utilizar os dois métodos implementados para o cálculo de descritores locais e outros vários parâmetros para a análise dos resultados.
 
-O quarto tutorial é o primeiro com a intenção de demonstrar o uso dos descritores dentro do contexto de uma pergunta de pesquisa, como trabalhado nesse exemplo a força ácida de diferentes amino-ácidos, mostrando como os diversos descritores podem ser utilizados e combinados para extrair informações de cálculos quânticos feitos para esses sistemas. 
+O quarto tutorial pretende demonstrar o uso dos descritores dentro do contexto de uma pergunta de pesquisa, trazendo como exemplo a investigação da força ácida de diferentes amino-ácidos, mostrando como os diversos descritores podem ser utilizados e combinados para extrair informações de cálculos quânticos feitos para esses sistemas. 
 
-O quinto tutorial traz exemplos de uso do PRIMoRDiA sem input, utilizando outras flags que processam diretamente arquivos individuais para gerar arquivos do tipo ".cube", contendo a densidade eletrônica total ou as amplitudes de probabilidade de orbitais moleculares calculados para o espaço tridimensional da molécula. 
-
-O sexto tutorial traz uma aplicação bastante avançada do software, se assemelhando a análises que fazemos nas nossas recentes publicações. Os descritores de Banda, que são o terceiro tipo de modo de cálculo implementado exclusivamente no PRIMoRDiA para lidar com macromoléculas, aplicado a uma trajetória correspondendo a um caminho de reação catalisada por uma enzima. 
+O quinto tutorial traz uma aplicação bastante avançada do software, se assemelhando a análises que fazemos nas nossas recentes publicações. Os descritores de Banda, que são o terceiro tipo de modo de cálculo implementado exclusivamente no PRIMoRDiA para lidar com macromoléculas, aplicado a uma trajetória correspondendo a um caminho de reação de uma catálise enzimática. 
 
 \newpage
 \section{Tutorial 1: Aproximação de Orbitais Congelados}
 
-Nesse tutorial vai ser  demonstrado como utilizar o programa para obter os descritores de reatividade usando as informações dos orbitais moleculares de fronteira. Por ser o primeiro tutorial, vai ser exemplificado a obtenção dos descritores para a molécula de acroleína  com a estrutura eletrônica calculada com os quatro pacotes de química computacional que é suportado pelo PRIMoRDiA.
+Nesse tutorial vai ser demonstrado como utilizar o programa para obter os descritores de reatividade usando as informações dos orbitais moleculares de fronteira. Por ser o primeiro tutorial, vai ser exemplificado a obtenção dos descritores para a molécula de acroleína com a estrutura eletrônica calculada com os quatro pacotes de química computacional que é suportado pelo PRIMoRDiA.
 
 \subsection{Contextualização}
 
@@ -146,15 +143,15 @@ E por que esses orbitais são importantes? Primeiro, os orbitais moleculares ser
 
 Quando as teorias de reatividade foram demonstradas através do tratamento matemático baseado na Teoria de Densidade Funcional (DFT), os orbitais de fronteira se tornaram uma aproximação para funções locais e valores de energia para os descritores de reatividade. Essa é a aproximação de Orbitais Congelados, Frozen Ortbial Approximation (FOA) em inglês. Toda a parte teórica dessa aproximação, parte conceitual e derivação dos descritores de reatividade podem ser encontrados no nosso Guia do usuário e nas referências citadas lá. 
 
-Essa aproximação tem algumas importantes vantagens, como ser ter uma computação mais rápida e a consolidação dos conceitos baseados nos orbitais moleculares. A principal desvantagem é que por algumas vezes os orbitais HOMO e LUMO não são os que melhor descrevem a reatividade do sistema.
+Essa aproximação tem algumas vantagens importantes, como necessitar de um protocolo de cálculo mais rápido que de diferenças finitas, e a consolidação dos conceitos baseados nos orbitais moleculares. A principal desvantagem é que por algumas vezes os orbitais HOMO e LUMO não são os que resultam na mais acura representação da reatividade do sistema.
 
-Nesse tutorial vai ser demonstrado como calcular os descritores de reatividade/quânticos usando FOA, como gerar e analisar os resultados usando softwares gráficos, analisando as tabelas com valores para cada átomo. Também, por ser o primeiro tutorial, vai ser dado mais atenção a detalhes técnicos sobre o input e scripts gerados pelo programa, interpretação de descritores e explicação de conceitos que serão úteis para os próximos tutoriais.
+Nesse tutorial, vamos mostrar como calcular os descritores de reatividade/quânticos usando FOA, como gerar e analisar os resultados usando software gráfico Pymol, analisando as tabelas com valores para cada átomo. Também, por ser o primeiro tutorial, vai ser dado mais atenção a detalhes técnicos sobre o input e scripts gerados pelo programa, interpretação de descritores e explicação de conceitos que serão úteis para os próximos tutoriais.
 
 \subsection{Preparação dos Arquivos e Execução do Programa}
 
 Basicamente, o que o PRIMoRDiA faz é extrair as propriedades eletrônicas de arquivos de saída (outputs) de pacotes de métodos de química quântica, e com essas informações fazer o tratamento matemático necessário para obter os descritores de reatividade. Esses descritores podem ser globais, representando uma propriedade que vale para todo o sistema molecular considerado no cálculo quântico, ou descritores locais, que por sua vez descrevem tanto uma propriedade para um dado ponto no espaço tridimensional quanto para cada átomo. 
 
-Os descritores locais para os átomos são chamados de condensados, onde a parte do resultado da função local calculada para os descritores é atribuída para os átomos individualmente, tornando essa quantidade ligada as cordeadas do núcleo desse átomo.
+Os descritores locais para os átomos são chamados de condensados, onde a parte do resultado da função local calculada para os descritores é atribuída para os átomos individualmente, tornando essa quantidade ligada as coordenadas do núcleo desse átomo.
 
 Para exemplificar o funcionamento e uso do programa, a estrutura eletrônica da molécula de acroleína foi calculada nos quatro pacotes de química quântica que são suportados pelo PRIMoRDiA, GAMESS, MOPAC, ORCA e Gaussian, cada um com método de cálculo diferente. A representação gráfica do arranjo molecular da acroleína é mostrado logo abaixo.
 
@@ -170,21 +167,20 @@ Para exemplificar o funcionamento e uso do programa, a estrutura eletrônica da 
 \end{figure}
 \end{minipage}	
 
-Os arquivos que o PRIMoRDiA precisa estão na pasta comprimida data\_teste/, que por sua vez tem as pastas para cada tutorial. Além desses arquivos, é necessário um arquivo de texto para indicar ao PRIMoRDiA o que fazer, famoso arquivo de input. Para gerar esse arquivo a partir dos arquivos de estrutura eletrônica que estão na pasta basta rodar o programa com a flag "-input" e os parâmetros específicos para o cálculo que se queira executar. Vamos executar o comando a baixo, dentro do diretório com os arquivos mencionados.
+Os arquivos que o PRIMoRDiA precisam estar na pasta comprimida Tutorials\_Files, que por sua vez tem as pastas para cada tutorial. Além desses arquivos, é necessário um arquivo de texto para indicar ao PRIMoRDiA o que fazer, famoso arquivo de input. Para gerar esse arquivo a partir dos arquivos de estrutura eletrônica que estão na pasta basta rodar o programa com a flag "-input" e os parâmetros específicos para o cálculo que se queira executar. Vamos executar o comando a baixo, dentro do diretório com os arquivos mencionados.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 \begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -input -op 1 -p mopac -grid 40\end{commandshell}
 \end{minipage}
 
-Nesse caso, o PRIMORDiA vai procurar na pasta os arquivos com a extensão ".aux", pois é requerido cálculos de descritores locais para arquivos de saída do mopac. Depois de executar esse comando vai aparecer no diretório dois arquivos novos: primordia.input e primordia.log. Se isso não ocorrer como descrito ou houver alguma mensagem de erro verifique se o caminho para o executável está correto. Lembrando que é necessário trocar o "/path/to/primordia/" para o endereço da paste onde o executável está localizado. Abra o arquivo "primordia.input", o resultado deve ser como mostrado na seguinte caixa de texto ( \autoref{tut101} ).
+Nesse caso, o PRIMORDiA vai procurar na pasta os arquivos com a extensão ".aux", pois é requerido cálculos de descritores locais para arquivos de saída do mopac. Depois de executar esse comando vai aparecer no diretório dois arquivos novos: primordia.input e primordia.log. Se isso não ocorrer como descrito ou houver alguma mensagem de erro, verifique se o caminho para o executável está correto. Lembrando que é necessário trocar o "/path/to/primordia/" para o endereço da paste onde o executável está localizado. Abra o arquivo "primordia.input", o resultado deve ser como mostrado na seguinte caixa de texto ( \autoref{tut101} ).
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[caption={Input gerado pelo comando do PRIMoRDiA.},label={tut101}]
 #RT normal 
 #PR eband 1 extrard pymols
 1 acrolein.aux true 10 mopac 
-1 acrolein_orca.out true 40 orca 
 \end{lstlisting}
 \end{minipage}
 
@@ -192,12 +188,12 @@ Nesse caso, o PRIMORDiA vai procurar na pasta os arquivos com a extensão ".aux"
 Esse comando é útil para quando há vários arquivos para serem calculados na pasta. Vamos entender as opções utilizadas juntamente com a flag
 
 \begin{itemize}
-	\item \emph{-op}:\\ pE a flag para indicar a opção de cálculo que vai ser passada no próximo argumento.
-	\item \emph{1}: \\É a opção de cálculo passada, ela indica que os descritores vão ser obtidos com FOA.
-	\item \emph{-p}: \\É flag que indica o programa de origem dos arquivos de saída.
-	\item \emph{mopac}: \\ É a keyword que indica que o programa dos arquivos de saída na pasta vieram do pacote de química quântica MOPAC.
+	\item \emph{-op}:\\ Indica a opção de cálculo que vai ser passada no próximo argumento.
+	\item \emph{1}: \\ Opção de cálculo passada, ela indica que os descritores vão ser obtidos com FOA.
+	\item \emph{-p}: \\Indica o programa de origem dos arquivos de saída.
+	\item \emph{mopac}: \\É a keyword que indica que os arquivos de saída na pasta vieram do pacote de química quântica MOPAC.
 	\item \emph{-grid}: \\ flag que serve para indicar a resolução da grade para os resultados dos descritores em representação volumétrica. Quanto maior o valor maior a resolução, mas também maior o custo computacional.
-	\item \emph{40}: \\ Resoulação da grade.
+	\item \emph{40}: \\ Resolução da grade.
 \end{itemize}
 
 No entanto, há outros arquivos de saída na pasta oriundos de outros pacotes de química computacional, e para incluí-los é necessário edição manual do arquivo para que fique igual ao da seguinte caixa de texto (\autoref{tut102} ).
@@ -213,9 +209,9 @@ No entanto, há outros arquivos de saída na pasta oriundos de outros pacotes de
 \end{lstlisting}
 \end{minipage}
 
-A primeira linha do input sempre deve começar com \emph{"\#RT"} que por padrão é seguido pela keyword \emph{"normal"}, que serve para indicar qual o Run Type ( tipo de cálculo ). Na segunda linha \emph{"\#PR"} indica que os próximos parâmetros vão ser controlar aspectos para todos as entradas.
+A primeira linha do input sempre deve começar com \emph{"\#RT"}, que por padrão é seguido pela keyword \emph{"normal"}, que serve para indicar qual o Run Type ( tipo de cálculo ). Na segunda linha \emph{"\#PR"} indica que os próximos parâmetros vão ser para controlar aspectos gerais dos cálculos.
 
-O parâmetro \emph{"pymols"} indica que queremos que o programa escreva scripts para automatizar a visualização dos resultados no Pymol. Todas as linhas no input que começarem com "\#" não vão ser consideradas, ou seja, é possível escrever comentários começando a linha dessa forma. Nas linhas que começarem com os inteiros, 1, 2 ou 3, serão consideradas para cálculo utilizando a opção correspondente.
+O parâmetro \emph{"pymols"} indica que queremos que o programa escreva scripts para automatizar a visualização dos resultados no Pymol. Todas as linhas no input que começarem com "\#" não vão ser consideradas, ou seja, é possível escrever comentários começando a linha dessa forma. As linhas que começarem com os inteiros, 1, 2 ou 3, serão consideradas para cálculo utilizando a opção correspondente.
 
 Para executar o PRIMoRDiA é muito simples, a partir do nosso input criado e editado é só rodar o seguinte comando
 
@@ -224,12 +220,12 @@ Para executar o PRIMoRDiA é muito simples, a partir do nosso input criado e edi
 \begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -f primordia.input\end{commandshell}
 \end{minipage}
 
-A flag "-f" indica que o próximo argumento é um arquivo de input formatado para o programa. O arquivo de input pode ter qualquer nome e não é necessário que tenha a extensão ".input". Depois de rodar esse comando o programa deve indicar o tempo total de execução. No mesmo diretório onde os dados e o input se encontram vários novos arquivos de diferentes tipos devem aparecer. Vamos explicar eles a analisar na próxima parte do tutorial.
+A flag "-f" indica que o próximo argumento é um arquivo de input formatado para o programa. O arquivo de input pode ter qualquer nome e não é necessário que tenha a extensão ".input". Depois de rodar esse comando o programa deve indicar o tempo total de execução, e no mesmo diretório onde os dados e o input se encontram, vários novos arquivos de diferentes tipos devem aparecer. Vamos explicar eles a analisar na próxima parte do tutorial.
 
 
 \subsection{Análises dos Resultados}
 
-Os descritores de reatividade são calculados como quantidades globais, propriedades de todo o sistema em consideração, e locais, que é um mapeamento da reatividade sobre a topologia do sistema molecular. O PRIMoRDiA escreve arquivos com extensão ".GRD" para os descritores globais de cada entrada do sistema, e ".lrd" para os locais condensados e ".cube" para os locais volumétricos. Também escreve um arquivo com o final ".global", onde todos os descritores globais calculados são reunidos.
+Os descritores de reatividade são calculados como quantidades globais, propriedades de todo o sistema, e locais, que é um mapeamento da reatividade sobre a topologia do sistema molecular. O PRIMoRDiA escreve arquivos com extensão ".GRD" para os descritores globais de cada entrada do sistema, e ".lrd" para os locais condensados e ".cube" para os locais volumétricos. Também escreve um arquivo com o final ".global", onde todos os descritores globais calculados são reunidos.
 
 Se abrirmos esse arquivo, primordia.global, encontraremos dados como mostrado na \autoref{fig_tut1_2}. Esse arquivo já é formatado para ter o espaçamento ideal para ser copiado para um planilha, como mostrado na \autoref{fig_tut1_3}.
 
@@ -265,14 +261,14 @@ O ECP frequentemente é um valor negativo que vem da derivada da energia eletrô
 
 A dureza é a segunda derivada da energia eletrônica em relação ao número de elétrons e portanto a derivada do ECP em relação ao número de elétrons. Esses descritores indicam a resistência do sistema em doar elétrons, e um sistema com maior dureza é mais estável quimicamente. 
 
-Os maiores valores de dureza calculados para a acroleína foram com os métodos Hartree-Fock e o azul-petróleo com DFT. Assim, podemos concluir que o método DFT indicou a acroleína com maior propensão em doar seus elétrons e participar de uma reação química fazendo isso. A dureza sendo a derivada do ECP indica como ela mudará conforme a densidade do elétron se move do sistema. Assim, um sistema pode ter um alto ECP, mas a alta dureza tornará a transferência da densidade do elétron mais difícil.
+Os maiores valores de dureza calculados para a acroleína foram com os métodos Hartree-Fock e o menor com DFT. Assim, podemos concluir que o método DFT indicou a acroleína com maior propensão em doar seus elétrons e participar de uma reação química fazendo isso. A dureza sendo a derivada do ECP indica como ela mudará conforme a densidade de elétrons se move do sistema. Assim, um sistema pode ter um alto ECP, mas a alta dureza tornará a transferência da densidade do elétron mais difícil.
 
-Energia de estabilização de um sistema para receber todos os elétrons possíveis é medida pela eletrofilicidade total. O número máximo correspondente de elétrons que o sistema pode receber é dado pelo descritor nMax e, finalmente, a diferença entre os orbitais moleculares da fronteira, HOMO e LUMO, 'gap' é o último descritor da lista. Para o método FOA, o gap e a dureza são a mesma quantidade, embora, para o método de aproximação por diferenças finitas, isso não é verdade e as duas informações possam ser relevantes.
+Energia de estabilização de um sistema para receber todos os elétrons possíveis é medida pela eletrofilicidade total. O número máximo correspondente de elétrons que o sistema pode receber é dado pelo descritor nMax e, finalmente, a diferença entre os orbitais moleculares da fronteira, HOMO e LUMO, 'gap' é o último descritor da lista. Para o método FOA, o gap e a dureza são a mesma quantidade, embora, para o método de aproximação por diferenças finitas isso não é verdade e as duas informações possam ser relevantes.
 
 
 \subsubsection{Descritores Locais Condensados}
 
-Agora, vamos analisar e interpretar os descritores locais, que são quantidades que são atribuídas a um ponto no espaço tridimensional. Existem duas maneiras comuns de representar os descritores locais para moléculas, que são implementadas no PRIMoRDiA. O primeiro é o condensado em átomo, onde os valores são atribuídos a cada átomo e são enviados como uma lista. Todas as entradas do arquivo de entrada produzem um '.lrd', especificamente para métodos FOA (opção 1 no arquivo de entrada), o sufixo do arquivo 'FOA.lrd'. Portanto, devemos ter quatro desses arquivos em nosso diretório, como podemos verificar usando o comando 'ls' no terminal Linux. Na imagem abaixo ( \autoref{fig_tut1_4} ), as informações desses arquivos foram transferidas para uma tabela do libreoffice calc.
+Agora, vamos analisar e interpretar os descritores locais, que são quantidades atribuídas a um ponto no espaço tridimensional. Existem duas maneiras comuns de representar os descritores locais para moléculas, que são implementadas no PRIMoRDiA. O primeiro é o condensado para átomos, onde os valores são atribuídos a cada átomo e são escritos como uma lista. Todas as entradas do arquivo de entrada produzem um '.lrd', especificamente para métodos FOA (opção 1 no arquivo de entrada), o sufixo do arquivo 'FOA.lrd'. Portanto, devemos ter quatro desses arquivos em nosso diretório, como podemos verificar usando o comando 'ls' no terminal Linux. Na imagem abaixo ( \autoref{fig_tut1_4} ), as informações desses arquivos foram transferidas para uma tabela do libreoffice calc.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -309,9 +305,9 @@ Para a representação volumétrica os arquivos Cubes gerados são utilizados pa
 
 Você pode baixar Pymol do repositório (para Linux). Recomendamos fortemente que você faça os tutoriais básicos do Pymol, especialmente se desejar usá-lo para gerar suas figuras científicas, como fizemos várias vezes em nossas publicações. 
 
-Os próximos passos consistem em gerar a renderização de volume em Pymol, um objeto que representa graficamente o campo escalar no espaço tridimensional, atribuindo a cada voxel de um mesmo valor a mesma cor e opacidade. A opacidade é um recurso importante, pois você precisa definir pelo menos dois níveis, cada um com uma cor diferente. Se esses dois ou mais níveis tiverem a mesma opacidade, apenas o mais próximo das bordas dos limites da grade aparecerá.
+Os próximos passos consistem em gerar a renderização de volume em Pymol, um objeto que representa graficamente o campo escalar no espaço tridimensional, atribuindo a cada voxel de um mesmo valor a mesma cor e opacidade. A opacidade é um recurso importante, pois você precisa definir pelo menos dois níveis, cada um com uma cor diferente. Se esses dois ou mais níveis tiverem a mesma opacidade, apenas o mais próximo das bordas da grade aparecerá.
 
-O PRIMoRDiA escreve scripts para automatizar a visualização desses arquivos no Pymol, vamos executar um deles para a acroleína calculada com semi-empírico. Abra o Pymol e digite o comando que ta em destaque na figura abaixo ( \autoref{fig_tut1_6} ). 
+O PRIMoRDiA escreve scripts para automatizar a visualização desses arquivos no Pymol, vamos executar um deles para a acroleína calculada com semi-empírico. Abra o Pymol e digite o comando que está em destaque na figura abaixo ( \autoref{fig_tut1_6} ). 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -374,9 +370,9 @@ salva a imagem em um arquivo em formato \textit{png} na pasta, como mostrada aba
 \end{figure}
 \end{minipage}
 
-O mesmo processo pode ser repetido para os outros objetos de volume. Também é possível usar a interface do Pymol para alterar os valores de superfície, cores e opacidades. Abaixo, a dureza loca é objeto desse exemplo da \autoref{fig_tut1_9}.
+O mesmo processo pode ser repetido para os outros objetos de volume. Também é possível usar a interface do Pymol para alterar os valores de superfície, cores e opacidades. Abaixo, a dureza local é objeto desse exemplo da \autoref{fig_tut1_9}.
 
-E na \autoref{fig_tut1_10}, mostramos os descritores para a acroleína para todos os métodos de cálculo estados, mostrando os lugares suscetíveis da molécula para receber ataques eletrofílicos (azul) e nucleofílicos ( rosa ).
+E na \autoref{fig_tut1_10}, mostramos os descritores para a acroleína para todos os métodos de cálculo testados, mostrando os lugares suscetíveis da molécula para receber ataques eletrofílicos (azul) e nucleofílicos (rosa).
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -400,7 +396,7 @@ E na \autoref{fig_tut1_10}, mostramos os descritores para a acroleína para todo
 \end{figure}
 \end{minipage}
 
-Portanto, nesse tutorial podemos ver também a influência dos métodos de estrutura eletrônica na obtenção dos descritores, que é significativa mas tende a ser bem menor que o efeito provocado nos resultados energéticos, podendo, na maioria das vezes, os descritores serem obtidos com métodos menos custosos. 
+Portanto, nesse tutorial podemos ver também a influência dos métodos de estrutura eletrônica na obtenção dos descritores, que é significativa mas tende a ser bem menor que o efeito provocado nos resultados energéticos, podendo, na maioria das vezes, que os descritores sejam obtidos com métodos menos custosos. 
 
 \newpage
 \section{Tutorial 2: Aproximação de Diferenças Finitas}
@@ -412,15 +408,15 @@ Há pouca diferença entre esse tutorial e o primeiro na parte de execução de 
 
 \subsection{Contextualização}
 
-Em geral, o método de diferenças finitas é uma ferramenta amplamente utilizada para o cálculo de derivadas de forma numérica, ou seja, substituindo uma forma de resolução analítica. Nesse caso mais específico, o cálculo dessas propriedades eletrônicas definidas como derivadas em relação ao número de elétrons, o métodos de diferenças finitas é um caminho até natural ja que não é possível derivar uma função não continua. 
+Em geral, o método de diferenças finitas é uma ferramenta amplamente utilizada para o cálculo de derivadas de forma numérica, ou seja, substituindo um método analítico. Nesse caso mais específico, o cálculo dessas propriedades eletrônicas definidas como derivadas em relação ao número de elétrons, o método de diferenças finitas é um caminho quase intuitivo, já que não é possível derivar uma função não continua. 
 
-Por isso o método de diferenças finitas é uma forma tradicional de calcular os descritores e é implementado no PRIMoRDiA extensivamente. Também, devido ao fato de calcular as propriedades utilizando a informação da diferença das densidades eletrônicas completas, os descritores locais calculados por esse método tendem a ser mais acurados em respeito a efeitos dos orbitais moleculares que não só o HOMO e LUMO. No entanto, a necessidade de dois single points a mais e a obtenção da densidade eletrônica total faz com que esse método acabe sendo bem mais custoso computacionalmente. 
+Por isso o método de diferenças finitas é uma forma tradicional de calcular os descritores e é implementado no PRIMoRDiA extensivamente. Também, devido ao fato de calcular as propriedades utilizando a informação da diferença das densidades eletrônicas completas, os descritores locais calculados por esse método tendem a ser mais acurados em respeito a efeitos dos orbitais moleculares que não só o HOMO e LUMO. No entanto, a necessidade de dois single points a mais e a obtenção da densidade eletrônica total faz com que esse método acabe se tornando computacionalmente mais custoso. 
 
 Nesse tutorial vamos usar a molécula de benzeno como exemplo para os descritores com esse método de aproximação. A molécula de benzeno não é apresenta pontos de reatividade específicos devido a sua simetria, mas é possível visualizar propriedades relacionadas com aromaticidade e a geometria do anel. 
 
 \subsection{Preparação dos Arquivos e Execução do Programa}
 
-Todos os arquivos necessários para realizar o tutorial estão no repositório junto ao código, na pasta de tutoriais. Nesse exemplo vamos utilizar a estrutura eletrônica para a molécula de benzeno em três estados de carga, calculados com o método semi-empírico AM1 no pacote de química computacional MOPAC. Observe que no input para execução desse tutorial, mostrado na caixa de texto \autoref{tut201}, os nomes dos arquivos de saída do MOPAC tem a extensão ".out". 
+Todos os arquivos necessários para realizar o tutorial estão no repositório junto ao código, no arquivo comprimido de nome Tutorials\_Files. Nesse exemplo vamos utilizar a estrutura eletrônica para a molécula de benzeno em três estados de carga, calculados com o método semi-empírico AM1 no pacote de química computacional MOPAC. Observe que no input para execução desse tutorial, mostrado na caixa de texto \autoref{tut201}, os nomes dos arquivos de saída do MOPAC tem a extensão ".out". 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -433,7 +429,7 @@ Todos os arquivos necessários para realizar o tutorial estão no repositório j
 
 Esses arquivos não contém a estrutura eletrônica completa para os sistemas, no entanto o PRIMoRDiA entende que na mesma pasta que esses arquivos estejam também os correspondes com a extensão ".mgf". Esses arquivos possuem as matrizes necessárias para operações de álgebra linear para obter corretamente a densidade eletrônica total com os dados que saem do MOPAC. 
 
-Para grandes moléculas o MOPAC não consegue gerar esse arquivo, já que ele é muito custoso de se imprimir para estruturas com muitos átomos. Nesse caso o cálculo de diferenças finitas tem que ser feito usando os arquivos do tipo ".aux", que a partir deles o PRIMoRDiA gera uma densidade eletrônica total baseada nos orbitais moleculares, mas não garante a sua integração exata para o número de elétrons do sistema. 
+Para grandes moléculas, o MOPAC não consegue gerar esse arquivo, já que ele é muito cara de se escrever para estruturas com muitos átomos. Nesse caso o cálculo de diferenças finitas tem que ser feito usando os arquivos do tipo ".aux", que a partir deles o PRIMoRDiA gera uma densidade eletrônica total baseada nos orbitais moleculares, mas não garante a sua integração exata para o número de elétrons do sistema. 
 
 O cálculo dos descritores usando diferenças finitas para grandes moléculas é de fato um tanto incomum, devido ao custo computacional de se obter três estruturas eletrônicas e os cálculos de densidade total para toda a extensão do sistema. Entretanto, com as modificações apropriadas dos descritores usando a aproximação de Orbitais Congelados, FOA, não é necessário recorrer a diferenças finitas para estudar proteínas, fragmentos de DNA e/ou outras moléculas relevantes aos processos biológicos.  
 
@@ -547,13 +543,13 @@ A imagem foi renderizada, para salva-lá definitivamente no disco, use o seguint
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut2_img8}
-			\caption{Imagem do descritor volumétrico de nucleofilicidade reenderizada no software Pymol.}
+			\caption{Imagem do descritor volumétrico de nucleofilicidade renderizada no software Pymol.}
 			\label{fig_tut2_7}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-Podemos notar que esse descritor apresenta uma distribuição bem simétrica para todo a moléculas, mas não seguindo o padrão circular, dando preferência a quatro átomos de carbono  do anel em detrimento dos outros dois. 
+Podemos notar que esse descritor apresenta uma distribuição bem simétrica para todo a molécula, mas não seguindo o padrão circular, dando preferência a quatro átomos de carbono  do anel em detrimento dos outros dois. 
 
 Um descritor interessante de se observar é o de dureza química local, que no PRIMoRDiA pode ser obtido com até sete diferentes equações de trabalho, que são completamente explicadas no guia do usuário. O PRIMoRDiA não coloca no script todos os descritores locais possíveis, até para não sobrecarregar o software gráfico, pois dependendo dos recursos computacionais disponíveis o mesmo pode travar. 
 
@@ -606,7 +602,7 @@ Assuntos abordados nesse tutorial:
 
 \begin{itemize}
 	\item Cálculo dos descritores usando nossos métodos de banda dos orbitais de fronteira.
-	\item Uso do pacote gráfico Pymol para visualização e geração de imagens de alta qualidade para os descritores condensados.
+	\item Uso do pacote gráfico Pymol para visualização e geração de imagens de alta qualidade para os descritores condensados. 
 	\item Demonstração dos descritores condensados por resíduos
 	\item Representação volumétrica para esses descritores, em especial para regiões limitadas definidas pelo usuário
 	\item Análise de densidade de estados de energia
@@ -618,7 +614,7 @@ O PRIMoRDiA é um programa que foi desenvolvido desde o início para o cálculo 
 
 \subsection{Preparação dos Arquivos e Execução do Programa}
 
-Os arquivos necessários para realizar o tutorial estão na pasta data\_test/tutorial\_1\_2/Tutorial\_3 deste repositório. Os arquivos correspondem a outputs programa mopac de cálculos feitos com método semi-empírico PM7, um com método de escalonamento linear mozyme 2jof\_PM7\_lmo.aux, e sem esse método 2jof\_PM7.aux. Para cada um desses arquivos tem um arquivo de PDB, que contém as informações relevantes ao biopolímero que vai ser utilizado pelo PRIMoRDiA para escrever descritores e representações especiais. Esses PDBs são baseados no que pode ser encontrado pelo código 2JOF. A representação em cartoon desse polipeptídeo se encontra abaixo na \autoref{fig_tut3_1}.
+Os arquivos necessários para realizar o tutorial estão na pasta comprimida Tutorials\_Files deste repositório. Os arquivos correspondem a outputs programa mopac de cálculos feitos com método semi-empírico PM7, um com método de escalonamento linear mozyme 2jof\_PM7\_lmo.aux, e sem esse método 2jof\_PM7.aux. Para cada um desses arquivos tem um arquivo de PDB, que contém as informações relevantes ao biopolímero que vai ser utilizado pelo PRIMoRDiA para escrever descritores e representações especiais. Esses PDBs são baseados no que pode ser encontrado pelo código 2JOF. A representação em cartoon desse polipeptídeo se encontra abaixo na \autoref{fig_tut3_1}.
 
 
 \hspace*{-\leftmarginwidth}
@@ -718,7 +714,7 @@ O programa deve finalizar a sua execução sem erros e produzir vários arquivos
 
 Dos resultados produzidos temos os descritores globais, locais em representação condensada ( arquivos ".lrd" ), locais em representação volumétrica ( arquivos ".cube" ) e locais condensados escritos em PDB (nas pastas "RD\_PDB"). Para macromoléculas é interessante observar os descritores globais mais por uma questão de acompanhamento da normalidade do cálculo quântico executado, pois os processos nesses sistemas tendem a ser somente locais, tendo pouca relevância a propensão de uma proteína inteira de transferir ou receber elétrons. Por isso vamos passar a análise do arquivo "primordia.global".
 
-Para esse lançamento estável do programa, PRIMoRDiA 1.25v, a principal modificação é a consolidação dos scripts de automatização de análise e produção de resultados com qualidade de publicação, usando o pacote gráfico Pymol e o pacote estatístico R. Por isso, nos próximos passos do tutorial vai ser focado a produção de imagens a partir desses scripts.
+Para esse lançamento estável do programa, PRIMoRDiA 1.25v, a principal modificação é a consolidação dos scripts de automatização de análise e produção de resultados com qualidade de publicação, usando o pacote gráfico Pymol e o pacote estatístico R. Por isso, nos próximos passos do tutorial, vamos focar na produção de imagens a partir desses scripts.
 
 \subsubsection{Descritores Condensados} 
 
@@ -738,7 +734,7 @@ No entanto, esse tipo de representação pode ser bem complicada de trabalhar, j
 	\end{figure}
 \end{minipage}
 
-Esse arquivo tem comandos para executar no Pymol, modificando parâmetros de visualização, e para carregar os PDBs com os descritores. Além disso ele já executa algumas paletas de cores, sendo que uma vai sobrepondo a outra, mas servem para o usuário pegar e escolher uma ou modificar seus parâmetros e cores. Abra o seu Pymol,  execute o comando mostrado a baixo
+Esse arquivo tem comandos para executar no Pymol modificando parâmetros de visualização e para carregar os PDBs com os descritores. Além disso ele já executa algumas paletas de cores, sendo que uma vai sobrepondo a outra, mas servem para o usuário pegar e escolher uma ou modificar seus parâmetros e cores. Abra o seu Pymol, execute o comando mostrado a baixo
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -831,7 +827,7 @@ Esse processo de colorir os átomos, renderizar e salvar essas imagens pode ser 
 	\begin{pymol}png 2jof_hardneess.png\end{pymol}
 \end{minipage}
 
-A imagem salva em disco deve ser similar a mostrada na \autoref{fig_tut3_11}, mostrando a dureza local para a estrutura da TRP-cage. Na \autoref{fig_tut3_12}, 
+A imagem salva em disco deve ser similar a mostrada na \autoref{fig_tut3_11}, mostrando a dureza local para a estrutura da TRP-cage.  
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -848,7 +844,7 @@ A imagem salva em disco deve ser similar a mostrada na \autoref{fig_tut3_11}, mo
 \subsubsection{Representação Volumétrica}
 
 
-Os descritores com representação volumétrica segue a mesma lógica de visualização que os outros dois últimos tutoriais. A diferença, no caso dos cálculos específicos para macro moléculas, através dos métodos BD e EW, é na seleção e combinação dos orbitais moleculares. Para automatizar a visualização dos descritores básicos em representação volumétrica, o PRIMoRDiA escreve um script semelhante ao mostrado na \autoref{fig_tut3_13}, que é para a entrada 2jof\_PM7\_lmo.aux. Para a outra entrada, 2jof\_PM7.aux, também foi escrito um script desses, que  depois de ser executado abre as estruturas e renderiza os cubes no Pymol como na \autoref{fig_tut3_15}.
+Os descritores com representação volumétrica seguem a mesma lógica de visualização que os outros dois últimos tutoriais. A diferença, no caso dos cálculos específicos para macromoléculas, através dos métodos BD e EW, é na seleção e combinação dos orbitais moleculares. Para automatizar a visualização dos descritores básicos em representação volumétrica, o PRIMoRDiA escreve um script semelhante ao mostrado na \autoref{fig_tut3_13}, que é para a entrada 2jof\_PM7\_lmo.aux. Para a outra entrada, 2jof\_PM7.aux, também foi escrito um script desses, que depois de ser executado abre as estruturas e renderiza os cubes no Pymol como na \autoref{fig_tut3_15}.
 
 
 \hspace*{-\leftmarginwidth}
@@ -863,22 +859,20 @@ Os descritores com representação volumétrica segue a mesma lógica de visuali
 \end{minipage}
 
 
-
 Na \autoref{fig_tut3_15} já nos adiantamos e selecionamos só as fases do descrito de netfilicidade, lembrando que todos os descritores que possuem valores negativos e positivos são escritos em dois arquivos idênticos, mas com nomes diferentes, para que o Pymol renderize separadamente. Também, na mesma imagem é possível ver que já tem algumas cadeias laterais já selecionada, que são aqueles que é possível perceber que os volumes estão renderizados sobre seus átomos. 
-
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut3_img17}
-			\caption{Janela do Pymol mostrando os descritores locais volumétricos carregadas pelo script gerado no PRIMoRDiA para a estrutura da TRP-cage.}
+			\caption{Janela do Pymol mostrando os descritores locais volumétricos carregadas pelo script gerado no PRIMoRDiA para a estrutura da TRP-cage com alguns resíduos selecionados.}
 			\label{fig_tut3_15}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-Na área de comando do Pymol mostrado na \autoref{fig_tut3_15}, aparece o comando para que a representação de bastões seja ativada para essas cadeias selecionadas. Depois desse comando ser executado, os bastões aparacem e como mostrado na \autoref{fig_tut3_17}, o comando de \emph{draw} pode ser utilizado para renderizar e de depois salvar a imagem em disco com o comando \emph{png}, como já exemplificado nos tutoriais 1 e 2. 
+Na área de comando do Pymol mostrado na \autoref{fig_tut3_15} aparece o comando para que a representação de bastões seja ativada para essas cadeias selecionadas. Depois desse comando ser executados os bastões aparecem como mostrado na \autoref{fig_tut3_17}. O comando de \emph{draw} pode ser utilizado para renderizar e de depois salvar a imagem em disco com o comando \emph{png}, como já exemplificado nos tutoriais 1 e 2. 
 
 
 \hspace*{-\leftmarginwidth}
@@ -886,23 +880,26 @@ Na área de comando do Pymol mostrado na \autoref{fig_tut3_15}, aparece o comand
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut3_img19}
-			\caption{.}
+			\caption{Janela do Pymol mostrando os descritores locais volumétricos carregadas pelo script gerado no PRIMoRDiA para a estrutura da TRP-cage com alguns resíduos mostrados em representação de bastões.}
 			\label{fig_tut3_17}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
+Agora vamos visualizar os resultados dos descritores calculados para a caixa definida no arquivo de input, executando o script do Pymol corresponde para essa entrada. O resultado deve ser como o apresentado na \autoref{fig_tut3_23}, carregando e renderizando vários descritores para a região limitada. 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut3_img24}
-			\caption{.}
+			\caption{Janela do Pymol mostrando os descritores locais volumétricos carregadas pelo script gerado no PRIMoRDiA para um região cúbica específica da TRP-cage.}
 			\label{fig_tut3_23}
 		\end{center}
 	\end{figure}
 \end{minipage}
+
+Se desativarmos todos os objetos de volume, ficamos só com os objetos de cube carregados, que no visualizador apareceram marcando as arestas dos limites do cube. Na \autoref{fig_tut3_24}, mostramos esse limite em vermelho, com uma cor diferente para chamar atenção. 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -915,12 +912,14 @@ Na área de comando do Pymol mostrado na \autoref{fig_tut3_15}, aparece o comand
 	\end{figure}
 \end{minipage}
 
+Em relação ao outros descritores volumétricos, os definidos dentro desses espaços limitados pelo usuário, não apresentam nenhuma diferença prática. A questão aqui é que com sistemas com um grande número de átomos é possível visualizar os descritores para regiões específicas sem perder resolução e que possam ser calculados em um tempo praticável. Nas próximas figuras estão apresentados alguns descritores renderizados para esse região delimitada e já salvas em qualidade de publicação dentro do pymol. Na \autoref{fig_tut3_25}, o descritor de dureza local utilizando a aproximação baseada no potencial químico local. Na \autoref{fig_tut3_25}, mostramos esse volume renderizad com uma paleta diferente, realçando melhor as regiões que apresentam valores maiores que outros. 
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut3_img26}
-			\caption{.}
+			\caption{Exemplo de imagem do descritor renderizada para a região delimitada pelo usuário. Dureza local baseada na aproximação do potencial químico local.}
 			\label{fig_tut3_25}
 		\end{center}
 	\end{figure}
@@ -931,19 +930,20 @@ Na área de comando do Pymol mostrado na \autoref{fig_tut3_15}, aparece o comand
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3.5in]{images/tut3_img27}
-			\caption{.}
+			\caption{Exemplo de imagem do descritor renderizada para a região delimitada pelo usuário. Dureza local baseada na aproximação do potencial químico local.}
 			\label{fig_tut3_26}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
+Na \autoref{fig_tut3_27}, a última imagem é ampliada e a distância entre o hidrogênio da cadeia lateral e oxigênio do resíduo da cadeia principal é evidenciada, mostrando que nessa região onde claramente há uma ligação de hidrogênio também apresenta os maiores valores do descritor de dureza local em questão.  
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3.5in]{images/tut3_img28}
-			\caption{.}
+			\caption{Exemplo de imagem do descritor renderizada para a região delimitada pelo usuário. Imagem ampliada para a região de interação de por ligação de hidrogênio, evidenciando a distância entre os átomos. Dureza local baseada na aproximação do potencial químico local.}
 			\label{fig_tut3_27}
 		\end{center}
 	\end{figure}
@@ -964,14 +964,14 @@ Para macromoléculas biológicas há diversas análises focadas em propriedades 
 	\end{figure}
 \end{minipage}
 
-Esses dados podem ser facilmente selecionados/copiados e transferidos para uma tabela de excel/libreoffice, como é exemplificado na \autoref{fig_tut3_29}. Para uma dada trajetória, de dinâmica molecular ou coordenada de reação, valores para resíduos específicos podem ser reunidos e analisados durante esses processos. Mais sobre isso é exemplificado no tutorial 6.
+Esses dados podem ser facilmente selecionados/copiados e transferidos para uma tabela de excel/libreoffice, como é exemplificado na \autoref{fig_tut3_29}. Para uma dada trajetória, de dinâmica molecular ou coordenada de reação, valores para resíduos específicos podem ser reunidos e analisados durante esses processos. Mais sobre isso é exemplificado no tutorial 5.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=5in]{images/tut3_img30}
-			\caption{Planilha eletrônica coms os descritores locais condensados por resíduo ( fragmento de amino-ácido ) para a estrutura da TRP-cage.}
+			\caption{Planilha eletrônica com os descritores locais condensados por resíduo ( fragmento de amino-ácido ) para a estrutura da TRP-cage.}
 			\label{fig_tut3_29}
 		\end{center}
 	\end{figure}
@@ -995,7 +995,7 @@ E na pasta deve aparecer uma imagem como a figura abaixo
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3.4in]{images/tut3_img31}
-			\caption{.}
+			\caption{Gráfico de densidade de estados de energia para os orbitais moleculares da TRP-Cage calculados com PM7 junto com algorítimo MOZYME.}
 			\label{fig_tut3_30}
 		\end{center}
 	\end{figure}
@@ -1014,28 +1014,31 @@ E o comando abaixo cria a figura da densidade de estados para a TRP calculada no
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3.4in]{images/tut3_img32}
-			\caption{.}
+			\caption{Gráfico de densidade de estados de energia para os orbitais moleculares da TRP-Cage calculados com PM7.}
 			\label{fig_tut3_31}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
+Nós podemos observar que os valores de energia dos orbitais cálculados com o algoritmo MOZYME, são mais concentrados que os que não utilizaram essa estratégia de aceleração dos cálculos. Isso faz com que o gap HOMO-LUMO fique maior nesse primeiro caso, o que acaba alterando bastante na hora de escolher os orbitais moleculares para combinar na hora de calcular os descritores. Portanto, o ideal para sistemas novos é sempre que possível fazer a análise desse gráfico que facilmente pode ser produzido com a ajuda do PRIMoRDiA.   
 
 \newpage
 \section{Tutorial 4: Análise de Força Ácida}
 
-Esse tutorial segue a mesma lógica do Tutorial 1, mas focado na interpretação dos resultados. Como nesse primeiro, esse tutorial vamos demonstrar como utilizar o programa para obter os descritores de reatividade usando as informações dos orbitais moleculares de fronteira, opção 1 de cálculo do PRIMoRDiA. Vamos usar dados de calculo quânticos, usando métodos semiempiricos calculados no MOPAC, para quatro aminoácidos, para gerar descritores de reatividade que podem ser utilizados para explicar os locais preferenciais de protonação.
+Esse tutorial segue a mesma lógica do Tutorial 1, mas focado na interpretação dos resultados. Como nesse primeiro. Vamos demonstrar como utilizar o programa para obter os descritores de reatividade usando as informações dos orbitais moleculares de fronteira, opção 1 de cálculo do PRIMoRDiA, partindo de cálculos semiempiricos no MOPAC, para quatro aminoácidos,  gerando descritores de reatividade que podem ser utilizados para explicar os locais preferenciais de protonação.
 
 \subsection{Contextualização}
 
-Aminoácidos são moléculas orgânicas anfoteras, isto é, podem agir como ácidos e bases, devido ao grupo amina e carboxil. Além disso, alguns tem cadeias laterais que são considerados como ácidos ou bases, e quando estão na composição de uma proteína essa acidez/basicidade vai ser relevante para diversos processos e propriedades.
+Aminoácidos são moléculas orgânicas anfoteras, isto é, podem agir como ácidos e bases, devido aos grupos amina e ácido carboxílico. Além disso, alguns tem cadeias laterais que são considerados como ácidos ou bases, e quando estão na composição de uma proteína essa acidez/basicidade vai ser relevante para diversos processos e propriedades.
 
-A força ácida é medida pelo pKa, que é o negativo do log da constante de força ácida. De forma resumida, quando o pH está menor que o pKa de um grupo da molécula esse grupo tende a ficar protonado e se o pH for maior esse grupo fica sem o proton. Ou seja, quanto menor o pKa mais ácido e quanto maior mais básico. No entanto, as medidas de pKa mudam com o ambiente químico e a sua obtenção de forma teórica apresenta diversos desafios quando os sistemas envolvidos são proteínas.
+A força ácida é medida pelo pKa, que é o negativo do log da constante de força ácida. De forma resumida, quando o pH está menor que o pKa de um grupo da molécula esse grupo tende a ficar protonado, em caso contrário sem esse proton. Ou seja, quanto menor o pKa mais ácido e quanto maior mais básico. No entanto, as medidas de pKa mudam com o ambiente químico e a sua obtenção de forma teórica apresenta diversos desafios quando os sistemas envolvidos são proteínas.
 
-Os descritores podem ser úteis para identificar locais nas moléculas para sítios preferências para transferência de elétrons. Mais especificativamente, a dureza local é o descritor ideal para transferência de prótons, que é um partícula pequena carregada e portanto dominado por interações de natureza eletrostática. Nesse tutorial, vamos calcular os descritores para uma cysteína, ácido aspártico, ácido glutâmico e uma lisina, e cruzar com dados de pKa e potencial de ionização, que são mostrados na tabela abaixo.
+Os descritores podem ser úteis para identificar locais nas moléculas para sítios preferências para transferência de elétrons. Mais especificativamente, a dureza local é o descritor ideal para transferência de prótons, que é um partícula pequena carregada e portanto dominado por interações de natureza eletrostática. Nesse tutorial, vamos calcular os descritores para uma cisteína, ácido aspártico, ácido glutâmico e uma lisina, e cruzar com dados de pKa e potencial de ionização.
 
 
 \subsection{Arquivos Necessários e Execução}
+
+Todos os arquivos necessários para a execução se encontram na pasta comprimida fornecida junto ao programa, sendo eles os aquivos que contém as informações de saída do programa MOPAC para os quatro amino-ácidos estudados. Assim também como um arquivo de input com as mesmas linhas de texto que mostradas abaixo. 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1049,16 +1052,18 @@ Os descritores podem ser úteis para identificar locais nas moléculas para sít
 \end{lstlisting}
 \end{minipage}
 
+Como já mostrado nos tutoriais anteriores, depois de ter o input na pasta onde estão os arquivos é só rodar o programa com a flag "-f". Depois disso os arquivos com os resultados devem criados na pasta. 
+
 \subsection{Análise dos Resultados}
 
-
+Os resultados para esse tutorial são bem parecidos com os obtidos no tutorial 1, sendo que utilizamos a mesma opção de cálculo para geração dos descritores com aproximação de orbitais congelados. Na \autoref{fig_tut1_4} é mostrada o arquivo de texto com os resultados dos descritores globais, na \autoref{fig_tut1_5} os mesmos dados transpostos para um planilha do Libre Office.  
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=6in]{images/tut4_img3}
-			\caption{.}
+			\caption{Arquivo de texto com os resultados dos  descritores globais para os amino-ácidos calculados.}
 			\label{fig_tut4_1}
 		\end{center}
 	\end{figure}
@@ -1069,56 +1074,18 @@ Os descritores podem ser úteis para identificar locais nas moléculas para sít
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=6in]{images/tut4_img4}
-			\caption{.}
+			\caption{Planilha com os resultados dos descritores globais para os amino-ácidos calculados.}
 			\label{fig_tut4_2}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=6in]{images/tut4_img5}
-			\caption{.}
-			\label{fig_tut4_3}
-		\end{center}
-	\end{figure}
-\end{minipage}
+O que pode ser extraído desses resultados é que para o mesmo método de estrutura eletrônica as moléculas de lisina e ácido aspártico tem dureza química bem próximas, a cisteína com uma dureza bem maior que todos e o ácido glutâmico com a menor. De fato, o ácido glutâmico tem dois oxigênios que geralmente em ambientes enzimáticos agem como aceptores de prótons e/ou participando em ataques nucleofílicos. Entretanto, por mais que a cisteína se apresente como mais dura nesses resultados, é o amino-ácido com a maior capacidade de receber elétrons junto com a lisina. 
 
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=6in]{images/tut4_img6}
-			\caption{.}
-			\label{fig_tut4_4}
-		\end{center}
-	\end{figure}
-\end{minipage}
+Já para os descritores locais, para cada molécula calculada foi gerado um arquivo ".lrd", como já explicado em tutoriais anteriores como explora-los e analisa-los em planilhas. Os dados dos descritore locais mais apropriados para avaliar a força ácida vão ser reunidas posteriormente para os átomos aceptores/receptores de prótons. 
+O que pode ser extraído desses resultados é que para o mesmo método de estrutura eletrônica as moléculas de lisina e ácido aspártico tem dureza química bem próximas, a cisteína com uma dureza bem maior que todos e o ácido glutâmico com a menor. De fato, o ácido glutâmico tem dois oxigênios que geralmente em ambientes enzimáticos agem como aceptores de prótons e/ou participando em ataques nucleofílicos. 
 
 
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=5in]{images/tut4_img7}
-			\caption{.}
-			\label{fig_tut4_5}
-		\end{center}
-	\end{figure}
-\end{minipage}
-
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=3.4in]{images/tut4_img8}
-			\caption{.}
-			\label{fig_tut4_6}
-		\end{center}
-	\end{figure}
-\end{minipage}
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
