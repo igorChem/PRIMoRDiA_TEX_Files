@@ -1082,9 +1082,9 @@ Os resultados para esse tutorial são bem parecidos com os obtidos no tutorial 1
 
 O que pode ser extraído desses resultados é que para o mesmo método de estrutura eletrônica as moléculas de lisina e ácido aspártico tem dureza química bem próximas, a cisteína com uma dureza bem maior que todos e o ácido glutâmico com a menor. De fato, o ácido glutâmico tem dois oxigênios que geralmente em ambientes enzimáticos agem como aceptores de prótons e/ou participando em ataques nucleofílicos. Entretanto, por mais que a cisteína se apresente como mais dura nesses resultados, é o amino-ácido com a maior capacidade de receber elétrons junto com a lisina. 
 
-Já para os descritores locais, para cada molécula calculada foi gerado um arquivo ".lrd", como já explicado em tutoriais anteriores como explora-los e analisa-los em planilhas. Os dados dos descritore locais mais apropriados para avaliar a força ácida vão ser reunidas posteriormente para os átomos aceptores/receptores de prótons. 
-O que pode ser extraído desses resultados é que para o mesmo método de estrutura eletrônica as moléculas de lisina e ácido aspártico tem dureza química bem próximas, a cisteína com uma dureza bem maior que todos e o ácido glutâmico com a menor. De fato, o ácido glutâmico tem dois oxigênios que geralmente em ambientes enzimáticos agem como aceptores de prótons e/ou participando em ataques nucleofílicos. 
+Já para os descritores locais, para cada molécula calculada foi gerado um arquivo ".lrd", como já explicado em tutoriais anteriores como explora-los e analisa-los em planilhas. Os dados dos descritores locais mais apropriados para avaliar a força ácida vão ser reunidas posteriormente para os átomos aceptores/receptores de prótons. 
 
+Para ajudar de forma qualitativa na análise, podemos gerar os descritores volumétricos no pacote gráfico Pymol. Isso pode ser facilmente realizado usando os scripts gerados pelo PRIMoRDiA, como já vimos em outros tutoriais. Abra o Pymol e execute the ".pymols" script no terminal do programa. O resultado deve ser o parecido com o mostrado na \autoref{fig_4_7}, com os objetos de cube carregados, os de volume gerados e selecionados.
 
 
 \hspace*{-\leftmarginwidth}
@@ -1092,18 +1092,26 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut4_img9}
-			\caption{.}
+			\caption{Descritores locais básicos em representação volumétrica para o ácido aspártico, renderizados no programa Pymol.}
 			\label{fig_tut4_7}
 		\end{center}
 	\end{figure}
 \end{minipage}
+
+Nessa imagem é possível observar as superfícies renderizadas na cor azul estão localizadas em átomos de oxigénio, e representa a tendência desses locais de receber um ataque eletrolítico, e portanto são nucleófilos, e em rosa e vermelho locais onde tendem a receber um ataque nucleofílico e portanto são eletrófilos. Para o ácido aspártico, quase todos os oxigênios de ácido carboxilico apresentam ser nucleófilos, mas com clara preferência para um dos oxigênios da cadeia lateral. Enquanto isso, no grupo amina apresenta ser um eletrófilo, com uma disposição esférica do descritor ao redor do grupo, sinalizando que qualquer proton pode ser retirado para que o par de eletrons desse nitrogênio carregado positivamente seja restaurado.
+
+Passando para a análise do descritor de duzera, nós destivamos os objetos de volume anteriores no Pymol e ativamos o último, "aspFOA_Hardness_vol", uma represetação volumétrica do descritor deve aparecer como mostrado na figura abaixo
+
+A janela que aparece ao lado da última figura é aberta clcando em "volume" no painel ao lado da área de execução de comandos do Pymol. clicando e movimentando os pontos nessa janela é possivel mudar as cores, os valores das iso-superfícies e suas opacidades. Também é possivel adicionar mais iso-superfícies. Na figura abaixo é mostrado uma modificação feita para o descritores de dureza local
+
+Repetindo o processo de renderização e de salvar as imagens para os outros sistemas, nós obtemos os descritores para quatro sistemas, como mostrada nas próximas duas figuras.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut4_img10}
-			\caption{.}
+			\caption{Descritor de Netfilicidade(dual) mostrado no Pymol para a molécula de ácido aspártico, com o comando no terminal para renderizar a imagem em alta qualidade.}
 			\label{fig_tut4_8}
 		\end{center}
 	\end{figure}
@@ -1114,7 +1122,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3.5in]{images/tut4_img11}
-			\caption{.}
+			\caption{Imagem salve em disco para o descritor de Netfilicidade(dual) para a molécula de ácido aspártico.}
 			\label{fig_tut4_9}
 		\end{center}
 	\end{figure}
@@ -1126,7 +1134,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut4_img13}
-			\caption{.}
+			\caption{Descritor de dureza local para o ácido aspártico, mostrando o painel de volume do Pymol onde é possível criar a ajustar as iso-superfícies.}
 			\label{fig_tut4_11}
 		\end{center}
 	\end{figure}
@@ -1137,7 +1145,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut4_img14}
-			\caption{.}
+			\caption{Descritor de dureza local para o ácido aspártico, mostrando o painel de volume do Pymol com novos valores sugeridos para as iso-superfícies para uma melhor visualização.}
 			\label{fig_tut4_12}
 		\end{center}
 	\end{figure}
@@ -1148,7 +1156,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=5in]{images/tut4_img15}
-			\caption{.}
+			\caption{Descritor local de netfilicidade para os quatro amino-ácidos analisados no tutorial.}
 			\label{fig_tut4_13}
 		\end{center}
 	\end{figure}
@@ -1159,7 +1167,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=5in]{images/tut4_img16}
-			\caption{.}
+			\caption{Descritor de dureza local para os quatro amino-ácidos analisados no tutorial, usando o método de potencial químico local.}
 			\label{fig_tut4_14}
 		\end{center}
 	\end{figure}
@@ -1170,7 +1178,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=5in]{images/tut4_img17}
-			\caption{.}
+			\caption{Tabela com os resultados de descritores locais para os grupos aceptores/doadores de prótons da cadeia principal de cada um dos quatro amino-ácidos.}
 			\label{fig_tut4_15}
 		\end{center}
 	\end{figure}
@@ -1181,25 +1189,36 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut4_img18}
-			\caption{.}
+			\caption{Tabela com os resultados de descritores locais para os átomos aceptores/doadores de prótons da cadeia lateral de cada um dos quatro amino-ácidos. Também uma tabela complementar com os descritores globais, cargas parciais e o valor conhecido de Potencial de Ionização.}
 			\label{fig_tut4_16}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-
+Juntando as informações que podemos observar dos descritores condensados e volumétricos, podemos ver que essas quantidades teóricas consegume localizar os as porções das moléculas onde transferências de protons podem ocorrer. O descritore de dureza química é o mais apropriado para esse tipo de processo, transferência de pequenos grupos carregados, e mostou uma relação com o pKa dos grupos amina, com a cisteina mostrando a maior dureza no nitrogênio e também o maior pKa. Obviamente, esse pequeno estudo está repleto de limitações e só tem intenção de mostrar uma relação prática dos resultados obtidos com o PRIMoRDiA e um problema de modelagem molecular comum.
 
 \newpage
 \section{Tutorial 5: Análise de Reação Enzimática}
 
+Nesse tutorial vai ser trabalho um exemplo prático de como o PRIMoRDiA pode ser explorado para o estudo de sistemas biológicos e seus principais processos. A grande força do PRIMoRDiA está nos descritores modificados para macromoléculas que disponibiliza e na automatização do processamento dessas propriedades eletrônicas. Vamos entrar com a estrutura eletrônica de um fragmento de uma sistema enzimático para uma pequena trajetória de reação e sairemos com um resumo estatístico da evolução dos descritores nesse processo.
+
+
 \subsection{Contextualização}
+
+eações enzimáticas são na verdade reações químicas catalisadas por proteínas, que fazem com que transformações químicas ocorram em um tempo hábil para o funcionamento do metabolismo de organismos vivos. Portanto, as enzimas são componentes importantíssimos para a manutenção da vida, participando desde a replicação de DNA até a decomposição do açúcar.
+
+O estudo do mecanismo dessas reações é muito importante para o desenvolvimento de drogas, entendimento de metabolismo, mecanismos de doenças e replicação de micro-organismos e aplicações industriais dessas enzimas. Em um dos estudos do nosso grupo, foi com o mecanismo da reação catalisada pela triose-fosfato-isomerase (TIM), mais especificamente a etapa mostrada no esquema abaixo
+
+Nós utilizamos esse enzima para testar a eficácia dos descritores de caracterizar teoricamente essa reação, descrevendo as principais forças, interações e efeitos do ambiente. A TIM é uma das enzimas mais caracterizadas na literatura, é uma enzima central no caminho glicolítico da interconversão do 3-fosfato D-gliceroldeído (GAP em inglês) para o fosfato dihidroxiacetona, com grande eficiência.
+
+Nesse tutorial nós vamos calcular os descritores para esse sistema em uma trajetória de reação obtida por simulação de QM/MM.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3.5in]{images/tut6_img0}
-			\caption{.}
+			\caption{Representação do mecanismo de catálise enzimática estudado nesse tutorial.}
 			\label{fig_tut6_0}
 		\end{center}
 	\end{figure}
@@ -1207,6 +1226,13 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 
 \subsection{Arquivos necessários e Execução}
 
+Os arquivos necessários para os cálculos desse tutorial estão na pasta . São arquivos de ".aux" e ".pdb", para as etapas do caminho de reação. Esse caminho de reação engloba somente 110 átomos, feito dessa forma para obter arquivos mais leves para o tutorial. A trajetória do scan foi obtida como explicado no tutorial do easyhybrid.
+
+Para fazer as análises especiais para a reação enzimática nós vamos outro método de execução, que é sinalizado no PRIMoRDiA pela keyword "reaction" depois de "\#RT" na primeira linha, ou seja, o Run Type passa para o modo de reação. Na pasta já tem o arquivo de input, que agora possui vários elementos importantes de citar, e está mostrado na figura abaixo
+
+É possível perceber que tem varias outras linhas com keywords antes não usadas e somente uma entrada de arquivo ".aux" para rodar com a opção 3 de cálculo. Como esse é um cálculo para reação química, o PRIMoRDiA entende aquela entrada como valendo para todos os auxs na pasta que tenham o sufixo sinalizado, nesse caso no nosso input foi o sufixo "sys", rodando de "sys0.aux" até "sys14.aux", obedecendo o parâmetro "dimX".
+
+Vamos analisar os outros parâmetros do input
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1220,9 +1246,62 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 \end{lstlisting}
 \end{minipage}
 
+Segunda linha
+\begin{itemize}
+	\item Segunda linha
+	\begin{itemize}
+	\item \#PR:     flag para sinalizar que serão dados parâmetros para o PRIMoRDiA
+	\item eband:   keyword sinalizando que o próxima parâmetro é um inteiro com o valor de energia de corte para considerar os orbitais moleculares
+	\item Rscript: Keyword importante par gerar os scripts de análise dos descritores durante a trajetória de reação
+	\item pymols:  keyword para o output de scripts para o Pymol
+	\end{itemize}
+	\item Terceira linha
+	\begin{itemize}
+	\item \#Reaction: flag para sinalizar que vai ser passado parâmetros para análise de coordenada de reação
+	\item RC1: keyword sinalizando que vais ser passado o número dos átomos que compõem a coordenada de reação
+	\item 98: número do átomo de carbono (C1) do GAP 
+	\item 107:número do átomo de hidrogênio (H1) ligado ao DHAP
+	\item 51: número do átomo de oxigênio (OE2) do GLU
+	\end{itemize}
+	\item Quarta Linha
+	\begin{itemize}
+	\item \#Reaction: flag para sinalizar que vai ser passado parâmetros para análise de coordenada de reação
+	\item dimX     : keyword para sinalizar que o próximo valor na linha da o número de etapas da trajetória
+	\item 15       : número de etapas da trajetória
+	\end{itemize}
+	\item Quinta Linha 
+	\begin{itemize}
+	\item \#Reaction: flag para sinalizar que vai ser passado parâmetros para análise de coordenada de reação
+	\item dimX      : keyword para sinalizar que o próximo valor na linha da o número de etapas da trajetória
+	\item 15        : número de etapas da trajetória
+	\end{itemize}
+	\item Sexta Linha 
+	\begin{itemize}
+	\item 3      : opção de cálculo do PRIMoRDiA para macromoléculas
+	\item sys.aux: nome base para os arquivos, antes do ponto o prefixo sem o número que indica o frame, e depois do ponto a extensão do arquivo
+	\item none   : keyword sinalizando que nenhum métodos de dureza local foi pedido para cálculo da representação volumétrica, o que já não seria feito já que o valor de grid é zero
+	\item 0      : finura do grid para representação volumétrica, sempre deixar em zero até uma nova atualização do software
+	\item 10     : número máximo de orbitais moleculares de fronteira para ser utilizado se o método de combinação de orbitais for BD
+	\item sys.pdb: nome base para os arquivos de pdb, mesma lógica para os arquivos que contém a estrutura eletrónica
+	\item mopac  : nome do programa de onde foi calculada a estrutura eletrónica
+	\item 0      : parâmetro não relevante com grid 0
+	\item 0      : parâmetro não relevante com grid 0
+	\item 0      : parâmetro não relevante com grid 0
+	\item 0      : parâmetro não relevante com grid 0
+	\item EW     : Keyword para o método de combinação de orbitais moleculares
+	\end{itemize}
+\end{itemize}
 
 \subsection{Análise dos Resultados}
 
+Para analisar todos os descritores e outras propriedades de energia, o PRIMoRDiA cria um script para executar no R para gerar automaticamente gráficos dessas quantidades variando em função das etapas. Depois da execução deve aparecer arquivos com sufixo ".R", um deles com nome "sys0\_reaction\_analysis.R" e outro "sys0\_residuos\_analysis.R". Vamos executar o primeiro com o Rscript, como no comando abaixo
+
+
+Depois desse comando, o R deve produzir diversos arquivos de imagem com propriedades globais e locais para cada átomo da coordenada de reação. Na figura abaixo é mostrado um desses arquivos com as propriedades globais
+
+No primeiro gráfico da figura acima HOF é o calor de formação  (heat of formation) que o Mopac calcula, e é uma das melhores formas de variação de energia em uma reação química simulada com método semiempírico. Lembrando que todas essas propriedades são em referência ao primeiro valor, ou seja, cada ponto uma variação ao estado inicial. Nessas simulações uma estrutura que normalmente se deseja determinar é a estrutura de transição, que é determinada pelo ponto máximo de variação de energia, nesse caso na penúltima etapa. No entanto, nesse nosso calculo com PM6, a área quântica foi bem menor do que a utilizada no na nossa publicação e o HOF não foi um bom indicador do estado de transição. Já a energia eletrônica mostra um primeiro máximo no ponto zero da coordenada de reação, que é o momento que o próton está a mesma distância do carbono e do oxigênio. Em geral, os outros descritores globais indicam um aumento da moleza química (softness) e consequente diminuição da dureza (hardness), aumento do potencial químico e da eletrofilicidade total indicam que o sistema tende a receber transferência de elétrons.
+
+Na figura a baixo podemos conferir a variação de energia para mesma reação calculada com diversos métodos, publicado em um artigo na Journal of Chemical Information Modeling 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1234,6 +1313,8 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 		\end{center}
 	\end{figure}
 \end{minipage}
+
+Na análise que foi publicada, boa parte dos métodos apresenta um estado de transição perto de -0.025 da coordenada de reação, quase no ponto de igual distância da transferência do próton, depois há uma vale, denotando um estado intermediário e depois mais um aumento de energia até outro vale no qual o produto deve se acomodar. Como visto na imagem acima, o PM6 é o método mais discordante em relação ao calor de formação. Na figura seguinte, nós mostramos os descritores para o átomo de oxigênio do resíduo GLU. No script gerado pelo PRIMoRDiA nós analisamos 9 propriedade por átomo da coordenada de reação. Para o oxigênio é interessante ressaltar algumas, como o decréscimo na densidade eletrônica, atingindo um mínimo no estado de transição e depois retomando o valor nos produtos. A carga parcial aumenta também, indicando que há uma transferência de elétrons do oxigênio para o carbono, e que depois o o sistema em volta faz uma "devolução" de carga para o oxigênio, mas que no final ainda fica com menos, já que agora o grupo carboxilico que pertence está protonado e portanto neutro. Já para a dureza local esse átomo apresenta comportamentos diferentes para cada tipo de método de cálculo, para interpretar o que cada um significa é importante entender cada modelo. Brevemente, a dureza baseada no LCP tem mais correção com o descritor global de dureza, indicando que esse tinha a propensão de interagir por processo duro-duro e depois foi diminuindo esse comportamento conforme foi transferindo carga. 
 
 
 \hspace*{-\leftmarginwidth}
@@ -1247,6 +1328,8 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+Os descritores para o carbono C1 estão na próxima figura. Tem bastante coisa interessante para analisar nesse caso. Primeiro, é interessante como para dois métodos de dureza o valor máximo condiz com o estado de transição e perfila muito bem a reação. Já que a interação dominante para transferência de prótons é a duro-duro, o carbono assume o valor máximo para esse descritor, em dois métodos mepEE e LCP. O método de dureza baseado no potencial de Fukui da a força exercida nos núcleos em respeito da varição do número de elétrons, o que ten una interpretação mais diferente da geral sobre dureza comum. 
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
@@ -1258,6 +1341,9 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+Os descritores para o átomo transferido, o hidrogênio do DHAP (H1), se encontra na figura de baixo. Os descritores baseados nos orbitais moleculares, como electrophilicidade, nucleofilicidade e netfilicidade mostraram variação mas com valores muito baixos. Agora é interessante como a densidade eletrônica vai diminuindo, se tornando cada vez mais um próton, um hidrogênio carregado positivamente. A dureza local com maior ligação com as interações eletrostáticas ( MEP EE ), foi a que apresentou maior coerência com o processo, com um aumento das interações eletrostáticas pŕoximo ao estado de transição, diminui e atinge o máximo nos produtos, onde a carga parcial atinge o máximo, sendo que esse átomo tende a ser transferido pelo mesmo tipo de interação.
+
+Como no Tutorial 3, vamos gerar imagens do descritores para alguns pontos da trajetória. O PRiMoRDiA escreve para cada arquivo um script de Pymol para automatizar a visualização dos descritores. Abra o Pymol e execute o arquivo com o prefixo "sys0" e sufixo ".pym", como na figura abaixo. 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1270,6 +1356,8 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+Na figura abaixo o descritor de susceptibilidade de ataque eletrofílico (EAS), e um comando para carregar um PDB que já tinha na pasta, 7TIM.pdb, que contém o toda a proteína.
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
@@ -1281,7 +1369,11 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+As pŕoximas figuras foram resultado do processo de renderização no pymol para o descritor de dureza local com o segundo método disponível no PRIMoRDiA. O objeto com a proteína inteira foi colorido com os carbonos em verde e escondido todas as outras representação que não fossem cartoon para não atrapalhar a visualização do objeto com o descritor. Para a paleta escolhida o comando utilizado foi 
 
+` spectrum b, white_yellow_orange_red_black, minimum=0.1,maximum=0.2 `
+
+Esses valores podem sofrer pequenos ajustar para melhorar o destaque dos átomo com o maior valor de dureza. Depois, com o comando "ray" seguido do "png" as imagens foram salvas. 
 
 
 \hspace*{-\leftmarginwidth}
@@ -1295,6 +1387,8 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+A imagem abaixo é a dureza local para a primeira etapa da coordenada
+
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1307,6 +1401,8 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+A imagem abaixo é a dureza local para a sétima etapa da coordenada
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
@@ -1317,6 +1413,9 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 		\end{center}
 	\end{figure}
 \end{minipage}
+
+A imagem abaixo é a dureza local para a última etapa da coordenada
+
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1329,6 +1428,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+O PRIMoRDiA também escreve scripts especiais do R para a análise dos descritores para residos específicos, indicados no input, produzindo gráficos de barra com a média e o desvio padrão, como na figura abaixo para o descritor de eletrofilicidade, o mesmo que o NAS.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1341,6 +1441,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+E na próxima figura para a nucleofilicidade, ou descritor EAS
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1353,6 +1454,9 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+
+Também, é acompanhado a variação desses valores durante a trajetória com o cálculo de médias móveis, como na figura abaixo é mostrado para densidade eletrônica em cada resido 
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
@@ -1363,6 +1467,8 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 		\end{center}
 	\end{figure}
 \end{minipage}
+
+Na figura abaixo é mostrado para o primeiro método de dureza local 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1375,6 +1481,7 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+E em seguida as médias móveis para moleza local
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1387,7 +1494,9 @@ O que pode ser extraído desses resultados é que para o mesmo método de estrut
 	\end{figure}
 \end{minipage}
 
+Podemos ver como a densidade eletrônica e a moleza local no LIG, o substrato, aumenta. Nessa estrutura de transição formada no produto da nossa simulação, o substrato forma uma ligação dupla quando o próton é doado, e como os descritores indicam o carbono e a moléculas receberam doação de carga. O aumento da moleza pode significar que agora com a dupla formada essa molécula tem maior propensão de formar ligações covalentes através de sobreposição de orbitais moleculares e também transferir carga. 
 
+Há diversas análises que podemos fazer baseados nos descritores de reatividade, que por sua vez também são numerosos, para cada átomo envolvido e para cada resíduo. O PRIMoRDiA fornece uma forma automática de dispor todos esses resultados da forma mais pronta para análise possível. 
 
 
 
