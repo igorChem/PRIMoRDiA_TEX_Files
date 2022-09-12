@@ -1029,9 +1029,9 @@ Esse tutorial segue a mesma lógica do Tutorial 1, mas focado na interpretação
 
 \subsection{Contextualização}
 
-Aminoácidos são moléculas orgânicas anfoteras, isto é, podem agir como ácidos e bases, devido aos grupos amina e ácido carboxílico. Além disso, alguns tem cadeias laterais que são considerados como ácidos ou bases, e quando estão na composição de uma proteína essa acidez/basicidade vai ser relevante para diversos processos e propriedades.
+Aminoácidos são moléculas orgânicas anfóteras, isto é, podem agir como ácidos e bases, devido aos grupos amina e ácido carboxílico. Além disso, alguns tem cadeias laterais que são considerados como ácidos ou bases, e quando estão na composição de uma proteína essa acidez/basicidade vai ser relevante para diversos processos e propriedades.
 
-A força ácida é medida pelo pKa, que é o negativo do log da constante de força ácida. De forma resumida, quando o pH está menor que o pKa de um grupo da molécula esse grupo tende a ficar protonado, em caso contrário sem esse proton. Ou seja, quanto menor o pKa mais ácido e quanto maior mais básico. No entanto, as medidas de pKa mudam com o ambiente químico e a sua obtenção de forma teórica apresenta diversos desafios quando os sistemas envolvidos são proteínas.
+A força ácida é medida pelo pKa, que é o negativo do log da constante de força ácida. De forma resumida, quando o pH está menor que o pKa de um grupo da molécula esse grupo tende a ficar protonado, em caso contrário sem esse próton. Ou seja, quanto menor o pKa mais ácido e quanto maior mais básico. No entanto, as medidas de pKa mudam com o ambiente químico e a sua obtenção de forma teórica apresenta diversos desafios quando os sistemas envolvidos são proteínas.
 
 Os descritores podem ser úteis para identificar locais nas moléculas para sítios preferências para transferência de elétrons. Mais especificativamente, a dureza local é o descritor ideal para transferência de prótons, que é um partícula pequena carregada e portanto dominado por interações de natureza eletrostática. Nesse tutorial, vamos calcular os descritores para uma cisteína, ácido aspártico, ácido glutâmico e uma lisina, e cruzar com dados de pKa e potencial de ionização.
 
@@ -1098,13 +1098,8 @@ Para ajudar de forma qualitativa na análise, podemos gerar os descritores volum
 	\end{figure}
 \end{minipage}
 
-Nessa imagem é possível observar as superfícies renderizadas na cor azul estão localizadas em átomos de oxigénio, e representa a tendência desses locais de receber um ataque eletrolítico, e portanto são nucleófilos, e em rosa e vermelho locais onde tendem a receber um ataque nucleofílico e portanto são eletrófilos. Para o ácido aspártico, quase todos os oxigênios de ácido carboxilico apresentam ser nucleófilos, mas com clara preferência para um dos oxigênios da cadeia lateral. Enquanto isso, no grupo amina apresenta ser um eletrófilo, com uma disposição esférica do descritor ao redor do grupo, sinalizando que qualquer proton pode ser retirado para que o par de eletrons desse nitrogênio carregado positivamente seja restaurado.
 
-Passando para a análise do descritor de duzera, nós destivamos os objetos de volume anteriores no Pymol e ativamos o último, "aspFOA_Hardness_vol", uma represetação volumétrica do descritor deve aparecer como mostrado na figura abaixo
-
-A janela que aparece ao lado da última figura é aberta clcando em "volume" no painel ao lado da área de execução de comandos do Pymol. clicando e movimentando os pontos nessa janela é possivel mudar as cores, os valores das iso-superfícies e suas opacidades. Também é possivel adicionar mais iso-superfícies. Na figura abaixo é mostrado uma modificação feita para o descritores de dureza local
-
-Repetindo o processo de renderização e de salvar as imagens para os outros sistemas, nós obtemos os descritores para quatro sistemas, como mostrada nas próximas duas figuras.
+Na \autoref{fig_tut4_8} o descritor de Netfilicidade, ou as duas fases do descritor dual, é mostrado para o ácido aspártico. Com o comando "Draw", no Pymol é possível renderizar a imagem para salva-lá na resolução desejada e em alta qualidade, resultado na \autoref{fig_tut4_9}. Nessa imagem é possível observar as superfícies renderizadas na cor azul estão localizadas em átomos de oxigênio, e representa a tendência desses locais de receber um ataque eletrolítico, e portanto são nucleófilos, e em rosa e vermelho locais onde tendem a receber um ataque nucleofílico e portanto são eletrófilos. Para o ácido aspártico, quase todos os oxigênios de ácido carboxílico apresentam ser nucleófilos, mas com clara preferência para um dos oxigênios da cadeia lateral. Enquanto isso, no grupo amina apresenta ser um eletrófilo, com uma disposição esférica do descritor ao redor do grupo, sinalizando que qualquer próton pode ser retirado para que o par de elétrons desse nitrogênio carregado positivamente seja restaurado.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1117,6 +1112,7 @@ Repetindo o processo de renderização e de salvar as imagens para os outros sis
 	\end{figure}
 \end{minipage}
 
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
@@ -1127,6 +1123,8 @@ Repetindo o processo de renderização e de salvar as imagens para os outros sis
 		\end{center}
 	\end{figure}
 \end{minipage}
+
+Passando para a análise do descritor de dureza, é só desativar os objetos de volume anteriores no Pymol e ativamos o último, "aspFOA\_Hardness\_vol", uma representação volumétrica do descritor deve aparecer como mostrado na \autoref{fig_tut4_11}
 
 
 \hspace*{-\leftmarginwidth}
@@ -1140,6 +1138,9 @@ Repetindo o processo de renderização e de salvar as imagens para os outros sis
 	\end{figure}
 \end{minipage}
 
+A janela que aparece ao lado da \autoref{fig_tut4_12} é aberta colocando em "volume" no painel ao lado da área de execução de comandos do Pymol. Clicando e movimentando os pontos nessa janela é possível mudar as cores, os valores das iso-superfícies e suas opacidades. Também é possível adicionar mais iso-superfícies. Na figura abaixo é mostrado uma modificação feita para o descritores de dureza local. 
+
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
@@ -1151,12 +1152,14 @@ Repetindo o processo de renderização e de salvar as imagens para os outros sis
 	\end{figure}
 \end{minipage}
 
+Repetindo o processo de renderização e de salvar as imagens para os outros sistemas, nós obtemos os descritores para quatro os sistemas, como mostrada nas próximas duas figuras: netfilicidade na \autoref{fig_tut4_13} e de dureza na\autoref{fig_tut4_14}.
+
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=5in]{images/tut4_img15}
-			\caption{Descritor local de netfilicidade para os quatro amino-ácidos analisados no tutorial.}
+			\caption{Descritor local de Netfilicidade para os quatro amino-ácidos analisados no tutorial.}
 			\label{fig_tut4_13}
 		\end{center}
 	\end{figure}
@@ -1195,7 +1198,7 @@ Repetindo o processo de renderização e de salvar as imagens para os outros sis
 	\end{figure}
 \end{minipage}
 
-Juntando as informações que podemos observar dos descritores condensados e volumétricos, podemos ver que essas quantidades teóricas consegume localizar os as porções das moléculas onde transferências de protons podem ocorrer. O descritore de dureza química é o mais apropriado para esse tipo de processo, transferência de pequenos grupos carregados, e mostou uma relação com o pKa dos grupos amina, com a cisteina mostrando a maior dureza no nitrogênio e também o maior pKa. Obviamente, esse pequeno estudo está repleto de limitações e só tem intenção de mostrar uma relação prática dos resultados obtidos com o PRIMoRDiA e um problema de modelagem molecular comum.
+Juntando as informações que podemos observar dos descritores condensados e volumétricos que essas quantidades teóricas conseguem localizar os as porções das moléculas onde transferências de prótons são mais prováveis de ocorrer. O descritores de dureza química é o mais apropriado para esse tipo de processo, transferência de pequenos grupos carregados, e mostrou uma relação com o pKa dos grupos amina, com a cisteína mostrando a maior dureza no nitrogênio e também o maior pKa. Obviamente, esse pequeno estudo está repleto de limitações e só tem intenção de mostrar uma relação prática dos resultados obtidos com o PRIMoRDiA e um problema de modelagem molecular comum.
 
 \newpage
 \section{Tutorial 5: Análise de Reação Enzimática}
@@ -1205,7 +1208,7 @@ Nesse tutorial vai ser trabalho um exemplo prático de como o PRIMoRDiA pode ser
 
 \subsection{Contextualização}
 
-eações enzimáticas são na verdade reações químicas catalisadas por proteínas, que fazem com que transformações químicas ocorram em um tempo hábil para o funcionamento do metabolismo de organismos vivos. Portanto, as enzimas são componentes importantíssimos para a manutenção da vida, participando desde a replicação de DNA até a decomposição do açúcar.
+Reações enzimáticas são reações químicas catalisadas por proteínas, que fazem com que transformações químicas ocorram em um tempo hábil para o funcionamento do metabolismo de organismos vivos. Portanto, as enzimas são componentes importantíssimos para a manutenção da vida, participando desde a replicação de DNA até a decomposição do açúcar.
 
 O estudo do mecanismo dessas reações é muito importante para o desenvolvimento de drogas, entendimento de metabolismo, mecanismos de doenças e replicação de micro-organismos e aplicações industriais dessas enzimas. Em um dos estudos do nosso grupo, foi com o mecanismo da reação catalisada pela triose-fosfato-isomerase (TIM), mais especificamente a etapa mostrada no esquema abaixo
 
@@ -1497,8 +1500,6 @@ E em seguida as médias móveis para moleza local
 Podemos ver como a densidade eletrônica e a moleza local no LIG, o substrato, aumenta. Nessa estrutura de transição formada no produto da nossa simulação, o substrato forma uma ligação dupla quando o próton é doado, e como os descritores indicam o carbono e a moléculas receberam doação de carga. O aumento da moleza pode significar que agora com a dupla formada essa molécula tem maior propensão de formar ligações covalentes através de sobreposição de orbitais moleculares e também transferir carga. 
 
 Há diversas análises que podemos fazer baseados nos descritores de reatividade, que por sua vez também são numerosos, para cada átomo envolvido e para cada resíduo. O PRIMoRDiA fornece uma forma automática de dispor todos esses resultados da forma mais pronta para análise possível. 
-
-
 
 
 \end{document}
