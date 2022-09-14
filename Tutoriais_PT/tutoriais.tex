@@ -110,7 +110,7 @@ Link para última versão: \url{https://github.com/igorChem/PRIMoRDiA1.0v/releas
 
 Informações mais específicas sobre compilação, instalação e uso dos binários já compilados, consulte o guia de usuário fornecido no repositório. 
 
-Sobre os tutoriais nesse documento, eles cobrem praticamente todas as funcionalidades do programa, mas sobretudo o que fazer com os resultados do PRIMoRDiA, já que a montagem do input e execução normalmente só necessitam de dois comandos em um terminal. O PRIMoRDiA trabalha com três modos de cálculo dos descritores, classificados pelo tipo de aproximação realizada. Os três primeiros tutoriais tratam exatamente desses três modos específicos de obter os descritores, tutoriais 4 e 6 trabalham aplicações em possíveis objetos de estudo e o tutorial 5 trabalha opções que não são executada através de input para gerar a densidade eletrônica e orbitais moleculares para sistemas quaisquer.
+Sobre os tutoriais nesse documento, eles cobrem praticamente todas as funcionalidades do programa, mas sobretudo o que fazer com os resultados do PRIMoRDiA, já que a montagem do input e execução normalmente só necessitam de dois comandos em um terminal. O PRIMoRDiA trabalha com três modos de cálculo dos descritores, classificados pelo tipo de aproximação realizada. Os três primeiros tutoriais tratam exatamente desses três modos específicos de obter os descritores, tutoriais 4 e 5 trabalham aplicações em possíveis objetos de estudo e o tutorial 6 ensina como executar o programa na plataforma de computação em nuvem do Google para suprir a falta de uma versão do programa para Windows ou para usuários com poucos recursos computacionais.  
 
 A lista de tutoriais está logo abaixo:
 
@@ -120,15 +120,18 @@ A lista de tutoriais está logo abaixo:
 	\item Descritores de Banda
 	\item Análise de Força Ácida
 	\item Análise de Reação Enzimática
+	\item Uso do Google Colabs
 \end{enumerate}
 
-O primeiro tutorial é muito importante de ser feito, pois ele introduz várias informações detalhadas sobre a montagem do input e execuções básicas no software gráfico Pymol para análise dos resultados de forma gráfica. Também, nesse mesmo tutorial, é desenvolvida a interpretação dos descritores globais e o efeito dos métodos de estrutura eletrônica nessas quantidades, informações que são relevantes para todos os métodos e modos de cálculo. 
+O primeiro tutorial é muito importante de ser feito, pois ele introduz várias informações sobre a montagem do input e execuções básicas no software Pymol para análise dos resultados de forma gráfica. Também, nesse mesmo tutorial, é desenvolvida a interpretação dos descritores globais e o efeito dos métodos de estrutura eletrônica nessas quantidades, informações que são relevantes para todos os métodos e modos de cálculo. 
 
 O segundo tem pouca diferença no que diz respeito a montagem do input e execução do programa, e por isso aproveitamos para prover mais detalhes sobre o uso do Pymol. O terceiro é o principal tutorial para quem deseja trabalhar com macromoléculas, como proteínas/enzimas, introduzindo como utilizar os dois métodos implementados para o cálculo de descritores locais e outros vários parâmetros para a análise dos resultados.
 
 O quarto tutorial pretende demonstrar o uso dos descritores dentro do contexto de uma pergunta de pesquisa, trazendo como exemplo a investigação da força ácida de diferentes amino-ácidos, mostrando como os diversos descritores podem ser utilizados e combinados para extrair informações de cálculos quânticos feitos para esses sistemas. 
 
-O quinto tutorial traz uma aplicação bastante avançada do software, se assemelhando a análises que fazemos nas nossas recentes publicações. Os descritores de Banda, que são o terceiro tipo de modo de cálculo implementado exclusivamente no PRIMoRDiA para lidar com macromoléculas, aplicado a uma trajetória correspondendo a um caminho de reação de uma catálise enzimática. 
+O quinto tutorial traz uma aplicação bastante avançada do software, se assemelhando a análises que fazemos nas nossas recentes publicações. Esse tutorial aplica os descritores de Banda, que são o terceiro tipo de modo de cálculo implementado exclusivamente no PRIMoRDiA para lidar com macromoléculas, analisando uma trajetória que corresponde a um caminho de reação de catálise enzimática. 
+
+No último tutorial, replicamos o primeiro na plataforma de computação em nuvem do Google. A ideia é fornecer um exemplo de uso da plataforma em conjunto ao binário já compilado do PRIMoRDiA fornecido no repositório. A partir desse primeiro exemplo todos os outros tutoriais podem ser executados com os recursos da plataforma que fornece gratuitamente 12GB de RAM e 100GB de armazenamento. 
 
 \newpage
 \section{Tutorial 1: Aproximação de Orbitais Congelados}
@@ -139,13 +142,13 @@ Nesse tutorial vai ser demonstrado como utilizar o programa para obter os descri
 
 As teorias de reatividade sempre foram muito mais exploradas dentro da química orgânica através do estudo de orbitais moleculares de fronteira, os famigerados HOMO e LUMO. Esse estudo compreende a análise da distribuição especial desses orbitais nas moléculas e seus valores de energia.
 
-E por que esses orbitais são importantes? Primeiro, os orbitais moleculares servem para descrever a densidade de probabilidade de encontrar um elétron no espaço tridimensional; Segundo, durante as reações químicas são os elétrons que são transferidos entre as moléculas, reorganizando as ligações químicas e portanto as geometrias. Esses orbitais de fronteira, como HOMO (Highest Occupied Molecular Orbital) e LUMO (Lowest Unncupied Molecular Orbital), são os que descrevem a distribuição espacial do elétrons mais propensos a serem transferidos, ou dos níveis de energias virtuais mais propensos a receber elétrons.
+E por que esses orbitais são importantes? Primeiro, os orbitais moleculares servem para descrever a densidade de probabilidade de encontrar um elétron no espaço tridimensional; Segundo, durante as reações químicas são os elétrons que são transferidos entre as moléculas, reorganizando as ligações químicas e portanto as geometrias. Esses orbitais de fronteira, como HOMO (Highest Occupied Molecular Orbital) e LUMO (Lowest Unnocupied Molecular Orbital), são os que descrevem a distribuição espacial do elétrons mais propensos a serem transferidos, ou dos níveis de energias virtuais mais propensos a receber elétrons.
 
 Quando as teorias de reatividade foram demonstradas através do tratamento matemático baseado na Teoria de Densidade Funcional (DFT), os orbitais de fronteira se tornaram uma aproximação para funções locais e valores de energia para os descritores de reatividade. Essa é a aproximação de Orbitais Congelados, Frozen Ortbial Approximation (FOA) em inglês. Toda a parte teórica dessa aproximação, parte conceitual e derivação dos descritores de reatividade podem ser encontrados no nosso Guia do usuário e nas referências citadas lá. 
 
-Essa aproximação tem algumas vantagens importantes, como necessitar de um protocolo de cálculo mais rápido que de diferenças finitas, e a consolidação dos conceitos baseados nos orbitais moleculares. A principal desvantagem é que por algumas vezes os orbitais HOMO e LUMO não são os que resultam na mais acura representação da reatividade do sistema.
+Essa aproximação tem algumas vantagens importantes, como necessitar de um protocolo de cálculo mais rápido que de diferenças finitas, e a consolidação dos conceitos baseados nos orbitais moleculares. A principal desvantagem é que por algumas vezes os orbitais HOMO e LUMO não são os que resultam na mais acurada representação da reatividade do sistema.
 
-Nesse tutorial, vamos mostrar como calcular os descritores de reatividade/quânticos usando FOA, como gerar e analisar os resultados usando software gráfico Pymol, analisando as tabelas com valores para cada átomo. Também, por ser o primeiro tutorial, vai ser dado mais atenção a detalhes técnicos sobre o input e scripts gerados pelo programa, interpretação de descritores e explicação de conceitos que serão úteis para os próximos tutoriais.
+Nesse tutorial, vamos mostrar como calcular os descritores de reatividade/quânticos usando FOA, como gerar e analisar os resultados com o software gráfico Pymol, e a interpretação das tabelas com valores para cada átomo. Também, por ser o primeiro tutorial, vai ser dado mais atenção a detalhes técnicos sobre o input e scripts gerados pelo programa, interpretação de descritores e explicação de conceitos que serão úteis para os próximos tutoriais.
 
 \subsection{Preparação dos Arquivos e Execução do Programa}
 
@@ -153,7 +156,7 @@ Basicamente, o que o PRIMoRDiA faz é extrair as propriedades eletrônicas de ar
 
 Os descritores locais para os átomos são chamados de condensados, onde a parte do resultado da função local calculada para os descritores é atribuída para os átomos individualmente, tornando essa quantidade ligada as coordenadas do núcleo desse átomo.
 
-Para exemplificar o funcionamento e uso do programa, a estrutura eletrônica da molécula de acroleína foi calculada nos quatro pacotes de química quântica que são suportados pelo PRIMoRDiA, GAMESS, MOPAC, ORCA e Gaussian, cada um com método de cálculo diferente. A representação gráfica do arranjo molecular da acroleína é mostrado logo abaixo.
+Para exemplificar o funcionamento e uso do programa, a estrutura eletrônica da molécula de acroleína foi calculada nos quatro pacotes de química quântica que são suportados pelo PRIMoRDiA (até a presente versão), GAMESS, MOPAC, ORCA e Gaussian, cada um com método de cálculo diferente. A representação gráfica do arranjo molecular da acroleína é mostrado logo abaixo na \autoref{fig_tut1_1}.
 
 
 \hspace*{-\leftmarginwidth}
@@ -171,7 +174,7 @@ Os arquivos que o PRIMoRDiA precisam estar na pasta comprimida Tutorials\_Files,
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -input -op 1 -p mopac -grid 40\end{commandshell}
+\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v -input -op 1 -p mopac -grid 40\end{commandshell}
 \end{minipage}
 
 Nesse caso, o PRIMORDiA vai procurar na pasta os arquivos com a extensão ".aux", pois é requerido cálculos de descritores locais para arquivos de saída do mopac. Depois de executar esse comando vai aparecer no diretório dois arquivos novos: primordia.input e primordia.log. Se isso não ocorrer como descrito ou houver alguma mensagem de erro, verifique se o caminho para o executável está correto. Lembrando que é necessário trocar o "/path/to/primordia/" para o endereço da paste onde o executável está localizado. Abra o arquivo "primordia.input", o resultado deve ser como mostrado na seguinte caixa de texto ( \autoref{tut101} ).
@@ -217,7 +220,7 @@ Para executar o PRIMoRDiA é muito simples, a partir do nosso input criado e edi
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -f primordia.input\end{commandshell}
+\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v -f primordia.input\end{commandshell}
 \end{minipage}
 
 A flag "-f" indica que o próximo argumento é um arquivo de input formatado para o programa. O arquivo de input pode ter qualquer nome e não é necessário que tenha a extensão ".input". Depois de rodar esse comando o programa deve indicar o tempo total de execução, e no mesmo diretório onde os dados e o input se encontram, vários novos arquivos de diferentes tipos devem aparecer. Vamos explicar eles a analisar na próxima parte do tutorial.
@@ -261,14 +264,14 @@ O ECP frequentemente é um valor negativo que vem da derivada da energia eletrô
 
 A dureza é a segunda derivada da energia eletrônica em relação ao número de elétrons e portanto a derivada do ECP em relação ao número de elétrons. Esses descritores indicam a resistência do sistema em doar elétrons, e um sistema com maior dureza é mais estável quimicamente. 
 
-Os maiores valores de dureza calculados para a acroleína foram com os métodos Hartree-Fock e o menor com DFT. Assim, podemos concluir que o método DFT indicou a acroleína com maior propensão em doar seus elétrons e participar de uma reação química fazendo isso. A dureza sendo a derivada do ECP indica como ela mudará conforme a densidade de elétrons se move do sistema. Assim, um sistema pode ter um alto ECP, mas a alta dureza tornará a transferência da densidade do elétron mais difícil.
+Os maiores valores de dureza calculados para a acroleína foram com os métodos Hartree-Fock e o menor com DFT. Assim, podemos concluir que o método DFT indicou a acroleína com maior propensão em doar seus elétrons e participar de uma reação química através desse processo. A dureza sendo a derivada do ECP indica como ela mudará conforme a densidade de elétrons se move do sistema. Assim, um sistema pode ter um alto ECP, mas a alta dureza tornará a transferência da densidade do elétron mais difícil.
 
-Energia de estabilização de um sistema para receber todos os elétrons possíveis é medida pela eletrofilicidade total. O número máximo correspondente de elétrons que o sistema pode receber é dado pelo descritor nMax e, finalmente, a diferença entre os orbitais moleculares da fronteira, HOMO e LUMO, 'gap' é o último descritor da lista. Para o método FOA, o gap e a dureza são a mesma quantidade, embora, para o método de aproximação por diferenças finitas isso não é verdade e as duas informações possam ser relevantes.
+Energia de estabilização de um sistema para receber todos os elétrons possíveis é medida pela eletrofilicidade total. O número máximo correspondente de elétrons que o sistema pode receber é dado pelo descritor nMax e, finalmente, a diferença entre os orbitais moleculares da fronteira, HOMO e LUMO, 'gap' é o último descritor da lista. Para o método FOA, o gap e a dureza são a mesma quantidade, embora, para o método de diferenças finitas isso não é verdade e as duas informações possam ser relevantes.
 
 
 \subsubsection{Descritores Locais Condensados}
 
-Agora, vamos analisar e interpretar os descritores locais, que são quantidades atribuídas a um ponto no espaço tridimensional. Existem duas maneiras comuns de representar os descritores locais para moléculas, que são implementadas no PRIMoRDiA. O primeiro é o condensado para átomos, onde os valores são atribuídos a cada átomo e são escritos como uma lista. Todas as entradas do arquivo de entrada produzem um '.lrd', especificamente para métodos FOA (opção 1 no arquivo de entrada), o sufixo do arquivo 'FOA.lrd'. Portanto, devemos ter quatro desses arquivos em nosso diretório, como podemos verificar usando o comando 'ls' no terminal Linux. Na imagem abaixo ( \autoref{fig_tut1_4} ), as informações desses arquivos foram transferidas para uma tabela do libreoffice calc.
+Agora, vamos analisar e interpretar os descritores locais, que são quantidades atribuídas a um ponto no espaço tridimensional. Existem duas maneiras comuns de representar os descritores locais para moléculas, que são implementadas no PRIMoRDiA. O primeiro é o condensado para átomos, onde os valores são atribuídos a cada átomo e são escritos como uma lista. Todas as entradas do arquivo de input produzem um arquivo com extensão'.lrd', especificamente para métodos FOA (opção 1 no arquivo de input), o sufixo do arquivo 'FOA.lrd'. Portanto, devemos ter quatro desses arquivos em nosso diretório, como podemos verificar usando o comando 'ls' no terminal Linux. Na imagem abaixo ( \autoref{fig_tut1_4} ), as informações desses arquivos foram transferidas para uma tabela do libreoffice calc.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -283,7 +286,7 @@ Agora, vamos analisar e interpretar os descritores locais, que são quantidades 
 
 Esses valores são mapeados para as coordenadas de cada núcleo atômico, conforme mostrado na figura acima( \autoref{fig_tut1_4} ), apresentando o oxigênio da acroleína como o mais reativo para receber um ataque eletrofílico.
 
-Os átomos de carbono da dupla ligação também apresentam valores significativos de EAS. O valor mais alto de eletrofilicidade é do carbono 3. Este tipo de representação fornece um meio de comparação quantitativa, intermolecular e intramolecular. 
+Os átomos de carbono da dupla ligação também apresentam valores significativos de nucleofilicidade. O valor mais alto de eletrofilicidade é do carbono 3. Este tipo de representação fornece um meio de comparação quantitativa, intermolecular e intramolecular. 
 
 Na \autoref{fig_tut1_5}, mostramos os valores mapeados para os centros atômicos, para os descritores de eletrofilicidade e nucleofilicidade, calculados com os diferentes pacotes de química computacional e métodos de estrutura eletrônica. 
 
@@ -305,7 +308,7 @@ Para a representação volumétrica os arquivos Cubes gerados são utilizados pa
 
 Você pode baixar Pymol do repositório (para Linux). Recomendamos fortemente que você faça os tutoriais básicos do Pymol, especialmente se desejar usá-lo para gerar suas figuras científicas, como fizemos várias vezes em nossas publicações. 
 
-Os próximos passos consistem em gerar a renderização de volume em Pymol, um objeto que representa graficamente o campo escalar no espaço tridimensional, atribuindo a cada voxel de um mesmo valor a mesma cor e opacidade. A opacidade é um recurso importante, pois você precisa definir pelo menos dois níveis, cada um com uma cor diferente. Se esses dois ou mais níveis tiverem a mesma opacidade, apenas o mais próximo das bordas da grade aparecerá.
+Os próximos passos consistem em gerar a renderização de volume em Pymol, um objeto que representa graficamente o campo escalar no espaço tridimensional, atribuindo a cada voxel de um mesmo valor a mesma cor e opacidade. A opacidade é um recurso importante, pois é necessário  definir pelo menos dois níveis de valores do campo escalar com opacidades distintas para que haja a rendereização de uma volume. Se esses dois ou mais níveis tiverem a mesma opacidade, apenas o mais próximo das bordas da grade aparecerá. 
 
 O PRIMoRDiA escreve scripts para automatizar a visualização desses arquivos no Pymol, vamos executar um deles para a acroleína calculada com semi-empírico. Abra o Pymol e digite o comando que está em destaque na figura abaixo ( \autoref{fig_tut1_6} ). 
 
@@ -372,7 +375,7 @@ salva a imagem em um arquivo em formato \textit{png} na pasta, como mostrada aba
 
 O mesmo processo pode ser repetido para os outros objetos de volume. Também é possível usar a interface do Pymol para alterar os valores de superfície, cores e opacidades. Abaixo, a dureza local é objeto desse exemplo da \autoref{fig_tut1_9}.
 
-E na \autoref{fig_tut1_10}, mostramos os descritores para a acroleína para todos os métodos de cálculo testados, mostrando os lugares suscetíveis da molécula para receber ataques eletrofílicos (azul) e nucleofílicos (rosa).
+E na \autoref{fig_tut1_10}, mostramos os descritores para a acroleína considerando todos os métodos de cálculo testados, mostrando os lugares suscetíveis da molécula para receber ataques eletrofílicos (azul) e nucleofílicos (rosa).
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -396,7 +399,7 @@ E na \autoref{fig_tut1_10}, mostramos os descritores para a acroleína para todo
 \end{figure}
 \end{minipage}
 
-Portanto, nesse tutorial podemos ver também a influência dos métodos de estrutura eletrônica na obtenção dos descritores, que é significativa mas tende a ser bem menor que o efeito provocado nos resultados energéticos, podendo, na maioria das vezes, que os descritores sejam obtidos com métodos menos custosos. 
+Portanto, nesse tutorial podemos ver também a influência dos métodos de estrutura eletrônica na obtenção dos descritores, que é significativa mas tende a ser bem menor que o efeito provocado nos resultados energéticos, fazendo com que na maioria das vezes os descritores possam resultar nos mesmos padrões mesmo utilizando métodos quânticos menos custosos. 
 
 \newpage
 \section{Tutorial 2: Aproximação de Diferenças Finitas}
@@ -410,7 +413,7 @@ Há pouca diferença entre esse tutorial e o primeiro na parte de execução de 
 
 Em geral, o método de diferenças finitas é uma ferramenta amplamente utilizada para o cálculo de derivadas de forma numérica, ou seja, substituindo um método analítico. Nesse caso mais específico, o cálculo dessas propriedades eletrônicas definidas como derivadas em relação ao número de elétrons, o método de diferenças finitas é um caminho quase intuitivo, já que não é possível derivar uma função não continua. 
 
-Por isso o método de diferenças finitas é uma forma tradicional de calcular os descritores e é implementado no PRIMoRDiA extensivamente. Também, devido ao fato de calcular as propriedades utilizando a informação da diferença das densidades eletrônicas completas, os descritores locais calculados por esse método tendem a ser mais acurados em respeito a efeitos dos orbitais moleculares que não só o HOMO e LUMO. No entanto, a necessidade de dois single points a mais e a obtenção da densidade eletrônica total faz com que esse método acabe se tornando computacionalmente mais custoso. 
+Por isso o método de diferenças finitas é uma forma tradicional de calcular os descritores e é implementado no PRIMoRDiA. Também, devido ao fato de calcular as propriedades utilizando a informação da diferença das densidades eletrônicas completas, os descritores locais calculados por esse método tendem a ser mais acurados em respeito a efeitos dos orbitais moleculares que não só o HOMO e LUMO. No entanto, a necessidade de dois single points (cálculo de energia) a mais e a obtenção da densidade eletrônica total faz com que esse método acabe se tornando computacionalmente mais custoso. 
 
 Nesse tutorial vamos usar a molécula de benzeno como exemplo para os descritores com esse método de aproximação. A molécula de benzeno não é apresenta pontos de reatividade específicos devido a sua simetria, mas é possível visualizar propriedades relacionadas com aromaticidade e a geometria do anel. 
 
@@ -429,7 +432,7 @@ Todos os arquivos necessários para realizar o tutorial estão no repositório j
 
 Esses arquivos não contém a estrutura eletrônica completa para os sistemas, no entanto o PRIMoRDiA entende que na mesma pasta que esses arquivos estejam também os correspondes com a extensão ".mgf". Esses arquivos possuem as matrizes necessárias para operações de álgebra linear para obter corretamente a densidade eletrônica total com os dados que saem do MOPAC. 
 
-Para grandes moléculas, o MOPAC não consegue gerar esse arquivo, já que ele é muito cara de se escrever para estruturas com muitos átomos. Nesse caso o cálculo de diferenças finitas tem que ser feito usando os arquivos do tipo ".aux", que a partir deles o PRIMoRDiA gera uma densidade eletrônica total baseada nos orbitais moleculares, mas não garante a sua integração exata para o número de elétrons do sistema. 
+Para grandes moléculas, o MOPAC não consegue gerar esse arquivo, já que ele é muito caro de se escrever para estruturas com muitos átomos. Nesse caso o cálculo de diferenças finitas tem que ser feito usando os arquivos do tipo ".aux", que a partir deles o PRIMoRDiA gera uma densidade eletrônica total baseada nos orbitais moleculares, mas não garante a sua integração exata para o número de elétrons do sistema. 
 
 O cálculo dos descritores usando diferenças finitas para grandes moléculas é de fato um tanto incomum, devido ao custo computacional de se obter três estruturas eletrônicas e os cálculos de densidade total para toda a extensão do sistema. Entretanto, com as modificações apropriadas dos descritores usando a aproximação de Orbitais Congelados, FOA, não é necessário recorrer a diferenças finitas para estudar proteínas, fragmentos de DNA e/ou outras moléculas relevantes aos processos biológicos.  
 
@@ -438,7 +441,7 @@ Indo para a execução do PRIMoRDiA em si, é bem simples e direto, uma vez com 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-	\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v_LINUX64 -f primordia.input\end{commandshell}
+	\begin{commandshell}/path/to/PRIMoRDiA/PRIMoRDiA_1.25v -f primordia.input\end{commandshell}
 \end{minipage}
 
 Exatamente da mesma forma como foi mostrada no tutorial anterior. Depois da execução desse comando, o programa deve finalizar sem nenhum erro e gerar diversos arquivos com os resultados na paste onde o programa rodou. 
@@ -486,7 +489,7 @@ Avançando para a análise dos descritores locais condensados, o arquivo "benzen
 
 Nós podemos observar a partir dos dados dispostos na \autoref{fig_tut2_3}, os diversos descritores locais obtidos com o cálculo do PRIMoRDiA, assim como propriedades extraídas do arquivo de saída dos programas de química computacional, como nesse caso a coluna de \emph{charge}, mostrando as cargas parciais para os átomos do sistema de referência. O descritor chamado de \emph{Fukushima} é a localização dos orbitais de fronteira em cada átomo, e portanto não é alterado pelo métodos de diferenças finitas. 
 
-Observando os descritores de nucleofilicidade e eletrofilicidade, podemos perceber que há valores negativos associados a alguns átomos. Quando esses valores são de pequena grandeza comparados com os átomos mais reativos não há o que se preocupar quanto a qualidade dos cálculos, pois é uma característica do método de diferenças finitas indicar regiões onde a densidade eletrônica diminui frente a um processo de ganho de carga e, ou aumenta frente a um processo de perda de carga. Essas variações podem ocorrer, desde que pequenas, e devem ser interpretadas com cuidado dentro do contexto do processo modelado. 
+Observando os descritores de nucleofilicidade e eletrofilicidade, podemos perceber que há valores negativos associados a alguns átomos. Quando esses valores são de pequena grandeza comparados com os átomos mais reativos não há o que se preocupar quanto a qualidade dos cálculos, pois é uma característica do método de diferenças finitas indicar regiões onde a densidade eletrônica diminui frente a um processo de ganho de carga, ou aumentar frente a um processo de perda de carga. Essas variações podem ocorrer, desde que pequenas, e devem ser interpretadas com cuidado dentro do contexto do processo modelado. 
 
 Ainda sobre esses dois descritores, podemos ver que os átomos que apresentam alta nucleofilicidade também apresentam alta eletrofilicidade. Por ser simétrico, o benzeno tende a apresentar padrões de reatividade bem distribuídos nos átomos de carbono e geralmente guiados pela geometria do anel. Portanto a análise desses descritores numéricos por átomo pode acabar se tornando confusa para esse tipo de sistemas, e por isso é mais interessante avaliar os descritores locais na representação volumétrica. 
 
@@ -596,7 +599,7 @@ A partir desses descritores, podemos ver como as principais interações com a d
 \newpage
 \section{Tutorial 3: Descritores de Banda}
 
-Assim como na aproximação de orbitais congelados, nesse tutorial vamos explorar dois métodos de combinação de orbitais de fronteira para o ajuste desses descritores para macromoléculas. Para os cálculos, vamos utilizar um polipeptídeo bastante comum em testes, a TRP-cage, que teve a estrutura eletrônica obtida usando métodos semiempiricos implementados no MOPAC, incluindo o método de escalonamento linear MOZYME.
+Assim como na aproximação de orbitais congelados, nesse tutorial vamos explorar dois métodos de combinação de orbitais de fronteira para o ajuste dos descritores para macromoléculas. Para os cálculos, vamos utilizar um polipeptídeo bastante comum em testes, a TRP-cage, que teve a estrutura eletrônica obtida usando métodos semi-empíricos implementados no MOPAC, incluindo o método de escalonamento linear MOZYME.
 
 Assuntos abordados nesse tutorial:
 
@@ -633,7 +636,7 @@ Para facilitar a produção de input a partir desses arquivos vamos usar o segui
 
 \hspace*{-1.2\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-\begin{commandshell}path/to/PRIMoRDiA_1.25v_LINUX64 -input -op 3 -p mopac\end{commandshell}
+\begin{commandshell}path/to/PRIMoRDiA_1.25v -input -op 3 -p mopac\end{commandshell}
 \end{minipage}
 
 
@@ -674,7 +677,7 @@ O PRIMoRDiA tem implementado dois métodos para combinar esse orbitais molecular
 	\item Energy weighted ( EW: sigla e Keyword utilizada dentro do programa )
 \end{enumerate}
 
-O primeiro é inspirado no cálculo de densidade eletrônica, só que considerando uma parte limitada dos orbitais moleculares a partir do HOMO, para os ocupados, e LUMO para os virtuais. O segundo é uma combinação que é ponderada pela diferença de energia dos orbitais moleculares dos orbitais de fronteira HOMO-LUMO. Há um limite para considerar esses orbitais que é definido por um valor de corte de energia definido pelo usuário.
+O primeiro é inspirado no cálculo de densidade eletrônica, com a particularidade de considerar somente uma seleção de orbitais moleculares a partir do HOMO, para os ocupados, e LUMO para os virtuais. O segundo é uma combinação que é ponderada pela diferença de energia dos orbitais moleculares dos orbitais de fronteira HOMO-LUMO. Há um limite para considerar esses orbitais que é definido por um valor de corte de energia definido pelo usuário.
 
 Vamos editar o arquivo de input para que a primeira entrada rode com o método BD e a segunda rode com uma caixa definida para os descritores volumétricos. Nesse exemplo vamos definir o centro da caixa nas coordenadas do nitrogênio da cadeia lateral do resíduo TRP\_6, informações retiradas do arquivo de PDB mostrado na \autoref{fig_tut3_2}.
 
@@ -689,7 +692,7 @@ Vamos editar o arquivo de input para que a primeira entrada rode com o método B
 \end{figure}
 \end{minipage}
 
-Vamos modificar manualmente o input com esses dados de coordenada e tamanho de caixa 10 angstroms, com o input ficando assim como mostrado na caixa de texto \autoref{tut302}.
+Vamos modificar manualmente o input com esses dados de coordenada e tamanho de caixa 10 angstroms, com o input ficando como mostrado na caixa de texto \autoref{tut302}.
 
 \hspace*{-1\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -705,14 +708,14 @@ Finalmente, com esse input podemos colocar o programa para rodar com o seguinte 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
-	\begin{commandshell}path/to/PRIMoRDiA_1.25v_LINUX64 -f primordia.input\end{commandshell}
+\begin{commandshell}path/to/PRIMoRDiA_1.25v -f primordia.input\end{commandshell}
 \end{minipage}
 
 O programa deve finalizar a sua execução sem erros e produzir vários arquivos no diretório, com extensão ".cube', ".pym", ".lrd" e etc. Vamos explicar os arquivos com os resultados de descritores e como analisá-los na próxima seção desse tutorial.
 
 \subsection{Análises dos Resultados}
 
-Dos resultados produzidos temos os descritores globais, locais em representação condensada ( arquivos ".lrd" ), locais em representação volumétrica ( arquivos ".cube" ) e locais condensados escritos em PDB (nas pastas "RD\_PDB"). Para macromoléculas é interessante observar os descritores globais mais por uma questão de acompanhamento da normalidade do cálculo quântico executado, pois os processos nesses sistemas tendem a ser somente locais, tendo pouca relevância a propensão de uma proteína inteira de transferir ou receber elétrons. Por isso vamos passar a análise do arquivo "primordia.global".
+Dos resultados produzidos temos os descritores globais, locais em representação condensada ( arquivos ".lrd" ), locais em representação volumétrica ( arquivos ".cube" ) e locais condensados escritos em PDB (nas pastas "RD\_PDB"). Para macromoléculas é interessante observar os descritores globais mais por uma questão de acompanhamento da normalidade do cálculo quântico executado, pois os processos nesses sistemas tendem a ser somente locais, tendo pouca relevância a propensão de uma proteína inteira de transferir ou receber elétrons. Por isso não vamos analisar do arquivo "primordia.global".
 
 Para esse lançamento estável do programa, PRIMoRDiA 1.25v, a principal modificação é a consolidação dos scripts de automatização de análise e produção de resultados com qualidade de publicação, usando o pacote gráfico Pymol e o pacote estatístico R. Por isso, nos próximos passos do tutorial, vamos focar na produção de imagens a partir desses scripts.
 
@@ -768,7 +771,7 @@ Na próxima imagem nós mostramos o Pymol com somente um dos objetos ativos, o 2
 	\end{figure}
 \end{minipage}
 
-Depois de executar esse comando no Pymol o resultado é o mostrado \autoref{fig_tut3_7}, onde já é mostrado que os átomos de algumas cadeias laterais estão selecionados, já que somente a estrutura secundária está em evidência, com o próximo comando no Pymol os átomos selecionados aparecem em representação de bastões.
+Depois de executar esse comando no Pymol o resultado é o mostrado \autoref{fig_tut3_7}, onde os átomos de algumas cadeias laterais estão selecionados, já que somente a estrutura secundária está em evidência, com o próximo comando no Pymol os átomos selecionados aparecem em representação de bastões.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -786,7 +789,7 @@ Depois de executar esse comando no Pymol o resultado é o mostrado \autoref{fig_
 	\end{figure}
 \end{minipage}
 
-Os átomos e ligações entre os mesmos serão mostrados na representação de sticks (bastões), resultando na figura \autoref{fig_tut3_9}, mostrando a estrutura pintada baseada nos valores de suscetibilidade a um ataque electrofílico, ou o mesmo que nucleofilicidade. Onde a cor azul está mais escuro é onde os valores são maiores, é possível alterar esses valores de máximo e mínimo bem como as cores também. Na figura abaixo é possível observar que o comando "ray" foi executado no Pymol. Escreva o mesmo e execute, depois de alguns segundos aparece um fundo de  transparência, significando que a imagem já foi renderizada e pode ser salva com o comando "png" como já usado para os descritores volumétricos nos tutoriais anteriores. 
+Os átomos e ligações entre os mesmos serão mostrados na representação de sticks (bastões), resultando na figura \autoref{fig_tut3_9}, mostrando a estrutura pintada baseada nos valores de suscetibilidade a um ataque electrofílico,  o mesmo que nucleofilicidade. Onde a cor azul está mais escuro é onde os valores são maiores, é possível alterar esses valores de máximo e mínimo bem como as cores também. Na figura abaixo é possível observar que o comando "ray" foi executado no Pymol. Escreva o mesmo e execute, depois de alguns segundos aparece um fundo de  transparência, significando que a imagem já foi renderizada e pode ser salva com o comando "png", como já usado para os descritores volumétricos nos tutoriais anteriores. 
 
 
 \hspace*{-\leftmarginwidth}
@@ -800,7 +803,7 @@ Os átomos e ligações entre os mesmos serão mostrados na representação de s
 	\end{figure}
 \end{minipage}
 
-Esse processo de colorir os átomos, renderizar e salvar essas imagens pode ser repetido para todos os outros descritores. Para os descritores de dureza local é interessante utilizar outros modos de \emph{ray tracing}. Para próxima imagem mostrada, foi ativado no pymol o objeto 2jof\_PM7\_hardness\_B, e executado os seguintes comandos no Pymol
+Esse processo de colorir os átomos, renderizar e salvar essas imagens pode ser repetido para todos os outros descritores. Para os descritores de dureza local é interessante utilizar outros modos de \emph{ray tracing}. Para próxima imagem mostrada, foi ativado no Pymol o objeto 2jof\_PM7\_hardness\_B, e executado os seguintes comandos no Pymol
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -912,13 +915,13 @@ Se desativarmos todos os objetos de volume, ficamos só com os objetos de cube c
 	\end{figure}
 \end{minipage}
 
-Em relação ao outros descritores volumétricos, os definidos dentro desses espaços limitados pelo usuário, não apresentam nenhuma diferença prática. A questão aqui é que com sistemas com um grande número de átomos é possível visualizar os descritores para regiões específicas sem perder resolução e que possam ser calculados em um tempo praticável. Nas próximas figuras estão apresentados alguns descritores renderizados para esse região delimitada e já salvas em qualidade de publicação dentro do pymol. Na \autoref{fig_tut3_25}, o descritor de dureza local utilizando a aproximação baseada no potencial químico local. Na \autoref{fig_tut3_25}, mostramos esse volume renderizad com uma paleta diferente, realçando melhor as regiões que apresentam valores maiores que outros. 
+Em relação ao outros descritores volumétricos, os definidos dentro desses espaços limitados pelo usuário, não apresentam nenhuma diferença prática. A questão aqui é que com sistemas com um grande número de átomos é possível visualizar os descritores para regiões específicas sem perder resolução e que possam ser calculados em um tempo praticável. Nas próximas figuras estão apresentados alguns descritores renderizados para esse região delimitada e já salvas em qualidade de publicação dentro do Pymol. Na \autoref{fig_tut3_25}, o descritor de dureza local utilizando a aproximação baseada no potencial químico local. Na \autoref{fig_tut3_25}, mostramos esse volume renderizado com uma paleta diferente, realçando melhor as regiões que apresentam valores maiores que outros. 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=4in]{images/tut3_img26}
+			\includegraphics[width=3.5in]{images/tut3_img26}
 			\caption{Exemplo de imagem do descritor renderizada para a região delimitada pelo usuário. Dureza local baseada na aproximação do potencial químico local.}
 			\label{fig_tut3_25}
 		\end{center}
@@ -1020,12 +1023,12 @@ E o comando abaixo cria a figura da densidade de estados para a TRP calculada no
 	\end{figure}
 \end{minipage}
 
-Nós podemos observar que os valores de energia dos orbitais cálculados com o algoritmo MOZYME, são mais concentrados que os que não utilizaram essa estratégia de aceleração dos cálculos. Isso faz com que o gap HOMO-LUMO fique maior nesse primeiro caso, o que acaba alterando bastante na hora de escolher os orbitais moleculares para combinar na hora de calcular os descritores. Portanto, o ideal para sistemas novos é sempre que possível fazer a análise desse gráfico que facilmente pode ser produzido com a ajuda do PRIMoRDiA.   
+Nós podemos observar que os valores de energia dos orbitais calculados com o algoritmo MOZYME são mais concentrados que os que não utilizaram essa estratégia de aceleração dos cálculos. Isso faz com que o gap HOMO-LUMO fique maior nesse primeiro caso, o que acaba alterando bastante na hora de escolher os orbitais moleculares para combinar na hora de calcular os descritores. Portanto, o ideal para sistemas novos é sempre que possível fazer a análise desse gráfico que facilmente pode ser produzido com a ajuda do PRIMoRDiA.   
 
 \newpage
 \section{Tutorial 4: Análise de Força Ácida}
 
-Esse tutorial segue a mesma lógica do Tutorial 1, mas focado na interpretação dos resultados. Como nesse primeiro. Vamos demonstrar como utilizar o programa para obter os descritores de reatividade usando as informações dos orbitais moleculares de fronteira, opção 1 de cálculo do PRIMoRDiA, partindo de cálculos semiempiricos no MOPAC, para quatro aminoácidos,  gerando descritores de reatividade que podem ser utilizados para explicar os locais preferenciais de protonação.
+Esse tutorial utiliza a mesma aproximação e lógica de interpretação dos resultados do Tutorial 1, mas focado em algo de maior interesse do dia-a-dia da química. Como nesse primeiro. Vamos demonstrar como utilizar o programa para obter os descritores de reatividade usando as informações dos orbitais moleculares de fronteira, opção 1 de cálculo do PRIMoRDiA, partindo de cálculos semi-empíricos no MOPAC, para quatro aminoácidos,  gerando descritores de reatividade que podem ser utilizados para explicar os locais preferenciais de protonação.
 
 \subsection{Contextualização}
 
@@ -1056,7 +1059,7 @@ Como já mostrado nos tutoriais anteriores, depois de ter o input na pasta onde 
 
 \subsection{Análise dos Resultados}
 
-Os resultados para esse tutorial são bem parecidos com os obtidos no tutorial 1, sendo que utilizamos a mesma opção de cálculo para geração dos descritores com aproximação de orbitais congelados. Na \autoref{fig_tut1_4} é mostrada o arquivo de texto com os resultados dos descritores globais, na \autoref{fig_tut1_5} os mesmos dados transpostos para um planilha do Libre Office.  
+Os resultados para esse tutorial são bem parecidos com os obtidos no tutorial 1, sendo que utilizamos a mesma opção de cálculo para geração dos descritores com aproximação de orbitais congelados. Na \autoref{fig_tut4_1} é mostrada o arquivo de texto com os resultados dos descritores globais, na \autoref{fig_tut4_2} os mesmos dados transpostos para um planilha do Libre Office.  
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1152,7 +1155,7 @@ A janela que aparece ao lado da \autoref{fig_tut4_12} é aberta colocando em "vo
 	\end{figure}
 \end{minipage}
 
-Repetindo o processo de renderização e de salvar as imagens para os outros sistemas, nós obtemos os descritores para quatro os sistemas, como mostrada nas próximas duas figuras: netfilicidade na \autoref{fig_tut4_13} e de dureza na\autoref{fig_tut4_14}.
+Repetindo o processo de renderização e de salvar as imagens para os outros sistemas, nós obtemos os descritores para quatro os sistemas, como mostrada nas próximas duas figuras: Netfilicidade na \autoref{fig_tut4_13} e de dureza na\autoref{fig_tut4_14}.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1203,18 +1206,14 @@ Juntando as informações que podemos observar dos descritores condensados e vol
 \newpage
 \section{Tutorial 5: Análise de Reação Enzimática}
 
-Nesse tutorial vai ser trabalho um exemplo prático de como o PRIMoRDiA pode ser explorado para o estudo de sistemas biológicos e seus principais processos. A grande força do PRIMoRDiA está nos descritores modificados para macromoléculas que disponibiliza e na automatização do processamento dessas propriedades eletrônicas. Vamos entrar com a estrutura eletrônica de um fragmento de uma sistema enzimático para uma pequena trajetória de reação e sairemos com um resumo estatístico da evolução dos descritores nesse processo.
+Nesse tutorial vai ser mostrado um exemplo prático de como o PRIMoRDiA pode ser explorado para o estudo de sistemas biológicos e seus principais processos. A grande força do PRIMoRDiA está nos descritores modificados para macromoléculas que disponibiliza e na automatização do processamento dessas propriedades eletrônicas. Vamos entrar com a estrutura eletrônica de um fragmento de uma sistema enzimático para uma pequena trajetória de reação e sairemos com um resumo estatístico da evolução dos descritores nesse processo.
 
 
 \subsection{Contextualização}
 
 Reações enzimáticas são reações químicas catalisadas por proteínas, que fazem com que transformações químicas ocorram em um tempo hábil para o funcionamento do metabolismo de organismos vivos. Portanto, as enzimas são componentes importantíssimos para a manutenção da vida, participando desde a replicação de DNA até a decomposição do açúcar.
 
-O estudo do mecanismo dessas reações é muito importante para o desenvolvimento de drogas, entendimento de metabolismo, mecanismos de doenças e replicação de micro-organismos e aplicações industriais dessas enzimas. Em um dos estudos do nosso grupo, foi com o mecanismo da reação catalisada pela triose-fosfato-isomerase (TIM), mais especificamente a etapa mostrada no esquema abaixo
-
-Nós utilizamos esse enzima para testar a eficácia dos descritores de caracterizar teoricamente essa reação, descrevendo as principais forças, interações e efeitos do ambiente. A TIM é uma das enzimas mais caracterizadas na literatura, é uma enzima central no caminho glicolítico da interconversão do 3-fosfato D-gliceroldeído (GAP em inglês) para o fosfato dihidroxiacetona, com grande eficiência.
-
-Nesse tutorial nós vamos calcular os descritores para esse sistema em uma trajetória de reação obtida por simulação de QM/MM.
+O estudo do mecanismo dessas reações é muito importante para o desenvolvimento de drogas, entendimento de metabolismo, mecanismos de doenças e replicação de micro-organismos e aplicações industriais dessas enzimas. Em um dos estudos do nosso grupo, foi com o mecanismo da reação catalisada pela triose-fosfato-isomerase (TIM), mais especificamente a etapa mostrada no esquema abaixo na \autoref{fig_tut6_0}.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1226,6 +1225,10 @@ Nesse tutorial nós vamos calcular os descritores para esse sistema em uma traje
 		\end{center}
 	\end{figure}
 \end{minipage}
+
+Nós utilizamos esse enzima para testar a eficácia dos descritores em caracterizar teoricamente essa reação, descrevendo as principais forças, interações e efeitos do ambiente. A TIM é uma das enzimas mais caracterizadas na literatura, é uma enzima central no caminho glicolítico da interconversão do 3-fosfato D-gliceroldeído (GAP em inglês) para o fosfato dihidroxiacetona, com grande eficiência.
+
+Nesse tutorial nós vamos calcular os descritores para esse sistema em uma trajetória de reação obtida por simulação de QM/MM.
 
 \subsection{Arquivos necessários e Execução}
 
@@ -1253,8 +1256,8 @@ Segunda linha
 \begin{itemize}
 	\item Segunda linha
 	\begin{itemize}
-	\item \#PR:     flag para sinalizar que serão dados parâmetros para o PRIMoRDiA
-	\item eband:   keyword sinalizando que o próxima parâmetro é um inteiro com o valor de energia de corte para considerar os orbitais moleculares
+	\item \#PR:    flag para sinalizar que serão dados parâmetros para o PRIMoRDiA
+	\item eband:   keyword sinalizando que o próxima parâmetro é um valor de energia de corte para considerar os orbitais moleculares
 	\item Rscript: Keyword importante par gerar os scripts de análise dos descritores durante a trajetória de reação
 	\item pymols:  keyword para o output de scripts para o Pymol
 	\end{itemize}
@@ -1269,14 +1272,16 @@ Segunda linha
 	\item Quarta Linha
 	\begin{itemize}
 	\item \#Reaction: flag para sinalizar que vai ser passado parâmetros para análise de coordenada de reação
-	\item dimX     : keyword para sinalizar que o próximo valor na linha da o número de etapas da trajetória
-	\item 15       : número de etapas da trajetória
+	\item dimX      : keyword para sinalizar que o próximo valor na linha da o número de etapas da trajetória
+	\item 15        : número de etapas da trajetória
 	\end{itemize}
 	\item Quinta Linha 
 	\begin{itemize}
-	\item \#Reaction: flag para sinalizar que vai ser passado parâmetros para análise de coordenada de reação
-	\item dimX      : keyword para sinalizar que o próximo valor na linha da o número de etapas da trajetória
-	\item 15        : número de etapas da trajetória
+	\item \#TRJ: flag para sinalizar que vai ser passado parâmetros tratar com o conjunto de frames que compõem a trajetória de reação
+	\item residues    : keyword indicando que os próximos valores inteiros passados nessa linha são o número dos residuos no PBD que se deseja analisar para a dada trajetória.
+	\item 2: número no PDB da histidina catalítica
+	\item 4: número no PDB do Glutamato catalítico
+	\item 7: número no PDB do resíduo representando o substrato.  
 	\end{itemize}
 	\item Sexta Linha 
 	\begin{itemize}
@@ -1297,100 +1302,113 @@ Segunda linha
 
 \subsection{Análise dos Resultados}
 
-Para analisar todos os descritores e outras propriedades de energia, o PRIMoRDiA cria um script para executar no R para gerar automaticamente gráficos dessas quantidades variando em função das etapas. Depois da execução deve aparecer arquivos com sufixo ".R", um deles com nome "sys0\_reaction\_analysis.R" e outro "sys0\_residuos\_analysis.R". Vamos executar o primeiro com o Rscript, como no comando abaixo
+Para analisar todos os descritores e outras propriedades de energia, o PRIMoRDiA cria um script para executar no R que por sua vez produz gráficos dessas quantidades variando em função das frames. Depois da execução deve aparecer arquivos com sufixo ".R", um deles com nome "sys0\_reaction\_analysis.R" e outro "sys0\_residuos\_analysis.R". Vamos executar o primeiro com o Rscript, como no comando abaixo
 
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+\begin{commandshell}Rscript sys0\_reaction\_analysis.R\end{commandshell}
+\end{minipage}
 
-Depois desse comando, o R deve produzir diversos arquivos de imagem com propriedades globais e locais para cada átomo da coordenada de reação. Na figura abaixo é mostrado um desses arquivos com as propriedades globais
+Depois desse comando, o R deve produzir diversos arquivos de imagem com propriedades globais e locais para cada átomo da coordenada de reação. Na figura abaixo é mostrado um desses arquivos com as propriedades globais.
 
-No primeiro gráfico da figura acima HOF é o calor de formação  (heat of formation) que o Mopac calcula, e é uma das melhores formas de variação de energia em uma reação química simulada com método semiempírico. Lembrando que todas essas propriedades são em referência ao primeiro valor, ou seja, cada ponto uma variação ao estado inicial. Nessas simulações uma estrutura que normalmente se deseja determinar é a estrutura de transição, que é determinada pelo ponto máximo de variação de energia, nesse caso na penúltima etapa. No entanto, nesse nosso calculo com PM6, a área quântica foi bem menor do que a utilizada no na nossa publicação e o HOF não foi um bom indicador do estado de transição. Já a energia eletrônica mostra um primeiro máximo no ponto zero da coordenada de reação, que é o momento que o próton está a mesma distância do carbono e do oxigênio. Em geral, os outros descritores globais indicam um aumento da moleza química (softness) e consequente diminuição da dureza (hardness), aumento do potencial químico e da eletrofilicidade total indicam que o sistema tende a receber transferência de elétrons.
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=4in]{images/tut6_img1}
+			\caption{Arquivo contendo os descritores globais gerado pelo PRIMoRDiA.}
+			\label{fig_tut5_1}
+		\end{center}
+	\end{figure}
+\end{minipage}
 
-Na figura a baixo podemos conferir a variação de energia para mesma reação calculada com diversos métodos, publicado em um artigo na Journal of Chemical Information Modeling 
+No primeiro gráfico da \autoref{fig_tut5_2} HOF é o calor de formação (heat of formation) que o Mopac calcula, e é uma das melhores formas de variação de energia em uma reação química simulada com método semiempírico. Lembrando que todas essas propriedades são em referência ao primeiro valor, ou seja, cada ponto uma variação ao estado inicial. Nessas simulações uma estrutura que normalmente se deseja determinar é a estrutura de transição, que é determinada pelo ponto máximo de variação de energia, nesse caso na penúltima etapa. No entanto, nesse nosso calculo com PM6, a área quântica foi bem menor do que a utilizada no na nossa publicação e o HOF não foi um bom indicador do estado de transição. Já a energia eletrônica mostra um primeiro máximo no ponto zero da coordenada de reação, que é o momento que o próton está a mesma distância do carbono e do oxigênio. Em geral, os outros descritores globais indicam um aumento da moleza química (softness) e consequente diminuição da dureza (hardness), aumento do potencial químico e da eletrofilicidade total indicam que o sistema tende a receber transferência de elétrons.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut6_img2}
-			\caption{.}
-			\label{fig_tut6_1}
+			\caption{Descritores globais calculados para cada etapa da trajetória de reação.}
+			\label{fig_tut5_2}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-Na análise que foi publicada, boa parte dos métodos apresenta um estado de transição perto de -0.025 da coordenada de reação, quase no ponto de igual distância da transferência do próton, depois há uma vale, denotando um estado intermediário e depois mais um aumento de energia até outro vale no qual o produto deve se acomodar. Como visto na imagem acima, o PM6 é o método mais discordante em relação ao calor de formação. Na figura seguinte, nós mostramos os descritores para o átomo de oxigênio do resíduo GLU. No script gerado pelo PRIMoRDiA nós analisamos 9 propriedade por átomo da coordenada de reação. Para o oxigênio é interessante ressaltar algumas, como o decréscimo na densidade eletrônica, atingindo um mínimo no estado de transição e depois retomando o valor nos produtos. A carga parcial aumenta também, indicando que há uma transferência de elétrons do oxigênio para o carbono, e que depois o o sistema em volta faz uma "devolução" de carga para o oxigênio, mas que no final ainda fica com menos, já que agora o grupo carboxilico que pertence está protonado e portanto neutro. Já para a dureza local esse átomo apresenta comportamentos diferentes para cada tipo de método de cálculo, para interpretar o que cada um significa é importante entender cada modelo. Brevemente, a dureza baseada no LCP tem mais correção com o descritor global de dureza, indicando que esse tinha a propensão de interagir por processo duro-duro e depois foi diminuindo esse comportamento conforme foi transferindo carga. 
 
 
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=4in]{images/tut6_img3}
-			\caption{.}
-			\label{fig_tut6_2}
-		\end{center}
-	\end{figure}
-\end{minipage}
+Na \autoref{fig_tut5_3} a baixo podemos conferir a variação de energia para mesma reação calculada com diversos métodos, publicado em um artigo na Journal of Chemical Information Modeling.
 
-Os descritores para o carbono C1 estão na próxima figura. Tem bastante coisa interessante para analisar nesse caso. Primeiro, é interessante como para dois métodos de dureza o valor máximo condiz com o estado de transição e perfila muito bem a reação. Já que a interação dominante para transferência de prótons é a duro-duro, o carbono assume o valor máximo para esse descritor, em dois métodos mepEE e LCP. O método de dureza baseado no potencial de Fukui da a força exercida nos núcleos em respeito da varição do número de elétrons, o que ten una interpretação mais diferente da geral sobre dureza comum. 
-
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=4in]{images/tut6_img4}
-			\caption{.}
-			\label{fig_tut6_3}
-		\end{center}
-	\end{figure}
-\end{minipage}
-
-Os descritores para o átomo transferido, o hidrogênio do DHAP (H1), se encontra na figura de baixo. Os descritores baseados nos orbitais moleculares, como electrophilicidade, nucleofilicidade e netfilicidade mostraram variação mas com valores muito baixos. Agora é interessante como a densidade eletrônica vai diminuindo, se tornando cada vez mais um próton, um hidrogênio carregado positivamente. A dureza local com maior ligação com as interações eletrostáticas ( MEP EE ), foi a que apresentou maior coerência com o processo, com um aumento das interações eletrostáticas pŕoximo ao estado de transição, diminui e atinge o máximo nos produtos, onde a carga parcial atinge o máximo, sendo que esse átomo tende a ser transferido pelo mesmo tipo de interação.
-
-Como no Tutorial 3, vamos gerar imagens do descritores para alguns pontos da trajetória. O PRiMoRDiA escreve para cada arquivo um script de Pymol para automatizar a visualização dos descritores. Abra o Pymol e execute o arquivo com o prefixo "sys0" e sufixo ".pym", como na figura abaixo. 
-
-\hspace*{-\leftmarginwidth}
-\begin{minipage}{\fullwidth}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=4in]{images/tut6_img5}
-			\caption{.}
-			\label{fig_tut6_4}
-		\end{center}
-	\end{figure}
-\end{minipage}
-
-Na figura abaixo o descritor de susceptibilidade de ataque eletrofílico (EAS), e um comando para carregar um PDB que já tinha na pasta, 7TIM.pdb, que contém o toda a proteína.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut6_img6}
-			\caption{.}
-			\label{fig_tut6_5}
+			\caption{Variação de energia cálculada para essa reação em estudo teórico publicado por nosso grupo. DOI:10.1021/acs.jcim.9b00860}
+			\label{fig_tut5_3}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-As pŕoximas figuras foram resultado do processo de renderização no pymol para o descritor de dureza local com o segundo método disponível no PRIMoRDiA. O objeto com a proteína inteira foi colorido com os carbonos em verde e escondido todas as outras representação que não fossem cartoon para não atrapalhar a visualização do objeto com o descritor. Para a paleta escolhida o comando utilizado foi 
 
-` spectrum b, white_yellow_orange_red_black, minimum=0.1,maximum=0.2 `
+Na análise que foi publicada, boa parte dos métodos apresenta um estado de transição perto de -0.025 da coordenada de reação, quase no ponto de igual distância da transferência do próton, depois há uma vale, denotando um estado intermediário e depois mais um aumento de energia até outro vale no qual o produto deve se acomodar. Como visto na imagem acima, o PM6 é o método mais discordante em relação ao calor de formação. 
 
-Esses valores podem sofrer pequenos ajustar para melhorar o destaque dos átomo com o maior valor de dureza. Depois, com o comando "ray" seguido do "png" as imagens foram salvas. 
+Na \autoref{fig_tut5_4}, nós mostramos os descritores para o átomo de oxigênio do resíduo GLU. No script gerado pelo PRIMoRDiA nós analisamos 9 propriedade por átomo da coordenada de reação. Para o oxigênio é interessante ressaltar algumas, como o decréscimo na densidade eletrônica, atingindo um mínimo no estado de transição e depois retomando o valor nos produtos. A carga parcial aumenta também, indicando que há uma transferência de elétrons do oxigênio para o carbono, e que depois o sistema em volta faz uma "devolução" de carga para o oxigênio, mas que no final ainda fica com menos, já que agora o grupo carboxílico está protonado e portanto neutro. Já para a dureza local esse átomo apresenta comportamentos diferentes para cada tipo de método de cálculo, para interpretar o que cada um significa é importante entender cada modelo. Brevemente, a dureza baseada no LCP tem mais correção com o descritor global de dureza, indicando que esse tinha a propensão de interagir por processo duro-duro e depois foi diminuindo esse comportamento conforme foi transferindo carga. 
 
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=4in]{images/tut6_img4}
+			\caption{Descritores locais calculados para o átomo O2E do grupo carboxílico do Glutamato catalítico para a trajetória de reação.}
+			\label{fig_tut5_4}
+		\end{center}
+	\end{figure}
+\end{minipage}
+
+
+Os descritores para o carbono C1 estão na \autoref{fig_tut5_5}. Tem bastante coisa interessante para analisar nesse caso. Primeiro, como que para dois métodos de dureza o valor máximo condiz com o estado de transição e se assemelha bastante com o perfil de energia da reação. Já que a interação dominante para transferência de prótons é a duro-duro, o carbono assume o valor máximo para esse descritor, em dois métodos mepEE e LCP. O método de dureza baseado no potencial de Fukui da a força exercida nos núcleos em respeito da varição do número de elétrons, o que tem una interpretação mais diferente da geral sobre dureza comum. 
+
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=4in]{images/tut6_img5}
+			\caption{Descritores locais calculados para o átomo C1 do substrato para a trajetória de reação.}
+			\label{fig_tut5_5}
+		\end{center}
+	\end{figure}
+\end{minipage}
+
+Os descritores para o átomo transferido, o hidrogênio do DHAP (H1), se encontra na figura de baixo. Os descritores baseados nos orbitais moleculares, como eletrofilicidade, nucleofilicidade e netfilicidade mostraram variação mas com valores muito baixos. Agora é interessante como a densidade eletrônica vai diminuindo, se tornando cada vez mais um próton, um hidrogênio carregado positivamente. A dureza local com maior ligação com as interações eletrostáticas ( MEP EE ), foi a que apresentou maior coerência com o processo, com um aumento das interações eletrostáticas próximo ao estado de transição, diminui e atinge o máximo nos produtos, onde a carga parcial alcança o maior valor, sendo que esse átomo tende a ser transferido pelo mesmo tipo de interação.
+
+Como no Tutorial 3, vamos gerar imagens do descritores para alguns pontos da trajetória. O PRiMoRDiA escreve para cada arquivo um script de Pymol para automatizar a visualização dos descritores. Abra o Pymol e execute o arquivo com o prefixo "sys0" e sufixo ".pym". Como mostrado na \autoref{fig_tut5_6} e no caixa de comando abaixo. 
+
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}\begin{pymol}@sys0_pymols.pym\end{pymol}
+\end{minipage}
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut6_img8}
-			\caption{.}
-			\label{fig_tut6_7}
+			\caption{Janela do Pymol com os resultados dos descritores carregados e o objeto do descritor de .}
+			\label{fig_tut6_6}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-A imagem abaixo é a dureza local para a primeira etapa da coordenada
+As próximas figuras foram resultado do processo de renderização no pymol para o descritor de dureza local com o segundo método disponível no PRIMoRDiA. O objeto com a proteína inteira foi colorido com os carbonos em verde e escondido todas as outras representação que não fossem cartoon para não atrapalhar a visualização do objeto com o descritor. Para a palheta escolhida o comando utilizado foi 
+
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}\begin{pymol}spectrum b, white_yellow_orange_red_black, minimum=0.1,maximum=0.2
+	\end{pymol}
+\end{minipage}
+
+
+Esses valores podem sofrer pequenos ajustar para melhorar o destaque dos átomo com o maior valor de dureza. Depois, com o comando "ray" seguido do "png" as imagens foram salvas. A \autoref{fig_tut6_8} mostra a dureza local para a primeira etapa da coordenada, na \autoref{fig_tut6_9} para a sétima estrutura, que corresponde ao estado de transição, e na \autoref{fig_tut6_10} para a etapa correspondendo aos produtos.
 
 
 \hspace*{-\leftmarginwidth}
@@ -1398,26 +1416,24 @@ A imagem abaixo é a dureza local para a primeira etapa da coordenada
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut6_img9}
-			\caption{.}
+			\caption{Dureza local para os átomos da enzima tratados com mecânica quântica para a estrutura corresponde ao primeiro passo da trajetória de reação. }
 			\label{fig_tut6_8}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-A imagem abaixo é a dureza local para a sétima etapa da coordenada
+
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut6_img10}
-			\caption{.}
+			\caption{Dureza local para os átomos da enzima tratados com mecânica quântica para a estrutura corresponde ao estado de transição da trajetória de reação.}
 			\label{fig_tut6_9}
 		\end{center}
 	\end{figure}
 \end{minipage}
-
-A imagem abaixo é a dureza local para a última etapa da coordenada
 
 
 \hspace*{-\leftmarginwidth}
@@ -1425,26 +1441,25 @@ A imagem abaixo é a dureza local para a última etapa da coordenada
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=4in]{images/tut6_img11}
-			\caption{.}
+			\caption{Dureza local para os átomos da enzima tratados com mecânica quântica para a estrutura corresponde ao estado de transição da trajetória de reação.}
 			\label{fig_tut6_10}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-O PRIMoRDiA também escreve scripts especiais do R para a análise dos descritores para residos específicos, indicados no input, produzindo gráficos de barra com a média e o desvio padrão, como na figura abaixo para o descritor de eletrofilicidade, o mesmo que o NAS.
+O PRIMoRDiA também escreve scripts especiais do R para a análise dos descritores para residuos específicos, indicados no input, produzindo gráficos de barra com a média e o desvio padrão, como na figura abaixo para o descritor de eletrofilicidade na \autoref{fig_tut6_11}, nucleofilicidade na \autoref{fig_tut6_12}.
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3in]{images/tut6_img12}
-			\caption{.}
+			\caption{Gráfico de barras para a eletrofilicidade nos residuos indicados durante a trajetória.}
 			\label{fig_tut6_11}
 		\end{center}
 	\end{figure}
 \end{minipage}
 
-E na próxima figura para a nucleofilicidade, ou descritor EAS
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
@@ -1458,40 +1473,36 @@ E na próxima figura para a nucleofilicidade, ou descritor EAS
 \end{minipage}
 
 
-Também, é acompanhado a variação desses valores durante a trajetória com o cálculo de médias móveis, como na figura abaixo é mostrado para densidade eletrônica em cada resido 
+Também, é acompanhado a variação desses valores durante a trajetória com o cálculo de médias móveis, como na \autoref{fig_tut6_13} é mostrado para densidade eletrônica em cada resíduo indicado no input, para a dureza local na \autoref{fig_tut6_14} e moleza local\autoref{fig_tut6_15}. 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3in]{images/tut6_img14}
-			\caption{.}
+			\caption{Médias móveis para a densidade eletrônica para os residuos indicados no input para análise da trajetória.}
 			\label{fig_tut6_13}
 		\end{center}
 	\end{figure}
 \end{minipage}
-
-Na figura abaixo é mostrado para o primeiro método de dureza local 
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3in]{images/tut6_img15}
-			\caption{.}
+			\caption{Médias móveis para a dureza local para os residuos indicados no input para análise da trajetória.}
 			\label{fig_tut6_14}
 		\end{center}
 	\end{figure}
 \end{minipage}
-
-E em seguida as médias móveis para moleza local
 
 \hspace*{-\leftmarginwidth}
 \begin{minipage}{\fullwidth}
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=3in]{images/tut6_img16}
-			\caption{.}
+			\caption{Médias móveis para a moleza local para os residuos indicados no input para análise da trajetória.}
 			\label{fig_tut6_15}
 		\end{center}
 	\end{figure}
@@ -1500,6 +1511,8 @@ E em seguida as médias móveis para moleza local
 Podemos ver como a densidade eletrônica e a moleza local no LIG, o substrato, aumenta. Nessa estrutura de transição formada no produto da nossa simulação, o substrato forma uma ligação dupla quando o próton é doado, e como os descritores indicam o carbono e a moléculas receberam doação de carga. O aumento da moleza pode significar que agora com a dupla formada essa molécula tem maior propensão de formar ligações covalentes através de sobreposição de orbitais moleculares e também transferir carga. 
 
 Há diversas análises que podemos fazer baseados nos descritores de reatividade, que por sua vez também são numerosos, para cada átomo envolvido e para cada resíduo. O PRIMoRDiA fornece uma forma automática de dispor todos esses resultados da forma mais pronta para análise possível. 
+
+\section{Tutorial Extra: Google Colabs}
 
 
 \end{document}
