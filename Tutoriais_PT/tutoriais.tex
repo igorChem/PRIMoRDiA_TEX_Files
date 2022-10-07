@@ -57,7 +57,7 @@
 
 
 
-\title{ \huge {PRIMoRDiA 1.25v Tutoriais} }
+\title{ \huge {PRIMoRDiA Tutoriais} }
 \author{Igor Barden Grillo \\(\url{PRIMoRDiA.software@gmail.com} )\\\url{github.com/igorChem}}
 
 \begin{document}
@@ -1512,7 +1512,61 @@ Podemos ver como a densidade eletrônica e a moleza local no LIG, o substrato, a
 
 Há diversas análises que podemos fazer baseados nos descritores de reatividade, que por sua vez também são numerosos, para cada átomo envolvido e para cada resíduo. O PRIMoRDiA fornece uma forma automática de dispor todos esses resultados da forma mais pronta para análise possível. 
 
+\newpage
 \section{Tutorial Extra: Google Colabs}
 
+PRIMoRDiA é um software escrito para ser compilado e executado de forma simples e eficiência em ambientes Linux. No entanto, nem sempre o usuário vai ter acesso a uma máquina local com um sistema operacional baseado em Unix, e muitas vezes para fins didáticos e de teste do software o usuário não está disposto a trocar de sistema operacional. De fato, o PRIMoRDiA não pretende ser um software multi-plataforma em essência, mas com os recursos de computação em nuvem que estão disponíveis nos dias de hoje, é possível que o programa possa ser executado de qualquer dispositivo com acesso a internet. 
+
+Nesse tutorial vamos explorar o uso da plataforma Google Colabs. Para isso só é preciso ter uma conta gmail, e recursos como 12GB de ram e 100GB de storage estarão disponíveis gratuitamente. Além da questão de plataforma, também a falta de recursos locais pode ser resolvida através dessa abordagem.  
+
+Vamos exemplificar a instalação e a execução do primeiro tutorial apresentado nesse documento. O primeiro passo é com a sua conta Google entar na plataforma colabs: \url{https://colab.research.google.com}. Tem tutoriais básicos lá ensinando a usar a plataforma para tarefas simples e análise de dados em Python. De fato, o Google colabs te fornece um ambiente de Python, com a mesma lógica de un notebook de Jupypter, que são formas de executar scripts interativos em Python no Browser.
+
+No nosso diretório principal do repositório, se encontra um arquivo nomeado "Tutotrial\_PRIMoRDiA\_Colab.ipynb". Esse arquivo pode ser aberto no Google Colab onde é possível executar todas as etapas desse tutorial. No entanto, também é possível criar seu próprio arquivo e copiar os comandos como mostrado nas próximas figuras. 
+
+Na \autoref{tut_extra1}, vemos os comandos necessários para instalar duas bibliotecas necessárias para compilar o PRIMoRDiA, é na verdade o mesmo processo de compilação realizado em uma máquina Linux local. A grande diferença é que nesse ambiente a linguagem principal é Python3, e comandos que vão precisar rodar no "bash" (linguagem de interface entre o usuário e o sistemas baseados em Unix), precisam iniciar com um ponto de exclamação "!" ou de porcentagem "\%". Basicamente para execução de binários se usa o primeiro e para comandos necessários para navegação nos arquivos se usa o último. 
+
+
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=3in]{images/tut_extra_1}
+			\caption{Instalando bibliotecas externa no ambiente do Google Colab.}
+			\label{tut_extra1}
+		\end{center}
+	\end{figure}
+\end{minipage}
+
+Portanto, em uma célula de código do seu arquivo aberto no Colab, digite os mesmos comandos mostrados na \autoref{tut_extra1}, e execute clicando no botão comumente conhecido pelo "play". Terminada essa execução, vamos clonar o repositório do PRIMoRDiA, navegar para dentro da pasta, configurar a compilação e executar ela. Esse passo a passo é mostrado na \autoref{tut_extra2}. 
+
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=3in]{images/tut_extra_2}
+			\caption{Configurando e compilando o executável.}
+			\label{tut_extra2}
+		\end{center}
+	\end{figure}
+\end{minipage}
+
+Lembrando que no Colab, o diretório principal é o /content. Essas dados ficam na nuvem, ocupando espaço do seu Google Drive. Para acessar os dados na pasta é só acessar o menu que fica a esquerda na tela, onde também é possível selecionar os arquivos e fazer o dawnload. 
+
+A lógica de execução do PRIMoRDiA segue igual a mostrada nos outros tutoriais. Para executá-los não esqueça de primeiro descomprimir o diretório usando o comando "!tar -xf Tutorials\_Files.tar.bz". Depois disso é possível entrar no diretório onde estão os dados para a execução do primeiro tutorial, como mostrado na \autoref{tut_extra3}. 
+
+\hspace*{-\leftmarginwidth}
+\begin{minipage}{\fullwidth}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=3in]{images/tut_extra_3}
+			\caption{Comandos utilizados na execução do primeiro tutorial dentro da plataforma do Google Colabs.}
+			\label{tut_extra3}
+		\end{center}
+	\end{figure}
+\end{minipage}
+
+Depois de executado os comandos, pode demorar alguns minutos, os resultados aparecerão na mesma pasta. Para seguir fazendo a parte de análise do tutorial 1, como já descrito nesse documento, é preciso baixar os arquivos para utilizar as ferramentas gráficas na sua máquina local.  
+
+Concluindo, não há nenhuma grande diferença de execução dos tutoriais quando realizados na plataforma do Google Colabs, podendo ser uma ferramenta de grande ajuda para aprender a utilizar o software e para aulas ou cursos acadêmicos, ou até mesmo para aqueles com recursos computacionais bem limitados. 
 
 \end{document}
